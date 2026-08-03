@@ -27,9 +27,9 @@ license: MIT
 # AutoAnimate
 
 **Status**: Production Ready ✅
-**Last Updated**: 2025-11-07
+**Last Updated**: 2026-08-03
 **Dependencies**: None (works with any React setup)
-**Latest Versions**: @formkit/auto-animate@0.9.0
+**Latest Versions**: @formkit/auto-animate@0.10.0
 
 ---
 
@@ -308,16 +308,16 @@ AutoAnimate respects `prefers-reduced-motion` **automatically**:
 
 ---
 
-## Package Versions (Verified 2025-11-07)
+## Package Versions (Verified 2026-08-03)
 
 ```json
 {
   "dependencies": {
-    "@formkit/auto-animate": "^0.9.0"
+    "@formkit/auto-animate": "^0.10.0"
   },
   "devDependencies": {
     "react": "^19.2.0",
-    "vite": "^6.0.0"
+    "vite": "^7.3.0"
   }
 }
 ```
@@ -376,7 +376,7 @@ useEffect(() => {
 
 ## Complete Setup Checklist
 
-- [ ] Installed `@formkit/auto-animate@0.9.0`
+- [ ] Installed `@formkit/auto-animate@0.10.0`
 - [ ] Using React 19+ (or Vue/Svelte)
 - [ ] Added ref to parent element
 - [ ] Parent element always rendered (not conditional)

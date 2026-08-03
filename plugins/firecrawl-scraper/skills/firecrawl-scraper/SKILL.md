@@ -31,7 +31,7 @@ license: MIT
 # Firecrawl Web Scraper Skill
 
 **Status**: Production Ready ✅
-**Last Updated**: 2025-11-21
+**Last Updated**: 2026-08-03
 **Official Docs**: https://docs.firecrawl.dev
 **API Version**: v2.5
 
@@ -149,7 +149,7 @@ print(result.get("markdown"))
 ### TypeScript/Node.js
 
 ```bash
-bun add @mendable/firecrawl-js  # v4.4.1+
+bun add @mendable/firecrawl-js  # v4.32.0+
 ```
 
 ```typescript
@@ -281,7 +281,7 @@ const response = await fetch('https://api.firecrawl.dev/v2/scrape', {
 | Package | Version |
 |---------|---------|
 | firecrawl-py | 4.5.0+ |
-| @mendable/firecrawl-js | 4.4.1+ |
+| @mendable/firecrawl-js | 4.32.0+ |
 | API | v2 |
 
 **Note**: Node.js SDK requires Node.js >=22.0.0, cannot run in Workers.

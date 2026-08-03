@@ -101,11 +101,11 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 // Verify versions
-// zustand@5.0.8 includes createJSONStorage
+// zustand@5.0.14 includes createJSONStorage
 // zustand@4.x uses different API
 
 // Check your package.json
-// "zustand": "^5.0.8"
+// "zustand": "^5.0.14"
 ```
 
 ---
@@ -202,7 +202,7 @@ const useStore = create<BearSlice & FishSlice>()((...a) => ({
 |-------|-------|-----------|
 | Hydration mismatch | "Text content does not match" | Use `_hasHydrated` flag pattern |
 | TypeScript inference | Types break with middleware | Use `create<T>()()` double parentheses |
-| Import error | "createJSONStorage not exported" | Upgrade to zustand@5.0.8+ |
+| Import error | "createJSONStorage not exported" | Upgrade to zustand@5.0.14+ |
 | Infinite loop | Browser freezes | Use `shallow` or separate selectors |
 | Slices types | StateCreator types fail | Explicit `StateCreator<Combined, [], [], Slice>` |
 

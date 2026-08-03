@@ -103,7 +103,7 @@ Check Node.js version:
 node --version
 ```
 
-Required: Node.js >= 18.x
+Required: Node.js >= 20.x
 
 Check for Git hooks:
 - Look for `.husky/` directory

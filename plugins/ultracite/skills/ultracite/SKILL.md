@@ -9,7 +9,7 @@ metadata:
     "@biomejs/biome": ">=1.9.0"
     eslint: ">=8.0.0 (when using ESLint provider)"
     oxlint: ">=0.1.0 (when using Oxlint provider)"
-  runtime: Node.js v14.18+ (v18+ recommended)
+  runtime: Node.js v18+ (v20+ recommended)
   package_managers:
     - bun (preferred)
     - npm
@@ -307,7 +307,7 @@ When this skill is invoked, scan the project and assess:
 
 ### Prerequisites
 
-- Node.js v14.18+ (v18+ recommended)
+- Node.js v18+ (v20+ recommended)
 - Package manager: Bun (preferred), npm, pnpm, or yarn
 - `package.json` file in project root
 
@@ -376,7 +376,7 @@ bunx ultracite init \
 
 ```bash
 # 1. Install dependencies
-bun add -D ultracite @biomejs/biome
+bun add -D ultracite@7 @biomejs/biome@^1.9.0
 
 # 2. Create biome.jsonc
 cat > biome.jsonc << 'EOF'

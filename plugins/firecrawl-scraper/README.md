@@ -196,12 +196,12 @@ firecrawl-scraper/
 
 ---
 
-## Package Versions (Verified 2025-10-24)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
 | firecrawl-py | 4.5.0+ | ✅ Latest stable |
-| @mendable/firecrawl-js (or firecrawl) | 4.4.1+ | ✅ Latest stable (Node.js >=22.0.0) |
+| @mendable/firecrawl-js (or firecrawl) | 4.32.0+ | ✅ Latest stable (Node.js >=22.0.0) |
 | API Version | v2 | ✅ Current |
 
 **Note**: Node.js SDK cannot run in Cloudflare Workers. Use direct REST API (see templates/firecrawl-worker-fetch.ts).

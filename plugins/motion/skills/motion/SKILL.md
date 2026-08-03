@@ -21,7 +21,7 @@ Motion (package: `motion`, formerly `framer-motion`) is the industry-standard Re
 - **Exit Animations**: AnimatePresence for unmounting transitions
 - **Performance**: Hardware-accelerated, ScrollTimeline API, bundle optimization (2.3 KB - 34 KB)
 
-**Production Tested**: React 19, Next.js 15, Vite 6, Tailwind v4
+**Production Tested**: React 19, Next.js 15, Vite 7, Tailwind v4
 
 ---
 
@@ -62,7 +62,7 @@ Motion (package: `motion`, formerly `framer-motion`) is the industry-standard Re
 
 - **Simple list animations** (use `auto-animate` instead: 3.28 KB vs 34 KB)
 - **Static content** without interactions
-- **Cloudflare Workers** (use `framer-motion` v12.23.24 workaround - see Known Issues)
+- **Cloudflare Workers** (use `framer-motion` v12.43.0 workaround - see Known Issues)
 - **3D animations** (use Three.js or React Three Fiber instead)
 
 ---
@@ -77,7 +77,9 @@ bun add motion  # preferred
 # or: yarn add motion
 ```
 
-**Current Version**: 12.23.24 (verified 2025-11-07)
+**Current Version**: 12.43.0 (verified 2026-08-03)
+
+> **Note**: `motion` is the current package name. `framer-motion` is a deprecated alias that republishes the same code; it still works and is maintained as an install-time alias (notably useful as a Cloudflare Workers build workaround), but new projects should install `motion`.
 
 **Alternative for Cloudflare Workers**:
 ```bash
@@ -267,7 +269,7 @@ import { motion } from "motion/react"
 
 **Tailwind**: ⚠️ Remove `transition-*` classes (causes conflicts with Motion animations)
 
-**Cloudflare Workers**: Use `framer-motion` v12.23.24 instead (Motion has Wrangler build issues)
+**Cloudflare Workers**: Use `framer-motion` v12.43.0 instead (Motion has Wrangler build issues)
 
 **For complete integration guides** (Next.js patterns, SSR, framework-specific issues), load `references/nextjs-integration.md`.
 
@@ -373,7 +375,7 @@ import { motion } from "motion/react"
 
 **Symptom**: Wrangler build fails when using `motion` package.
 
-**Solution**: Use `framer-motion` v12.23.24 instead (GitHub issue #2918):
+**Solution**: Use `framer-motion` v12.43.0 instead (GitHub issue #2918):
 ```bash
 bun add framer-motion  # Same API, works with Workers
 ```
@@ -487,14 +489,14 @@ See `scripts/` directory for automation tools.
 
 ---
 
-## Package Versions (Verified 2025-11-07)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| motion | 12.23.24 | ✅ Latest stable |
-| framer-motion | 12.23.24 | ✅ Alternative for Cloudflare |
+| motion | 12.43.0 | ✅ Latest stable |
+| framer-motion | 12.43.0 | ✅ Deprecated alias of motion (Cloudflare Workers workaround) |
 | react | 19.2.0 | ✅ Latest stable |
-| vite | 6.0.0 | ✅ Latest stable |
+| vite | 7.3.0 | ✅ Latest stable |
 
 ---
 
@@ -506,7 +508,7 @@ Found an issue or have a suggestion?
 
 ---
 
-**Production Tested**: ✅ React 19 + Next.js 15 + Vite 6 + Tailwind v4
+**Production Tested**: ✅ React 19 + Next.js 15 + Vite 7 + Tailwind v4
 **Token Savings**: ~83%
 **Error Prevention**: 100% (29+ documented errors prevented)
 **Bundle Size**: 2.3 KB (mini) - 34 KB (full), optimizable to 4.6 KB with LazyMotion

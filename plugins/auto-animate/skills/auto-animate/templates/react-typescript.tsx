@@ -1,5 +1,5 @@
 // AutoAnimate - TypeScript Setup with Configuration
-// @formkit/auto-animate v0.9.0
+// @formkit/auto-animate v0.10.0
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import type { AutoAnimateOptions, AnimationController } from "@formkit/auto-animate";

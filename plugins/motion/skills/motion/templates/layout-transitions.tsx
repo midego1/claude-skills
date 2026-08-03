@@ -1,5 +1,5 @@
 // Motion Layout Animations & Shared Element Transitions
-// Production-tested with Motion v12.23.24, React 19
+// Production-tested with Motion v12.43.0, React 19
 
 /**
  * INSTALLATION

@@ -385,7 +385,7 @@ packages:
     "lint:fix": "pnpm --recursive run lint:fix"
   },
   "devDependencies": {
-    "ultracite": "^0.9.0"
+    "ultracite": "^7.0.0"
   }
 }
 ```

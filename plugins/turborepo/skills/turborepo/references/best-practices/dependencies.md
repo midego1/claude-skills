@@ -153,7 +153,7 @@ packages:
   - "packages/*"
 
 catalog:
-  react: ^19.0.0
+  react: ^19.2.0
   typescript: ~5.9.3
 ```
 

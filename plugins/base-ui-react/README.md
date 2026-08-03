@@ -1,7 +1,7 @@
 # Base UI React
 
-**Status**: Beta (v1.0.0-beta.4) - Stable v1.0 expected Q4 2025 ⚠️
-**Last Updated**: 2025-11-07
+**Status**: Release Candidate (v1.0.0-rc.0) - Stable v1.0 GA expected soon ⚠️
+**Last Updated**: 2026-08-03
 **Production Tested**: ✅ Real projects with documented workarounds
 
 ---
@@ -207,15 +207,15 @@ import { Popover } from "@base-ui-components/react/popover";
 
 ---
 
-## Package Versions (Verified 2025-11-07)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| @base-ui-components/react | 1.0.0-beta.4 | ⚠️ Beta - v1.0 Q4 2025 |
+| @base-ui-components/react | 1.0.0-rc.0 | ⚠️ Release Candidate - v1.0 GA soon |
 | react | 19.2.0+ | ✅ Latest stable |
 | react-dom | 19.2.0+ | ✅ Latest stable |
-| @vitejs/plugin-react | 5.0.0 | ✅ Latest stable |
-| vite | 6.0.0 | ✅ Latest stable |
+| @vitejs/plugin-react | ^5.2.0 | ✅ Latest stable |
+| vite | ^7.3.0 | ✅ Latest stable |
 
 ---
 

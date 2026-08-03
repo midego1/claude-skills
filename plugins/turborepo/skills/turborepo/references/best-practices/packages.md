@@ -272,7 +272,7 @@ packages/
 
 ### Use Node.js Subpath Imports (Not `paths`)
 
-TypeScript `compilerOptions.paths` breaks with JIT packages. Use Node.js subpath imports instead (TypeScript 5.4+).
+TypeScript `compilerOptions.paths` breaks with JIT packages. Use Node.js subpath imports instead (TypeScript 5.9+).
 
 **JIT Package:**
 

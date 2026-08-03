@@ -261,6 +261,8 @@ paypal.Buttons({
 
 ## Dependencies
 
+> ⚠️ **Deprecated package**: `@paypal/checkout-server-sdk` is deprecated by PayPal. The code above uses the legacy SDK for reference. For new integrations, use the maintained replacement [`@paypal/paypal-server-sdk`](https://www.npmjs.com/package/@paypal/paypal-server-sdk) instead (the API surface differs; consult PayPal's current migration guide).
+
 ```json
 {
   "@paypal/checkout-server-sdk": "^1.0.3"

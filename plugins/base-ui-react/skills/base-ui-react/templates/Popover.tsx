@@ -1,5 +1,5 @@
 // Base UI Popover Component with Floating UI Integration
-// @base-ui-components/react v1.0.0-beta.4
+// @base-ui-components/react v1.0.0-rc.0
 
 import * as React from "react";
 import { Popover } from "@base-ui-components/react/popover";

@@ -136,9 +136,9 @@ When Claude detects trigger keywords, it should:
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
-    "@vitejs/plugin-react": "^5.0.4",
-    "vite": "^7.0.0",
-    "typescript": "~5.9.0"
+    "@vitejs/plugin-react": "^5.2.0",
+    "vite": "^7.2.4",
+    "typescript": "~5.9.3"
   }
 }
 ```

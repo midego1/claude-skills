@@ -10,7 +10,7 @@ Quick setup for Base UI (@base-ui-components/react) - MUI's unstyled components.
 pnpm add @base-ui-components/react
 ```
 
-**Beta status:** v1.0.0-beta.4 (stable v1.0 expected Q4 2025)
+**Release Candidate status:** v1.0.0-rc.0 (stable v1.0 GA expected soon — still pre-GA)
 
 ---
 
