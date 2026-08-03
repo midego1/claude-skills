@@ -12,9 +12,9 @@ z.string()
 z.string().min(3, "Min 3 characters")
 z.string().max(100, "Max 100 characters")
 z.string().length(10, "Exactly 10 characters")
-z.string().email("Invalid email")
-z.string().url("Invalid URL")
-z.string().uuid("Invalid UUID")
+z.email({ error: "Invalid email" })
+z.url({ error: "Invalid URL" })
+z.uuid({ error: "Invalid UUID" })
 z.string().regex(/pattern/, "Does not match pattern")
 z.string().trim() // Trim whitespace
 z.string().toLowerCase() //Convert to lowercase
@@ -77,7 +77,7 @@ const withoutAgeSchema = userSchema.omit({ age: true })
 
 // Merge objects
 const extendedUserSchema = userSchema.merge(z.object({
-  email: z.string().email(),
+  email: z.email(),
 }))
 
 // Passthrough (allow extra fields)
@@ -260,7 +260,7 @@ z.preprocess(
 
 ```typescript
 const baseUser = z.object({ name: z.string() })
-const withEmail = z.object({ email: z.string().email() })
+const withEmail = z.object({ email: z.email() })
 
 // Intersection (combines both)
 const userWithEmail = baseUser.and(withEmail)
@@ -304,26 +304,33 @@ z.promise(z.object({ data: z.string() }))
 
 ## Custom Error Messages
 
+In Zod 4, error customization is unified under the `error` parameter (replaces
+the v3 `message`, `invalid_type_error`, `required_error`, and `errorMap` options).
+Error callbacks return a bare `string` (or `undefined` to defer), not `{ message }`.
+
 ```typescript
-// Field-level
-z.string({ required_error: "Name is required" })
-z.number({ invalid_type_error: "Must be a number" })
+// Field-level (unified error param)
+z.string({ error: "Name is required" })
+z.number({ error: "Must be a number" })
 
 // Validation-level
-z.string().min(3, { message: "Min 3 characters" })
-z.string().email({ message: "Invalid email format" })
+z.string().min(3, "Min 3 characters")
+z.email({ error: "Invalid email format" })
 
-// Custom error map
-const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
-  if (issue.code === z.ZodIssueCode.invalid_type) {
-    if (issue.expected === "string") {
-      return { message: "Please enter text" }
+// Custom error callback (returns string, not { message })
+z.string({
+  error: (issue) => {
+    if (issue.code === "invalid_type") {
+      return "Please enter text"
     }
-  }
-  return { message: ctx.defaultError }
-}
+    return undefined // defer to default
+  },
+})
 
-z.setErrorMap(customErrorMap)
+// Global defaults via z.config (replaces v3 z.setErrorMap)
+z.config({
+  customError: (issue) => `Validation failed: ${issue.code}`,
+})
 ```
 
 ---
@@ -379,11 +386,11 @@ try {
   schema.parse(data)
 } catch (error) {
   if (error instanceof z.ZodError) {
-    // Formatted errors
-    console.log(error.format())
+    // Treeified errors (replaces v3 error.format())
+    console.log(z.treeifyError(error))
 
-    // Flattened errors (for forms)
-    console.log(error.flatten())
+    // Flattened errors (replaces v3 error.flatten())
+    console.log(z.flattenError(error))
 
     // Individual issues
     console.log(error.issues)

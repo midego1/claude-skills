@@ -59,7 +59,7 @@ export default defineContentConfig({
           github: z.string().optional(),
           twitter: z.string().optional(),
           linkedin: z.string().optional(),
-          website: z.string().url().optional()
+          website: z.url().optional()
         }).optional()
       })
     })

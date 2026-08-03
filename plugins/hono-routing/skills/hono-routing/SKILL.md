@@ -258,7 +258,7 @@ import { z } from 'zod'
 app.post('/user',
   zValidator('json', z.object({
     name: z.string(),
-    email: z.string().email(),
+    email: z.email(),
   })),
   (c) => {
     const data = c.req.valid('json') // Typed!

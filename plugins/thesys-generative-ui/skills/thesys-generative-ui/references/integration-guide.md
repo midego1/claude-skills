@@ -879,7 +879,7 @@ const productOrderSchema = z.discriminatedUnion("type", [
 ]);
 
 const createOrderSchema = z.object({
-  customer_email: z.string().email(),
+  customer_email: z.email(),
   items: z.array(productOrderSchema).min(1),
   shipping_address: z.object({
     street: z.string(),

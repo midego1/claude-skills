@@ -16,8 +16,8 @@ import { z } from "zod";
 
 export const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]),
-  DATABASE_URL: z.string().url(),
-  REDIS_URL: z.string().url().optional(),
+  DATABASE_URL: z.url(),
+  REDIS_URL: z.url().optional(),
   PORT: z.coerce.number().int().positive().default(3000),
   API_KEY: z.string().min(32),
   JWT_SECRET: z.string().min(64),
@@ -36,7 +36,7 @@ export type Env = z.infer<typeof EnvSchema>;
 // Create User Request
 export const CreateUserRequest = z.object({
   username: z.string().min(3).max(20).regex(/^[a-zA-Z0-9_]+$/),
-  email: z.string().email(),
+  email: z.email(),
   password: z.string().min(8).max(100),
   firstName: z.string().min(1).max(50).optional(),
   lastName: z.string().min(1).max(50).optional(),
@@ -56,7 +56,7 @@ export type UpdateUserRequest = z.infer<typeof UpdateUserRequest>;
 export const UserResponse = z.object({
   id: z.string().uuid(),
   username: z.string(),
-  email: z.string().email(),
+  email: z.email(),
   firstName: z.string().nullable(),
   lastName: z.string().nullable(),
   age: z.number().int().positive().nullable(),
@@ -83,7 +83,7 @@ export const PaginatedResponse = <T extends z.ZodTypeAny>(itemSchema: T) =>
 // ============================================================================
 
 export const LoginFormSchema = z.object({
-  email: z.string().email("Invalid email address"),
+  email: z.email({ error: "Invalid email address" }),
   password: z.string().min(8, "Password must be at least 8 characters"),
   rememberMe: z.boolean().default(false),
 });
@@ -92,11 +92,11 @@ export type LoginFormData = z.infer<typeof LoginFormSchema>;
 
 export const SignupFormSchema = z
   .object({
-    email: z.string().email("Invalid email address"),
+    email: z.email({ error: "Invalid email address" }),
     password: z.string().min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string(),
     agreeToTerms: z.literal(true, {
-      errorMap: () => ({ message: "You must accept the terms and conditions" }),
+      error: () => "You must accept the terms and conditions",
     }),
   })
   .superRefine((data, ctx) => {
@@ -132,7 +132,7 @@ export type ApiResponse = z.infer<typeof ApiResponse>;
 export const NotificationSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("email"),
-    to: z.string().email(),
+    to: z.email(),
     subject: z.string(),
     body: z.string(),
   }),

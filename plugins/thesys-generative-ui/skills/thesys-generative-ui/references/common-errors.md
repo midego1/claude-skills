@@ -195,7 +195,7 @@ try {
   const result = await executeTool(args);
 } catch (error) {
   if (error instanceof z.ZodError) {
-    console.error("Validation failed:", error.errors);
+    console.error("Validation failed:", error.issues);
   }
 }
 ```

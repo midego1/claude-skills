@@ -62,9 +62,9 @@ if (result.success) {
 
 | Validator | Code |
 |-----------|------|
-| Email | `z.string().email()` |
-| URL | `z.string().url()` |
-| UUID | `z.string().uuid()` |
+| Email | `z.email()` |
+| URL | `z.url()` |
+| UUID | `z.uuid()` |
 | Min length | `z.string().min(5)` |
 | Max length | `z.string().max(100)` |
 | Exact length | `z.string().length(10)` |
@@ -196,7 +196,7 @@ z.string().min(5, "Too short!");
 z.string({
   error: (issue) => {
     if (issue.code === "too_small") {
-      return { message: `Min: ${issue.minimum}` };
+      return `Min: ${issue.minimum}`;
     }
   },
 });
@@ -293,7 +293,7 @@ z.hex()            // Hexadecimal
 const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "production"]),
   PORT: z.coerce.number().default(3000),
-  DATABASE_URL: z.string().url(),
+  DATABASE_URL: z.url(),
 });
 
 const env = EnvSchema.parse(process.env);
@@ -303,7 +303,7 @@ const env = EnvSchema.parse(process.env);
 ```typescript
 const CreateUserRequest = z.object({
   username: z.string().min(3).max(20),
-  email: z.string().email(),
+  email: z.email(),
   password: z.string().min(8),
 });
 
@@ -313,7 +313,7 @@ const result = CreateUserRequest.safeParse(req.body);
 ### Form Validation
 ```typescript
 const FormSchema = z.object({
-  email: z.string().email("Invalid email"),
+  email: z.email({ error: "Invalid email" }),
   password: z.string().min(8, "Too short"),
 });
 ```

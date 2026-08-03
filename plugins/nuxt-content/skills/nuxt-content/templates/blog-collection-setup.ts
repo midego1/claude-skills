@@ -51,7 +51,7 @@ export default defineContentConfig({
       schema: z.object({
         name: z.string(),
         bio: z.string(),
-        avatar: z.string().url(),
+        avatar: z.url(),
         social: z.object({
           twitter: z.string().optional(),
           github: z.string().optional()

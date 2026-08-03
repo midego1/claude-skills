@@ -33,7 +33,7 @@ const app = new Hono()
 
 const userSchema = z.object({
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
 })
 
 // CRITICAL: Use const route = app.get(...) pattern

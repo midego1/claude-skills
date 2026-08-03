@@ -313,7 +313,7 @@ app.post(
   zValidator('param', z.object({ id: z.string() })),
   zValidator('json', z.object({
     name: z.string().min(1),
-    email: z.string().email(),
+    email: z.email(),
   })),
   (c) => {
     const { id } = c.req.valid('param')

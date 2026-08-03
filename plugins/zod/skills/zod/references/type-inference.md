@@ -100,7 +100,7 @@ Generate JSON Schema from Zod schemas for OpenAPI, AI structured outputs, or doc
 ```typescript
 const UserSchema = z.object({
   id: z.string().uuid(),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().positive(),
   role: z.enum(["admin", "user"]),
 });
@@ -147,7 +147,7 @@ The easiest way to add metadata is using the global registry:
 
 ```typescript
 // Add metadata with .meta()
-const EmailSchema = z.string().email().meta({
+const EmailSchema = z.email().meta({
   id: "email_address",
   title: "Email Address",
   description: "User's email address",
@@ -247,14 +247,14 @@ formRegistry.clear();
 The `.register()` method adds metadata and returns the original schema (not a new instance):
 
 ```typescript
-const EmailSchema = z.string().email().register({
+const EmailSchema = z.email().register({
   title: "Email Address",
   description: "User's email address",
 });
 
 // Returns the same schema instance, allowing inline registration
 const UserSchema = z.object({
-  email: z.string().email().register({
+  email: z.email().register({
     id: "user_email",
     title: "Email",
   }),
@@ -310,7 +310,7 @@ Metadata integrates seamlessly with `z.toJSONSchema()`:
 
 ```typescript
 const UserSchema = z.object({
-  email: z.string().email().meta({
+  email: z.email().meta({
     title: "Email Address",
     description: "The user's email",
     examples: ["user@example.com"],
@@ -362,7 +362,7 @@ const jsonSchema = z.toJSONSchema(UserSchema, {
 const UserSchema = z.object({
   id: z.string(),
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 // Extract the inferred type
@@ -401,7 +401,7 @@ const ConditionalSchema = z.object({
 }).refine(
   (data) => {
     if (data.type === "email") {
-      return z.string().email().safeParse(data.value).success;
+      return z.email().safeParse(data.value).success;
     }
     return z.string().regex(/^\+?[1-9]\d{1,14}$/).safeParse(data.value).success;
   },

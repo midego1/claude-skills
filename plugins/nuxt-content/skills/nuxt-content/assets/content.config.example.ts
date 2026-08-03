@@ -44,12 +44,12 @@ export default defineContentConfig({
         name: z.string(),
         bio: z.string(),
         avatar: z.string(),
-        email: z.string().email().optional(),
+        email: z.email().optional(),
         social: z.object({
           github: z.string(),
           twitter: z.string().optional(),
           linkedin: z.string().optional(),
-          website: z.string().url().optional()
+          website: z.url().optional()
         }).optional()
       })
     }),

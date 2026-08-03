@@ -424,7 +424,7 @@ const Flat = z.object({
 // ✓ Good - defined once
 const UserSchema = z.object({
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 export function validateUser(data: unknown) {
@@ -435,7 +435,7 @@ export function validateUser(data: unknown) {
 export function validateUser(data: unknown) {
   const schema = z.object({
     name: z.string(),
-    email: z.string().email(),
+    email: z.email(),
   });
   return schema.safeParse(data);
 }
@@ -482,11 +482,11 @@ interface User {
 ```typescript
 // ✓ Clear, actionable errors
 z.string().min(8, "Password must be at least 8 characters");
-z.string().email("Please enter a valid email address");
+z.email({ error: "Please enter a valid email address" });
 
 // ✗ Default errors (less user-friendly)
 z.string().min(8);
-z.string().email();
+z.email();
 ```
 
 ---
@@ -553,14 +553,14 @@ const PostSchema = z.object({
 
 ```typescript
 // ✓ Self-documenting schemas
-const EmailSchema = z.string().email().meta({
+const EmailSchema = z.email().meta({
   title: "Email Address",
   description: "User's primary email address",
   examples: ["user@example.com"],
 });
 
 // ✗ Undocumented schemas
-const EmailSchema = z.string().email();
+const EmailSchema = z.email();
 ```
 
 ---

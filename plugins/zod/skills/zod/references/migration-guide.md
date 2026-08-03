@@ -32,7 +32,7 @@ z.string({
 });
 
 z.string().email({
-  error: (issue) => ({ message: "Invalid email" })
+  error: (issue) => "Invalid email"
 });
 ```
 
@@ -67,23 +67,22 @@ z.number().refine((n) => Number.isFinite(n) || !Number.isNaN(n));
 **Breaking Change**: Format validators are now top-level functions, not methods.
 
 ```typescript
-// ❌ Zod v3 (Methods on z.string())
+// ❌ Zod v3 (Methods on z.string() — REMOVED in v4)
 z.string().email();
 z.string().uuid();
 z.string().url();
 z.string().ipv4();
 z.string().ipv6();
 
-// ✅ Zod v4 (Top-level functions)
+// ✅ Zod v4 (Top-level functions — required)
 z.email();        // Shorthand for validated email
 z.uuid();         // Stricter UUID validation (RFC 9562/4122)
 z.url();
 z.ipv4();
 z.ipv6();
 
-// Both still work for now, but top-level is preferred
-z.string().email();  // Still works in v4
-z.email();          // Preferred in v4
+// NOTE: z.string().email() / .url() / .ip() / .cidr() / .datetime() / .base64url()
+// were REMOVED in v4. Use the top-level z.email(), z.url(), etc. instead.
 ```
 
 ---
