@@ -51,7 +51,7 @@ bunx vitest --version
 
 **Symptoms**:
 ```
-Error: Miniflare requires Node.js 18 or higher
+Error: Miniflare requires Node.js 20 or higher
 ```
 
 **Cause**: Miniflare v3 dropped Node 16 support.

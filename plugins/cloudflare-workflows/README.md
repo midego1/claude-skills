@@ -207,8 +207,8 @@ const status = await instance.status();
 ```json
 {
   "devDependencies": {
-    "wrangler": "^4.50.0",
-    "@cloudflare/workers-types": "^4.20251126.0",
+    "wrangler": "^4.81.0",
+    "@cloudflare/workers-types": "^4.20260408.0",
     "typescript": "^5.9.0"
   }
 }

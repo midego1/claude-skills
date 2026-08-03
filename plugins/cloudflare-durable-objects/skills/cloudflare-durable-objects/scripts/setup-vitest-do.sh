@@ -17,7 +17,7 @@
 #   ./setup-vitest-do.sh --javascript  # Use JavaScript
 #
 # Requirements:
-# - Node.js 18+
+# - Node.js 20+
 # - wrangler.jsonc with Durable Objects configured
 # - Existing Durable Object implementation
 
@@ -167,8 +167,8 @@ validate_prerequisites() {
   # Check Node.js version
   local node_version
   node_version=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
-  if [[ "$node_version" -lt 18 ]]; then
-    error "Node.js 18+ required (found: $node_version)"
+  if [[ "$node_version" -lt 20 ]]; then
+    error "Node.js 20+ required (found: $node_version)"
   fi
   success "Node.js version OK (v$node_version)"
 

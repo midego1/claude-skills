@@ -209,7 +209,7 @@ Different Access configurations per tenant/organization.
 
 - **@hono/cloudflare-access**: 0.3.1 (actively maintained)
 - **hono**: 4.10.3 (stable)
-- **@cloudflare/workers-types**: 4.20251014.0 (current)
+- **@cloudflare/workers-types**: 4.20260408.0 (current)
 
 **Last Verified**: 2025-10-28
 

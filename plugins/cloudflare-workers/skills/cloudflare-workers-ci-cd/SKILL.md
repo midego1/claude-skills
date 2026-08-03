@@ -13,13 +13,13 @@ metadata:
   references_included: 4
   scripts_included: 1
   github_actions_version: "v4"
-  wrangler_version: "4.50.0"
+  wrangler_version: "4.81.0"
 ---
 
 # Cloudflare Workers CI/CD
 
 **Status**: ✅ Production Ready | Last Verified: 2025-01-27
-**GitHub Actions**: v4 | **GitLab CI**: Latest | **Wrangler**: 4.50.0
+**GitHub Actions**: v4 | **GitLab CI**: Latest | **Wrangler**: 4.81.0
 
 ## Table of Contents
 

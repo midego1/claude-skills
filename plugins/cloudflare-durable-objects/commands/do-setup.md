@@ -105,8 +105,8 @@ npm install -g wrangler@latest
 
 If wrong Node.js version:
 ```bash
-# Recommend using nvm to install Node 18+
-nvm install 18
+# Recommend using nvm to install Node 20+
+nvm install 20
 nvm use 18
 ```
 

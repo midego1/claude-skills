@@ -202,9 +202,9 @@ export default {
 ## Dependencies
 
 - **Required**: cloudflare-worker-base skill (for Worker setup)
-- **CLI**: wrangler@4.43.0+
+- **CLI**: wrangler@4.81.0+
 - **Package**: @cloudflare/puppeteer@1.0.4 or @cloudflare/playwright@1.0.0
-- **Types**: @cloudflare/workers-types@4.20251014.0+
+- **Types**: @cloudflare/workers-types@4.20260408.0+
 
 ---
 

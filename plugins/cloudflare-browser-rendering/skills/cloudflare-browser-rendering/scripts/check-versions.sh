@@ -40,8 +40,8 @@ check_package "@cloudflare/playwright" "1.0.0"
 echo "=== Related Packages ==="
 echo ""
 
-check_package "wrangler" "4.43.0"
-check_package "@cloudflare/workers-types" "4.20251014.0"
+check_package "wrangler" "4.81.0"
+check_package "@cloudflare/workers-types" "4.20260408.0"
 
 echo "=== Verification Complete ==="
 echo ""

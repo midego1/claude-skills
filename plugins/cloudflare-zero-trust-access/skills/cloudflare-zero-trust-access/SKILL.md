@@ -15,7 +15,7 @@ metadata:
   package_versions:
     "@hono/cloudflare-access": "0.3.1"
     "hono": "4.10.3"
-    "@cloudflare/workers-types": "4.20251014.0"
+    "@cloudflare/workers-types": "4.20260408.0"
   errors_prevented: 8
   token_savings: "58%"
   time_savings: "2.5 hours"
@@ -304,7 +304,7 @@ cloudflareAccess({ domain: 'my-team.cloudflareaccess.com' })
 |---------|---------|
 | @hono/cloudflare-access | 0.3.1 |
 | hono | 4.10.7 |
-| @cloudflare/workers-types | 4.20251126.0 |
+| @cloudflare/workers-types | 4.20260408.0 |
 
 **Verified**: 2025-12-14 | **Token Savings**: ~58% | **Production Tested**: ✅
 

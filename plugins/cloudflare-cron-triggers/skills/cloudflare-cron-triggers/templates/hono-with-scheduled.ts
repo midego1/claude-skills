@@ -12,7 +12,7 @@
  * }
  *
  * Dependencies:
- * npm install hono@4.10.1
+ * npm install hono@4.12.12
  */
 
 import { Hono } from 'hono';

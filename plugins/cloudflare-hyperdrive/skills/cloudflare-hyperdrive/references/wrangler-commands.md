@@ -417,7 +417,7 @@ npx wrangler hyperdrive list
 ### Check Wrangler Version
 
 ```bash
-# Ensure you have wrangler 3.11.0+
+# Ensure you have wrangler 4.81.0+
 npx wrangler --version
 ```
 

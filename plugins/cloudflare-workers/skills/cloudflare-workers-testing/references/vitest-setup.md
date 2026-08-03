@@ -11,7 +11,7 @@ bun add -D vitest @cloudflare/vitest-pool-workers
 ```
 
 **Package versions**:
-- `vitest`: ^2.1.8 (latest stable)
+- `vitest`: ^2.0.0 (2.x — required by @cloudflare/vitest-pool-workers; do NOT bump to vitest 4)
 - `@cloudflare/vitest-pool-workers`: ^0.7.2 (January 2025)
 
 ### Step 2: Create vitest.config.ts
@@ -183,11 +183,11 @@ wrangler: {
 
 ### Error: "Node.js 16 is not supported"
 
-**Cause**: Miniflare v3 requires Node 18+
+**Cause**: Miniflare v3 requires Node 20+
 
 **Fix**: Upgrade Node.js
 ```bash
-node --version # Should be 18.x or higher
+node --version # Should be 20.x or higher
 ```
 
 ### Error: "compatibilityDate is required"
@@ -207,7 +207,7 @@ miniflare: {
 
 **Breaking changes**:
 1. `SELF` module removed → use direct worker import
-2. Miniflare v2 → v3 (requires Node 18+)
+2. Miniflare v2 → v3 (requires Node 20+)
 3. New pool options format
 
 **Before** (<0.7):

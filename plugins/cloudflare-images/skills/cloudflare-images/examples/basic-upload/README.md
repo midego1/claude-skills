@@ -28,7 +28,7 @@ basic-upload/
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 20+ installed
 - Cloudflare account with Images enabled
 - Wrangler CLI: `npm install -g wrangler`
 
