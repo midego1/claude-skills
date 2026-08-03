@@ -78,9 +78,11 @@ const messages = [
 
 **Compatibility Matrix**:
 
-| C1 API Version | @thesysai/genui-sdk | @crayonai/react-ui | @crayonai/react-core |
-|----------------|--------------------|--------------------|---------------------|
-| v-20250930     | ~0.9.0             | ~0.9.16            | ~0.7.6              |
+| C1 API Version (example endpoint) | @thesysai/genui-sdk | @crayonai/react-ui | @crayonai/react-core |
+|-----------------------------------|--------------------|--------------------|---------------------|
+| v-20250930 (verify current tag in Thesys docs) | ~0.9.0             | ~0.9.16            | ~0.7.6              |
+
+> **Note:** The SDK versions above are the current recommended versions (verified 2026-08-03). The C1 API uses date-stamped endpoint tags (e.g. `c1/openai/gpt-5/v-20250930`). Always confirm the latest compatible API tag in the Thesys docs before pinning — newer SDK versions may target a newer API tag than the example shown here.
 
 **Solution**:
 

@@ -682,9 +682,9 @@ See `references/` directory for:
 
 ## Package Versions
 
-**Current versions (verified 2025-11-27):**
+**Current versions (verified 2026-08-03):**
 - `ultracite`: latest
-- `@biomejs/biome`: >=1.9.0
+- `@biomejs/biome`: >=2.0.0
 
 **Check for updates:**
 ```bash
