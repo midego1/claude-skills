@@ -2631,7 +2631,7 @@ Autolinking fails—native code not linked.
 // packages/app/package.json
 {
   "dependencies": {
-    "react-native-reanimated": "3.16.1"
+    "react-native-reanimated": "^3.16.0"
   }
 }
 ```
@@ -2679,7 +2679,7 @@ or npm overrides.
 {
   "pnpm": {
     "overrides": {
-      "react-native-reanimated": "3.16.1"
+      "react-native-reanimated": "^3.16.0"
     }
   }
 }
@@ -2687,14 +2687,14 @@ or npm overrides.
 // packages/app/package.json
 {
   "dependencies": {
-    "react-native-reanimated": "3.16.1"
+    "react-native-reanimated": "^3.16.0"
   }
 }
 
 // packages/ui/package.json
 {
   "dependencies": {
-    "react-native-reanimated": "3.16.1"
+    "react-native-reanimated": "^3.16.0"
   }
 }
 ```

@@ -184,13 +184,13 @@ function LoginForm() {
 ## Package Versions
 
 **Latest Tested Versions** (as of 2025-10-23):
-- react-hook-form: 7.65.0
-- zod: 4.1.12
+- react-hook-form: 7.84.0
+- zod: 4.3.6
 - @hookform/resolvers: 5.2.2
 
 **Installation**:
 ```bash
-npm install react-hook-form@7.65.0 zod@4.1.12 @hookform/resolvers@5.2.2
+npm install react-hook-form@7.84.0 zod@4.3.6 @hookform/resolvers@5.2.2
 ```
 
 ---

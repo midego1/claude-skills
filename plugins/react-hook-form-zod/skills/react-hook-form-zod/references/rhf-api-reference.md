@@ -1,6 +1,6 @@
 # React Hook Form API Reference
 
-Complete API reference for React Hook Form v7.65.0
+Complete API reference for React Hook Form v7.84.0
 
 ---
 

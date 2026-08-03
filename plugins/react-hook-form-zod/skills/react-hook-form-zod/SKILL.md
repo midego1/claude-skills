@@ -40,7 +40,7 @@ license: MIT
 **Status**: Production Ready ✅
 **Last Updated**: 2025-11-21
 **Dependencies**: None (standalone)
-**Latest Versions**: react-hook-form@7.66.1, zod@4.1.12, @hookform/resolvers@5.2.2
+**Latest Versions**: react-hook-form@7.84.0, zod@4.3.6, @hookform/resolvers@5.2.2
 
 ---
 
@@ -49,7 +49,7 @@ license: MIT
 ### 1. Install Packages
 
 ```bash
-bun add react-hook-form@7.66.1 zod@4.1.12 @hookform/resolvers@5.2.2
+bun add react-hook-form@7.84.0 zod@4.3.6 @hookform/resolvers@5.2.2
 ```
 
 **Why These Packages**:
@@ -678,8 +678,8 @@ z.string().refine(
 ## Dependencies
 
 **Required**:
-- `react-hook-form@7.65.0` - Form state management
-- `zod@4.1.12` - Schema validation
+- `react-hook-form@7.84.0` - Form state management
+- `zod@4.3.6` - Schema validation
 - `@hookform/resolvers@5.2.2` - Validation adapter
 
 **Optional**:

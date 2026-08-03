@@ -1,7 +1,7 @@
 # Next.js 16 Migration Guide
 
 **From**: Next.js 15.x
-**To**: Next.js 16.0.0
+**To**: Next.js 16.2.0
 **Last Updated**: 2025-10-24
 
 ---
