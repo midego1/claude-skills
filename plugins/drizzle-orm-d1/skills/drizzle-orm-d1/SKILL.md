@@ -66,15 +66,23 @@ import { defineConfig } from 'drizzle-kit';
 export default defineConfig({
   schema: './src/db/schema.ts',
   out: './migrations',
-  dialect: 'sqlite',
-  driver: 'd1-http',
-  dbCredentials: {
+  dialect: 'sqlite',          // MANDATORY since drizzle-kit 0.21 (D1 = sqlite)
+  driver: 'd1-http',          // D1 HTTP driver for remote migrations/Studio
+  dbCredentials: {            // MANDATORY: drizzle-kit 0.30+ tightened zod validation
     accountId: process.env.CLOUDFLARE_ACCOUNT_ID!,
     databaseId: process.env.CLOUDFLARE_DATABASE_ID!,
     token: process.env.CLOUDFLARE_D1_TOKEN!,
   },
 });
 ```
+
+> **drizzle-kit 0.30/0.31 note**: `dialect` and `dbCredentials` are now strictly
+> validated. A config that omits `dialect` or uses the old `connectionString`/
+> `uri` keys will fail validation. For D1 use `dialect: 'sqlite'` +
+> `driver: 'd1-http'` with `accountId`/`databaseId`/`token` (or wrangler-based
+> credentials). The runtime `migrate()` signature in `drizzle-orm/<driver>/migrator`
+> is unchanged from 0.36 → 0.45 (it changes only in 1.0-beta, which is out of
+> scope for `^0.45`).
 
 ### 3. Define Schema
 

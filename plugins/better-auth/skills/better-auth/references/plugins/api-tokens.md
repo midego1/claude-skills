@@ -291,11 +291,36 @@ const { data } = await authClient.jwt.getToken({
 
 ---
 
-## OIDC Provider
+## OIDC Provider (DEPRECATED in v1.6 — use `@better-auth/oauth-provider`)
 
 Make your app an OpenID Connect provider for other applications.
 
-### Server Configuration
+> **v1.6+**: The built-in `oidcProvider` plugin is deprecated and slated for
+> removal in the next minor. Migrate to the dedicated
+> `@better-auth/oauth-provider` package, which turns your instance into a full
+> OAuth 2.1 / OIDC authorization server.
+
+### Recommended: `@better-auth/oauth-provider` (v1.5+)
+
+```bash
+npm install @better-auth/oauth-provider
+```
+
+```typescript
+import { betterAuth } from "better-auth";
+import { oauthProvider } from "@better-auth/oauth-provider";
+
+export const auth = betterAuth({
+  plugins: [
+    oauthProvider({
+      // OIDC issuer URL
+      issuer: "https://your-app.com",
+    }),
+  ],
+});
+```
+
+### Legacy: `oidcProvider` (deprecated, removed soon)
 
 ```typescript
 import { betterAuth } from "better-auth";

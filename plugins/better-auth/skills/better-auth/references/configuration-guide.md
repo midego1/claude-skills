@@ -220,6 +220,10 @@ app.all("/api/auth/*", async (c) => {
 session: {
   expiresIn: 60 * 60 * 24 * 7, // 7 days
   updateAge: 60 * 60 * 24, // Update every 24 hours
+  // v1.6+: `freshAge` window is measured from session `createdAt`, not `updatedAt`.
+  // Regular access no longer keeps a session "fresh" indefinitely — sensitive ops
+  // (payments, password change) will force re-auth sooner. Set `freshAge: 0` to disable.
+  freshAge: 60 * 5, // 5 minutes from session CREATION (v1.6 semantics)
 
   // v1.4.0+ New: Cookie caching with JWE encryption (stateless sessions)
   cookieCache: {
@@ -228,6 +232,7 @@ session: {
     strategy: "jwe", // "jwe", "jwt", or "compact" for stateless sessions
   },
   // Note: For stateless sessions, omit database session storage and use cookieCache strategy
+  // v1.6+: cookieCache `maxAge` is clamped to session `expiresIn`.
 }
 ```
 
@@ -248,10 +253,17 @@ export const auth = betterAuth({
 });
 ```
 
-### API Key Plugin (v1.4.0+)
+### API Key Plugin (v1.5+ — moved to separate package)
+
+The `apiKey` plugin was extracted from `better-auth/plugins` into a dedicated
+package in v1.5. Install it separately:
+
+```bash
+npm install @better-auth/api-key
+```
 
 ```typescript
-import { apiKey } from "better-auth/plugins";
+import { apiKey } from "@better-auth/api-key";  // extracted package, not better-auth/plugins
 
 export const auth = betterAuth({
   // ... other config
@@ -263,6 +275,10 @@ export const auth = betterAuth({
   ],
 });
 ```
+
+Schema note: the `ApiKey.userId` field was renamed to `referenceId` and a new
+`configId` field (defaults to `"default"`) was added. Run `npx auth migrate`
+after upgrading.
 
 ---
 

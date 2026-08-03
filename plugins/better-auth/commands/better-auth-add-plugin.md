@@ -64,7 +64,7 @@ plugins: [
 
 #### Passkeys
 ```typescript
-import { passkey } from "better-auth/plugins";
+import { passkey } from "@better-auth/passkey";  // extracted package (v1.5+)
 
 plugins: [
   passkey({
@@ -102,7 +102,7 @@ plugins: [
 
 #### API Keys
 ```typescript
-import { apiKey } from "better-auth/plugins";
+import { apiKey } from "@better-auth/api-key";  // extracted package (v1.5+)
 
 plugins: [
   apiKey({
@@ -186,9 +186,11 @@ export const member = pgTable("member", {
 
 #### API Keys
 ```typescript
+// v1.5+: `userId` renamed to `referenceId`; new `configId` field (defaults to "default")
 export const apiKeyTable = pgTable("api_key", {
   id: text("id").primaryKey(),
-  userId: text("userId").notNull(),
+  referenceId: text("referenceId").notNull(),  // was `userId` pre-v1.5
+  configId: text("configId").notNull().default("default"),  // v1.5+ new field
   name: text("name").notNull(),
   keyHash: text("keyHash").notNull(),
   expiresAt: timestamp("expiresAt"),
