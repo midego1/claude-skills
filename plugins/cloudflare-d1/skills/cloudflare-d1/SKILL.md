@@ -12,7 +12,7 @@ metadata:
   references_included: 4
   wrangler_version: "4.81.0"
   workers_types_version: "4.20260408.0"
-  drizzle_orm_version: "0.44.7"
+  drizzle_orm_version: "0.45.2"
   keywords:
     - d1
     - d1 database

@@ -2,7 +2,7 @@
 
 **Status**: Production Ready ✅
 **Last Updated**: 2026-08-03
-**Production Tested**: React 19 + Next.js 15 + Vite 6 + Tailwind v4
+**Recommended Stack**: React 19 + Next.js 16 + Vite 6 + Tailwind v4
 
 ---
 
@@ -250,7 +250,7 @@ Production-ready setup for Motion (formerly Framer Motion) - the industry-standa
 | motion | 12.43.0 | ✅ Latest stable |
 | framer-motion | 12.43.0 | ✅ Deprecated alias of motion (Cloudflare Workers workaround) |
 | react | 19.2.0 | ✅ Latest stable |
-| next | 15.1.0 | ✅ Latest stable |
+| next | 16.2.0 | ✅ Latest stable |
 | vite | 7.3.0 | ✅ Latest stable |
 
 ---
@@ -343,7 +343,7 @@ MIT License - See main repo LICENSE file
 
 ---
 
-**Production Tested**: ✅ React 19 + Next.js 15 + Vite 6 + Tailwind v4
+**Recommended Stack**: ✅ React 19 + Next.js 16 + Vite 6 + Tailwind v4
 **Token Savings**: ~83%
 **Error Prevention**: 100% (29+ documented errors prevented)
 **Bundle Size**: 2.3 KB (mini) - 34 KB (full), optimizable to 4.6 KB

@@ -314,7 +314,7 @@ Deep-dive guides in `~/.claude/skills/tanstack-router/references/`:
 ## Production Validation
 
 **Tested with:**
-- React 19.2, Vite 6.0, TypeScript 5.8
+- React 19.2, Vite 7.3, TypeScript 5.9
 - Cloudflare Workers (Wrangler 4.0)
 - TanStack Query v5.101.4
 

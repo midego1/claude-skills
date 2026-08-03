@@ -122,7 +122,7 @@ init_package_json() {
     "wrangler": "^4.81.0"
   },
   "dependencies": {
-    "hono": "^4.6.0"
+    "hono": "^4.12.12"
   }
 }
 EOF

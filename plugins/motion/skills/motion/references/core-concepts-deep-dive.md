@@ -673,4 +673,4 @@ transition: {
 ---
 
 **Last Updated**: 2026-08-03
-**Production Tested**: React 19 + Next.js 15 + Vite 7
+**Recommended Stack**: React 19 + Next.js 16 + Vite 7

@@ -183,11 +183,11 @@ wrangler: {
 
 ### Error: "Node.js 16 is not supported"
 
-**Cause**: Miniflare v3 requires Node 20+
+**Cause**: Miniflare v3 requires Node 18+ (your project floor is Node 20+)
 
 **Fix**: Upgrade Node.js
 ```bash
-node --version # Should be 20.x or higher
+node --version # Project floor: 20.x+
 ```
 
 ### Error: "compatibilityDate is required"
@@ -207,7 +207,7 @@ miniflare: {
 
 **Breaking changes**:
 1. `SELF` module removed → use direct worker import
-2. Miniflare v2 → v3 (requires Node 20+)
+2. Miniflare v2 → v3 (requires Node 18+)
 3. New pool options format
 
 **Before** (<0.7):

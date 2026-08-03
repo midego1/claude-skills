@@ -124,7 +124,7 @@ jobs:
   test:
     # In production, pin reusable workflows to a tag (e.g. @v1) or SHA — not @main,
     # which can be rebased to a malicious commit.
-    uses: org/central-repo/.github/workflows/reusable-test.yml@main
+    uses: org/central-repo/.github/workflows/reusable-test.yml@v1
     with:
       node-version: '20'
       working-directory: './packages/app'
