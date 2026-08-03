@@ -63,6 +63,8 @@ test.skip("not ready", () => {
 test.only("focus on this", () => {
   // other tests won't run
 });
+// NOTE: in Bun 1.3+ `bun test` exits non-zero in CI when a file uses
+// `test.only`. Use it for local debugging only — never commit it.
 
 // Placeholder for future test
 test.todo("implement later");

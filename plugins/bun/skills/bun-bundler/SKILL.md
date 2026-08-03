@@ -28,13 +28,18 @@ bun build ./src/index.ts ./src/worker.ts --outdir ./dist
 ### JavaScript API
 
 ```typescript
-const result = await Bun.build({
-  entrypoints: ["./src/index.ts"],
-  outdir: "./dist",
-});
-
-if (!result.success) {
-  console.error("Build failed:", result.logs);
+// Since Bun 1.2, Bun.build REJECTS on failure (throws).
+// Wrap in try/catch to handle errors; pass { throw: false } to restore the
+// old resolve-with-{ success, logs } contract if you prefer that style.
+try {
+  const result = await Bun.build({
+    entrypoints: ["./src/index.ts"],
+    outdir: "./dist",
+  });
+  console.log(`Built ${result.outputs.length} files`);
+} catch (err) {
+  console.error("Build failed:", err);
+  process.exit(1);
 }
 ```
 
@@ -225,28 +230,27 @@ await Bun.build({
 ## Build Output
 
 ```typescript
-const result = await Bun.build({
-  entrypoints: ["./src/index.ts"],
-  outdir: "./dist",
-});
+// Bun 1.2+: Bun.build rejects on failure. Use try/catch to surface build
+// errors (or pass { throw: false } and keep the legacy { success, logs } shape).
+try {
+  const result = await Bun.build({
+    entrypoints: ["./src/index.ts"],
+    outdir: "./dist",
+  });
 
-// Check success
-if (!result.success) {
-  for (const log of result.logs) {
-    console.error(log);
+  // Access outputs
+  for (const output of result.outputs) {
+    console.log(output.path);   // File path
+    console.log(output.kind);   // "entry-point" | "chunk" | "asset"
+    console.log(output.hash);   // Content hash
+    console.log(output.loader); // Loader used
+
+    // Read content
+    const text = await output.text();
   }
+} catch (err) {
+  console.error("Build failed:", err);
   process.exit(1);
-}
-
-// Access outputs
-for (const output of result.outputs) {
-  console.log(output.path);   // File path
-  console.log(output.kind);   // "entry-point" | "chunk" | "asset"
-  console.log(output.hash);   // Content hash
-  console.log(output.loader); // Loader used
-
-  // Read content
-  const text = await output.text();
 }
 ```
 
@@ -285,18 +289,18 @@ await Bun.build({
 
 ```typescript
 // build.ts
-const result = await Bun.build({
-  entrypoints: ["./src/index.ts"],
-  outdir: "./dist",
-  minify: process.env.NODE_ENV === "production",
-});
-
-if (!result.success) {
-  console.error("Build failed");
+// Bun 1.2+: Bun.build rejects on failure, so try/catch is the modern idiom.
+try {
+  const result = await Bun.build({
+    entrypoints: ["./src/index.ts"],
+    outdir: "./dist",
+    minify: process.env.NODE_ENV === "production",
+  });
+  console.log(`Built ${result.outputs.length} files`);
+} catch (err) {
+  console.error("Build failed:", err);
   process.exit(1);
 }
-
-console.log(`Built ${result.outputs.length} files`);
 ```
 
 Run: `bun run build.ts`
