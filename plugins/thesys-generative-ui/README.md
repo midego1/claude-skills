@@ -160,9 +160,9 @@ That's it! See SKILL.md for complete integration guides.
 
 ## Package Information
 
-- **Main Package**: `@thesysai/genui-sdk@0.6.40`
-- **UI Components**: `@crayonai/react-ui@0.8.42`
-- **Core Library**: `@crayonai/react-core@0.7.6`
+- **Main Package**: `@thesysai/genui-sdk@^0.9.0`
+- **UI Components**: `@crayonai/react-ui@^0.9.16`
+- **Core Library**: `@crayonai/react-core@^0.7.6`
 - **Streaming Utils**: `@crayonai/stream@latest`
 - **Python SDK**: `thesys-genui-sdk` (for Python backends)
 - **Last Verified**: 2025-10-26

@@ -24,7 +24,7 @@ Load this skill when:
 
 ```bash
 # 1. Install dependencies
-pip install fastapi==0.109.0 redis==5.0.0 prometheus-client==0.19.0
+pip install "fastapi>=0.109.0" "redis>=5.0.0" "prometheus-client>=0.19.0"
 
 # 2. Start Redis (for caching and feature store)
 docker run -d -p 6379:6379 redis:alpine

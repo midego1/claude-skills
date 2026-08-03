@@ -80,7 +80,7 @@ const messages = [
 
 | C1 API Version | @thesysai/genui-sdk | @crayonai/react-ui | @crayonai/react-core |
 |----------------|--------------------|--------------------|---------------------|
-| v-20250930     | ~0.6.40            | ~0.8.42            | ~0.7.6              |
+| v-20250930     | ~0.9.0             | ~0.9.16            | ~0.7.6              |
 
 **Solution**:
 
@@ -88,8 +88,8 @@ const messages = [
 # Check current versions
 npm list @thesysai/genui-sdk @crayonai/react-ui @crayonai/react-core
 
-# Update to compatible versions (October 2025)
-npm install @thesysai/genui-sdk@0.6.40 @crayonai/react-ui@0.8.42 @crayonai/react-core@0.7.6
+# Update to compatible versions
+npm install @thesysai/genui-sdk@^0.9.0 @crayonai/react-ui@^0.9.16 @crayonai/react-core@^0.7.6
 ```
 
 ---
@@ -278,7 +278,7 @@ import "./your-app.css"; // Your styles SECOND
 
 ```bash
 # 1. Update packages
-npm install @thesysai/genui-sdk@latest @crayonai/react-ui@latest
+npm install @thesysai/genui-sdk@^0.9.0 @crayonai/react-ui@^0.9.16
 
 # 2. Check tsconfig.json
 {

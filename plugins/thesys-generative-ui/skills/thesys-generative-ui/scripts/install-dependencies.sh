@@ -27,8 +27,8 @@ echo ""
 
 # Core packages
 echo "Installing core TheSys packages..."
-$PM install @thesysai/genui-sdk@^0.6.40 \
-    @crayonai/react-ui@^0.8.27 \
+$PM install @thesysai/genui-sdk@^0.9.0 \
+    @crayonai/react-ui@^0.9.16 \
     @crayonai/react-core@^0.7.6 \
     @crayonai/stream@^0.1.0
 
