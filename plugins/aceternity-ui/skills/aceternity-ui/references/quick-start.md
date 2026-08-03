@@ -72,7 +72,7 @@ Open `components.json` and add the Aceternity registry:
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.ts",
+    "config": "",
     "css": "app/globals.css",
     "baseColor": "zinc",
     "cssVariables": true
@@ -266,9 +266,11 @@ my-aceternity-app/
 ├── lib/
 │   └── utils.ts
 ├── components.json
-├── tailwind.config.ts
 ├── tsconfig.json
 └── package.json
+```
+
+> **Tailwind v4 note**: Under v4's CSS-first config there is no `tailwind.config.ts` — theme tokens live in `app/globals.css` via `@theme { ... }`. (On v3 you would also see a `tailwind.config.ts` here.)
 ```
 
 ## Troubleshooting
@@ -296,7 +298,13 @@ import { Component } from "@/components/ui/component";
 
 ### Tailwind classes not applying
 
-Check that `app/globals.css` includes:
+Check that `app/globals.css` imports Tailwind. Under Tailwind v4 (CSS-first, recommended):
+
+```css
+@import "tailwindcss";
+```
+
+If you are on Tailwind v3, the equivalent uses the three directives:
 
 ```css
 @tailwind base;
@@ -306,22 +314,16 @@ Check that `app/globals.css` includes:
 
 ### Dark mode not working
 
-Update `tailwind.config.ts`:
+Under Tailwind v4 (CSS-first), define a class-based dark variant in your CSS:
 
-```typescript
-import type { Config } from "tailwindcss";
+```css
+/* app/globals.css */
+@import "tailwindcss";
 
-const config: Config = {
-  darkMode: "class", // Add this line
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  // ... rest of config
-};
-export default config;
+@custom-variant dark (&:where(.dark, .dark *));
 ```
+
+On Tailwind v3, set `darkMode: "class"` in `tailwind.config.ts`.
 
 ## Next Steps
 

@@ -31,11 +31,14 @@ fi
 
 echo ""
 
-# Check for existing TailwindCSS
-if [ -f "tailwind.config.js" ] || [ -f "tailwind.config.ts" ]; then
-    echo "✅ TailwindCSS config detected"
+# Check for existing TailwindCSS (v4 is CSS-first: no tailwind.config.* required)
+if grep -rq '@import "tailwindcss"' --include="*.css" . 2>/dev/null; then
+    echo "✅ TailwindCSS v4 detected (CSS-first @import)"
+elif [ -f "tailwind.config.js" ] || [ -f "tailwind.config.ts" ]; then
+    echo "✅ TailwindCSS config detected (v3-style JS config)"
 else
-    echo "⚠️  No TailwindCSS config found. Make sure to install TailwindCSS v4+"
+    echo "⚠️  No TailwindCSS setup found. Make sure to install TailwindCSS v4+"
+    echo "   v4 uses a CSS-first setup: @import \"tailwindcss\" in your main CSS."
     echo "   Visit: https://tailwindcss.com/docs/installation"
 fi
 
