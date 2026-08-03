@@ -10,8 +10,8 @@
   // 3. Deploy: npx wrangler deploy
 
   "name": "thesys-chat-worker",
-  "compatibility_date": "2025-10-26",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_date": "2025-10-26",  // must be >= 2024-09-23 for nodejs_compat
+  "compatibility_flags": ["nodejs_compat"],  // Required for packages like OpenAI SDK
 
   // Main worker file (Hono backend)
   "main": "backend/src/index.ts",
@@ -67,8 +67,8 @@
   //   ]
   // },
 
-  // Node.js compatibility for packages like OpenAI SDK
-  "node_compat": true,
+  // Node.js compatibility for packages like OpenAI SDK is provided via
+  // compatibility_flags: ["nodejs_compat"] above (set near the top of this file).
 
   // Build configuration
   "build": {

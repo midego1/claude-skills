@@ -103,8 +103,8 @@ export default {
 {
   "name": "email-worker",
   "main": "src/email.ts",
-  "compatibility_date": "2025-10-11",
-  "node_compat": true  // Required!
+  "compatibility_date": "2025-10-11",  // must be >= 2024-09-23 for nodejs_compat
+  "compatibility_flags": ["nodejs_compat"]  // Required! postal-mime needs Node.js compat
 }
 ```
 
@@ -166,7 +166,7 @@ await env.SES.send(message);
 
 ### Always Do ✅
 
-1. **Enable node_compat: true** for postal-mime
+1. **Enable `compatibility_flags: ["nodejs_compat"]`** for postal-mime (requires `compatibility_date >= 2024-09-23`)
 2. **Verify destination addresses** before sending
 3. **Parse with postal-mime** for email content
 4. **Use mimetext** for creating emails
@@ -179,7 +179,7 @@ await env.SES.send(message);
 
 ### Never Do ❌
 
-1. **Never skip node_compat** (postal-mime requires it)
+1. **Never skip `nodejs_compat`** (postal-mime requires the Node.js compat flag)
 2. **Never send without verification** (delivery fails)
 3. **Never hardcode email addresses** in public code
 4. **Never skip parsing** (raw email is hard to work with)
@@ -306,7 +306,7 @@ email.headers       // All headers
 
 ## Top 5 Errors Prevented
 
-1. **"Email Trigger not available"**: Enable node_compat: true
+1. **"Email Trigger not available"**: Enable `compatibility_flags: ["nodejs_compat"]` (with `compatibility_date >= 2024-09-23`)
 2. **Destination not verified**: Verify all send destinations
 3. **Gmail rate limit**: Max 500 emails/day to Gmail
 4. **SPF permerror**: Use dashboard to configure DNS
@@ -444,6 +444,6 @@ async email(message, env, ctx) {
 **Questions? Issues?**
 
 1. Check `references/setup-guide.md` for complete setup
-2. Verify node_compat: true in wrangler.jsonc
+2. Verify `compatibility_flags: ["nodejs_compat"]` in wrangler.jsonc
 3. Confirm destination addresses verified
 4. Check logs for errors
