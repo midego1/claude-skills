@@ -51,7 +51,7 @@ $INSTALL_CMD @nuxt/content better-sqlite3
 
 # Install Zod v4 for schema validation
 echo "📥 Installing zod v4 for schema validation..."
-$INSTALL_CMD -D zod@^4.1.12
+$INSTALL_CMD -D zod@^4.3.6
 
 echo ""
 echo "✅ Dependencies installed!"

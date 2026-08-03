@@ -463,11 +463,11 @@ This skill prevents **12** documented issues:
 
 ---
 
-## Package Versions (Verified 2025-11-21)
+## Package Versions (Verified 2026-08-03)
 
 **Core:** `pinia@^3.0.4`, `vue@^3.5.24`
-**Nuxt:** `@pinia/nuxt@^0.11.2`, `nuxt@^3.13.0`
-**Testing:** `@pinia/testing@^1.0.2`, `vitest@^1.0.0`
+**Nuxt:** `@pinia/nuxt@^0.11.2`, `nuxt@^4.0.0` (Nuxt 3 reached EOL on 2026-07-31; v4 is the current stable line)
+**Testing:** `@pinia/testing@^1.0.2`, `vitest@^2.0.0`
 **SSR:** `devalue@^5.3.2` (for safe serialization)
 
 ---

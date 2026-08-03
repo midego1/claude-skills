@@ -1,7 +1,7 @@
 # Nuxt SEO v5 - Complete SEO Toolkit for Nuxt 3/4
 
 **Status**: Production Ready
-**Last Updated**: 2026-03-30
+**Last Updated**: 2026-08-03
 **Production Tested**: All 8 core modules + 3 standalone modules verified with official documentation from https://nuxtseo.com
 
 ---
@@ -152,7 +152,7 @@ npm run dev
 
 ---
 
-## Package Versions (Verified 2026-03-30)
+## Package Versions (Verified 2026-08-03)
 
 ### Core Modules
 
@@ -179,7 +179,7 @@ npm run dev
 
 ## Dependencies
 
-**Prerequisites**: Nuxt >=3.0.0 or Nuxt 4.x
+**Prerequisites**: Nuxt >=4.0.0
 
 **Integrates With**:
 - @nuxtjs/i18n (optional - for multi-language SEO)

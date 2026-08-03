@@ -1192,6 +1192,6 @@ const debouncedSearch = debounce((query) => {
 
 ---
 
-**Version**: Maz-UI v4.3.3
+**Version**: Maz-UI v4.9.3
 **Last Updated**: 2025-12-14
 **Plugin Requirements**: `unplugin-vue-components` + `unplugin-auto-import`

@@ -1,7 +1,7 @@
 ---
 name: "Maz-UI Form Validation Reference"
 description: "Complete guide to form validation in Maz-UI using useFormValidator composable with Valibot integration"
-version: "4.3.3"
+version: "4.9.3"
 framework: "Vue 3 / Nuxt 3"
 ---
 
@@ -1092,7 +1092,7 @@ test('registration form validation', async ({ page }) => {
 
 ---
 
-**Form Validation Version**: Maz-UI v4.3.3 + Valibot
+**Form Validation Version**: Maz-UI v4.9.3 + Valibot
 **Last Updated**: 2025-12-29
 
 ::: tip Validation Mode Recommendation

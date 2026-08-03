@@ -184,17 +184,17 @@ import { Button } from '@/components/ui/button'
 
 ---
 
-## Package Versions (Verified 2025-11-10)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| vue | 3.4.0+ | ✅ Latest stable |
+| vue | 3.5.0+ | ✅ Latest stable |
 | shadcn-vue | latest | ✅ Latest stable (Reka UI v2) |
 | tailwindcss | 4.0.0+ | ✅ Latest stable |
 | @tailwindcss/vite | 4.0.0+ | ✅ Latest stable |
 | @vueuse/core | 10.7.0+ | ✅ Latest stable |
 | class-variance-authority | 0.7.0+ | ✅ Latest stable |
-| zod | 3.22.4+ | ✅ Latest stable |
+| zod | 4.3.6+ | ✅ Latest stable |
 | @tanstack/vue-table | 8.11.0+ | ✅ Latest stable |
 | @unovis/vue | 1.3.0+ | ✅ Latest stable |
 
@@ -203,7 +203,7 @@ import { Button } from '@/components/ui/button'
 ## Dependencies
 
 **Prerequisites**:
-- Vue 3.4+ or Nuxt 3+
+- Vue 3.5+ or Nuxt 4+
 - Tailwind CSS configured
 - TypeScript (recommended)
 

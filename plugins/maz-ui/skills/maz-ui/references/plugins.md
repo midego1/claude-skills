@@ -1244,6 +1244,6 @@ wait.start('LOADING')
 
 ---
 
-**Version**: Maz-UI v4.3.3
+**Version**: Maz-UI v4.9.3
 **Last Updated**: 2025-12-29
 **Official Docs**: https://maz-ui.com/plugins

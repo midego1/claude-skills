@@ -15,6 +15,8 @@ metadata:
 
 Project setup, configuration, routing, SEO, and error handling for Nuxt 5 applications.
 
+> **Note**: As of 2026-08-03, Nuxt 5 is **not yet stable** (current stable line is Nuxt 4.x; see the `nuxt-v4` plugin). This skill documents the upcoming Nuxt 5 APIs (Nitro v3, h3 v2, Vite 8/Rolldown). Treat version numbers below as targets, not pinned production releases.
+
 ## Quick Reference
 
 ### Version Requirements

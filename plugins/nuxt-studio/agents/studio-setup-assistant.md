@@ -49,8 +49,8 @@ Parse version and verify >= 3.x:
 node -v
 ```
 
-Verify >= 18.x:
-- If < 18.x: Warning: "Node 18+ recommended for Studio"
+Verify >= 20.x:
+- If < 20.x: Warning: "Node 20+ recommended for Studio"
 
 ### 2. Studio Module Validation
 

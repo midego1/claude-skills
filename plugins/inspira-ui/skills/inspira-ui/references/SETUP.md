@@ -7,7 +7,7 @@ This guide contains the complete setup instructions for integrating Inspira UI i
 Before starting, ensure you have:
 - **Vue 3** or **Nuxt 4** project
 - **TailwindCSS v4** (required - for v3, use [Inspira UI v1](https://v1.inspira-ui.com))
-- **Node.js 18+**
+- **Node.js 20+**
 - **Bun** (recommended) or npm/pnpm
 
 ## Step 1: Install TailwindCSS v4

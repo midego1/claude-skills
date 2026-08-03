@@ -47,10 +47,10 @@ if command -v node &> /dev/null; then
     NODE_VERSION=$(node -v | cut -d'v' -f2)
     MAJOR_VERSION=$(echo $NODE_VERSION | cut -d'.' -f1)
 
-    if [ $MAJOR_VERSION -ge 18 ]; then
-        success "Node.js v$NODE_VERSION (>= 18.x required)"
+    if [ $MAJOR_VERSION -ge 20 ]; then
+        success "Node.js v$NODE_VERSION (>= 20.x required)"
     else
-        error "Node.js v$NODE_VERSION found, but >= 18.x required"
+        error "Node.js v$NODE_VERSION found, but >= 20.x required"
         info "Install latest Node.js from https://nodejs.org/"
     fi
 else

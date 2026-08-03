@@ -149,7 +149,7 @@ This skill prevents **13+ common mistakes**:
 - **Vue**: 3.0+
 - **Nuxt**: 4.0+ (optional)
 - **TailwindCSS**: 4.0 (required - v3 uses Inspira UI v1)
-- **Node.js**: 18+
+- **Node.js**: 20+
 - **TypeScript**: Recommended
 - **Bun/npm/pnpm**: Any package manager (Bun preferred)
 

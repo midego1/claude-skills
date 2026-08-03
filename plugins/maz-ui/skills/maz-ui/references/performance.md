@@ -872,7 +872,7 @@ const MazCarousel = defineAsyncComponent(() =>
 
 ---
 
-**Performance Version**: Maz-UI v4.3.3
+**Performance Version**: Maz-UI v4.9.3
 **Last Updated**: 2025-12-14
 
 ::: tip Bundle Size Tip

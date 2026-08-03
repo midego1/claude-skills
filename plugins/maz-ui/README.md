@@ -17,7 +17,7 @@ Maz-UI is a production-ready Vue/Nuxt component library featuring:
 - **SSR/SSG Ready**: Perfect for Nuxt 3 with auto-imports
 - **Tree-Shakable**: Import only what you need
 
-**Latest Version**: 4.3.3 (as of 2025-12-29)
+**Latest Version**: 4.9.3 (as of 2026-08-03)
 
 ## When to Use This Skill
 

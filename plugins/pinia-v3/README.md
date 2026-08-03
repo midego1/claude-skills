@@ -234,7 +234,7 @@ pinia-v3/
 
 ## Related Skills
 
-- **nuxt** - Nuxt 3 framework with built-in Pinia support
+- **nuxt** - Nuxt 4 framework with built-in Pinia support
 - **vue-router** - Vue routing for protected routes with auth stores
 - **vitest** - Testing framework for unit testing stores
 

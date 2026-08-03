@@ -148,19 +148,19 @@ bun add @pinia/nuxt @pinia/colada-nuxt
 
 ---
 
-## Package Versions (Verified 2025-11-11)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| @pinia/colada | 0.17.8 | ✅ Latest stable (released 2025-11-07) |
-| @pinia/colada-nuxt | 0.17.8 | ✅ Latest stable |
+| @pinia/colada | 0.17.9 | ✅ Latest stable (released 2025-11-21) |
+| @pinia/colada-nuxt | 0.17.9 | ✅ Latest stable |
 | pinia | 3.0.4 | ✅ Latest stable |
-| vue | 3.5.22 | ✅ Latest stable |
+| vue | 3.5.25 | ✅ Latest stable |
 
 **Compatibility**:
 - Pinia 2.2.6+ or 3.0+
 - Vue 3.5.17+
-- Nuxt 3+ (for @pinia/colada-nuxt)
+- Nuxt 4+ (for @pinia/colada-nuxt; Nuxt 3 reached EOL 2026-07-31)
 
 ---
 
