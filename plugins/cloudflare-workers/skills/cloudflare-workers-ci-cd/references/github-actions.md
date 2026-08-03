@@ -366,7 +366,10 @@ jobs:
 
 ```yaml
 - name: Discord Notification
-  uses: Ilshidur/action-discord@master
+  # NOTE: `Ilshidur/action-discord@master` is unmaintained and should not be
+  # pinned to a mutable `@master` tag in any case. `sarisia/actions-status-discord`
+  # is a maintained drop-in replacement that uses the same DISCORD_WEBHOOK secret.
+  uses: sarisia/actions-status-discord@v1
   env:
     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
   with:

@@ -661,7 +661,7 @@ See the **`playwright-testing` skill** for complete installation instructions:
 
 Install Puppeteer directly for screenshot/performance scripts:
 - Install: `npm install puppeteer`
-- Requires Node.js 18+ and Chrome/Chromium
+- Requires Node.js 20+ and Chrome/Chromium
 - Optional: ImageMagick for screenshot compression
 - See Puppeteer docs: https://pptr.dev/
 

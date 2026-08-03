@@ -17,7 +17,7 @@ You are dispatched to do detection engineering: author Sigma rules, search 8,200
 
 ```bash
 # Required for Path A (local OSS MCP)
-node --version    # needs Node 18+
+node --version    # needs Node 20+
 npx --version     # needs npx
 git --version
 
@@ -46,11 +46,11 @@ Authored by **Michael Haag (MHaggis)**. Aradotso skill wrapper by **ara.so**.
 
 ### Path A — Local OSS MCP (recommended)
 
-**What's OSS here:** the MCP server (Node 18+, MIT-licensed `security-detections-mcp`), the MCP protocol, all 6 rule repos, the MITRE ATT&CK STIX bundle, all MCP clients (Claude Desktop, Cursor, VS Code, ZCode).
+**What's OSS here:** the MCP server (Node 20+, MIT-licensed `security-detections-mcp`), the MCP protocol, all 6 rule repos, the MITRE ATT&CK STIX bundle, all MCP clients (Claude Desktop, Cursor, VS Code, ZCode).
 
 #### Setup steps
 
-1. **Runtime:** Node.js 18+ and npm.
+1. **Runtime:** Node.js 20+ and npm.
 2. **Clone rule repos** (one-time, ~GB of data):
 
    ```bash

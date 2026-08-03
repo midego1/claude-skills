@@ -4,7 +4,7 @@ Fast-track guide to get started with Aceternity UI in your Next.js project.
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 20+ installed
 - Package manager: bun (preferred), npm, or pnpm
 - Basic knowledge of React and Next.js
 - Basic knowledge of Tailwind CSS

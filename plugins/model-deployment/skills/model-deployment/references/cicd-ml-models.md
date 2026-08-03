@@ -33,7 +33,7 @@ jobs:
   code-quality:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -72,7 +72,7 @@ jobs:
   data-validation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -98,7 +98,7 @@ jobs:
       metrics: ${{ steps.train.outputs.metrics }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -134,7 +134,7 @@ jobs:
             --min-accuracy 0.85
 
       - name: Upload model artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: model-${{ steps.version.outputs.version }}
           path: models/model_${{ steps.version.outputs.version }}.pkl
@@ -150,7 +150,7 @@ jobs:
           - 6379:6379
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Download model artifact
         uses: actions/download-artifact@v3
@@ -180,10 +180,10 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -209,7 +209,7 @@ jobs:
       image-tag: ${{ steps.meta.outputs.tags }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Download model artifact
         uses: actions/download-artifact@v3
@@ -258,7 +258,7 @@ jobs:
       url: https://staging.api.example.com
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Configure kubectl
         uses: azure/k8s-set-context@v3
@@ -288,7 +288,7 @@ jobs:
       url: https://api.example.com
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Configure kubectl
         uses: azure/k8s-set-context@v3

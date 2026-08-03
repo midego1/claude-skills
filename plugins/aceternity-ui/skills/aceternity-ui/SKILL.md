@@ -65,7 +65,7 @@ Aceternity UI is a premium, production-ready React component library designed fo
 - React 16.8+
 - Tailwind CSS v3+
 - TypeScript (recommended)
-- Node.js 18+ with bun, npm, or pnpm
+- Node.js 20+ with bun, npm, or pnpm
 
 ## Installation
 
