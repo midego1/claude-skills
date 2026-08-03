@@ -1,7 +1,7 @@
 # Better-Auth vs Alternatives: Complete Comparison
 
-**Last Updated**: 2025-11-27
-**better-auth Version**: 1.4.3
+**Last Updated**: 2026-08-03
+**better-auth Version**: 1.6.0
 
 ---
 
@@ -35,7 +35,7 @@ This guide compares better-auth with popular authentication alternatives to help
 
 ## Detailed Comparison
 
-### better-auth (v1.4.3)
+### better-auth (v1.6.0)
 
 **Strengths**:
 - ✅ Self-hosted with full control over data
@@ -270,4 +270,4 @@ This guide compares better-auth with popular authentication alternatives to help
 
 ---
 
-**Last updated**: 2025-11-27 | better-auth v1.4.3
+**Last updated**: 2026-08-03 | better-auth v1.6.0

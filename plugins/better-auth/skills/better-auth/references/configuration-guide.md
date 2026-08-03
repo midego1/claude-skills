@@ -27,8 +27,8 @@ This guide provides complete configuration examples for better-auth v1.4.0+ with
   },
   "dependencies": {
     "better-auth": "^1.6.0",
-    "drizzle-orm": "^0.44.7",
-    "hono": "^4.0.0"
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.12"
   }
 }
 ```

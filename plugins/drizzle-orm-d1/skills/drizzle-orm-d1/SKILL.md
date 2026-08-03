@@ -43,7 +43,7 @@ license: MIT
 
 **Status**: Production Ready ✅
 **Last Updated**: 2025-12-14
-**Latest Version**: drizzle-orm@0.44.7, drizzle-kit@0.31.7
+**Latest Version**: drizzle-orm@0.45.2, drizzle-kit@0.31.10
 **Dependencies**: cloudflare-d1, cloudflare-worker-base
 
 ---
@@ -252,10 +252,10 @@ export type NewUser = InferInsertModel<typeof users>;
 ```json
 {
   "dependencies": {
-    "drizzle-orm": "^0.44.7"
+    "drizzle-orm": "^0.45.2"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.7"
+    "drizzle-kit": "^0.31.10"
   }
 }
 ```

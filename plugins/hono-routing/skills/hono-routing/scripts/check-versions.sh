@@ -40,19 +40,19 @@ check_package() {
 
 echo "Core Dependencies:"
 echo "─────────────────"
-check_package "hono" "4.10.2"
+check_package "hono" "4.12.12"
 echo ""
 
 echo "Validation Libraries:"
 echo "────────────────────"
-check_package "zod" "4.1.12"
+check_package "zod" "4.3.6"
 check_package "valibot" "1.1.0"
 echo ""
 
 echo "Hono Validators:"
 echo "───────────────"
 check_package "@hono/zod-validator" "0.7.4"
-check_package "@hono/valibot-validator" "0.5.3"
+check_package "@hono/valibot-validator" "0.6.1"
 check_package "@hono/typia-validator" "0.1.2"
 check_package "@hono/arktype-validator" "2.0.1"
 echo ""

@@ -5,7 +5,7 @@ description: "Type-safe Hono APIs with routing, middleware, RPC. Use for request
 license: MIT
 metadata:
   version: "2.0.0"
-  package_version: "4.10.6"
+  package_version: "4.12.12"
   last_verified: "2025-11-21"
   errors_prevented: 12
   templates_included: 9
@@ -36,7 +36,7 @@ metadata:
 **Status**: Production Ready ✅
 **Last Updated**: 2025-11-21
 **Dependencies**: None (framework-agnostic)
-**Latest Versions**: hono@4.10.6, zod@4.1.12, valibot@1.1.0
+**Latest Versions**: hono@4.12.12, zod@4.3.6, valibot@1.1.0
 
 ---
 
@@ -45,8 +45,8 @@ metadata:
 ### Install
 
 ```bash
-bun add hono@4.10.6  # preferred
-# or: bun add hono@4.10.6
+bun add hono@4.12.12  # preferred
+# or: bun add hono@4.12.12
 ```
 
 **Why Hono:**
@@ -77,7 +77,7 @@ export default app
 ### Add Validation
 
 ```bash
-bun add zod@4.1.12 @hono/zod-validator@0.7.4
+bun add zod@4.3.6 @hono/zod-validator@0.7.4
 ```
 
 ```typescript
@@ -416,11 +416,11 @@ export default app
 ## Dependencies
 
 **Required**:
-- `hono@^4.10.2` - Core framework
+- `hono@^4.12.12` - Core framework
 
 **Choose ONE validator** (recommended):
-- `zod@^4.1.12` + `@hono/zod-validator@^0.7.4` (most popular)
-- `valibot@^1.1.0` + `@hono/valibot-validator@^0.5.3` (smaller bundle)
+- `zod@^4.3.6` + `@hono/zod-validator@^0.7.4` (most popular)
+- `valibot@^1.1.0` + `@hono/valibot-validator@^0.6.1` (smaller bundle)
 - `arktype@^2.0.0` + `@hono/arktype-validator@^0.1.0` (fastest runtime)
 - `typia@^7.0.0` + `@hono/typia-validator@^0.1.0` (compile-time validation)
 

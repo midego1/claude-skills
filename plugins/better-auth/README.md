@@ -260,10 +260,10 @@ bun add pg drizzle-orm  # preferred
 
 - **Skill Version**: 3.0.0 (v1.5/v1.6 features: D1 native, Electron, i18n, OpenTelemetry, SSO, test utils)
 - **Package Version**: better-auth@1.6.0
-- **Drizzle ORM**: drizzle-orm@0.45.1, drizzle-kit@0.31.8
+- **Drizzle ORM**: drizzle-orm@0.45.2, drizzle-kit@0.31.10
 - **Kysely**: kysely@0.28.9, @noxharmonium/kysely-d1@0.4.0
-- **Last Verified**: 2026-04-08
-- **Compatibility**: Node.js 18+, Bun 1.0+, Cloudflare Workers
+- **Last Verified**: 2026-08-03
+- **Compatibility**: Node.js 20+, Bun 1.0+, Cloudflare Workers
 
 ---
 
