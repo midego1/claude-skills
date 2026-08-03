@@ -17,7 +17,7 @@ Deploy Bun applications in Docker containers using official images.
 docker pull oven/bun
 
 # Specific version
-docker pull oven/bun:1.0.0
+docker pull oven/bun:1
 
 # Variants
 oven/bun:latest       # Full image (~100MB)

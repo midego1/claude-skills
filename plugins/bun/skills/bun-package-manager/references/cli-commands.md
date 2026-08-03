@@ -106,7 +106,7 @@ All `bun install` flags plus:
 ```bash
 bun add react                  # Latest
 bun add react@19               # Major version
-bun add react@19.1.1           # Exact version
+bun add react@19.2.8           # Exact version
 bun add react@latest           # Latest tag
 bun add react@next             # Next tag
 bun add -D typescript          # Dev dependency

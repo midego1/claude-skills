@@ -53,9 +53,9 @@ Load the `dependency-upgrade` skill for full security configuration including So
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^16.1.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "next": "^16.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
 ```

@@ -47,8 +47,8 @@ Load the `dependency-upgrade` skill for full security configuration including So
     "build": "bun build src/index.ts --outdir=dist --target=browser"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250906.0",
-    "wrangler": "^4.54.0"
+    "@cloudflare/workers-types": "^4.20260408.0",
+    "wrangler": "^4.81.0"
   }
 }
 ```
