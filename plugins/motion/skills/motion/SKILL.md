@@ -62,7 +62,7 @@ Motion (package: `motion`, formerly `framer-motion`) is the industry-standard Re
 
 - **Simple list animations** (use `auto-animate` instead: 3.28 KB vs 34 KB)
 - **Static content** without interactions
-- **Cloudflare Workers** (use `framer-motion` v12.43.0 workaround - see Known Issues)
+- **Cloudflare Workers** (historically needed the `framer-motion` alias; with `motion` v12.43+ the main package works on Workers — see Known Issues)
 - **3D animations** (use Three.js or React Three Fiber instead)
 
 ---

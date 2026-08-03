@@ -65,7 +65,8 @@ bun test --grep="calculates sum"
 # UI mode (interactive)
 bun test --ui
 
-# Verbose output
+# Verbose output (in Vitest 2+, --reporter=verbose prints a flat list;
+# use --reporter=tree for the hierarchical tree view)
 bun test --reporter=verbose
 ```
 

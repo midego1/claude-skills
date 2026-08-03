@@ -1,6 +1,6 @@
 ---
 name: base-ui-react
-description: "MUI Base UI unstyled React components with Floating UI. Use for accessible components, Radix UI migration, render props API, or encountering positioning, popup, v1.0 beta issues."
+description: "MUI Base UI unstyled React components with Floating UI. Use for accessible components, Radix UI migration, render props API, or encountering positioning, popup, v1.0 rc / pre-GA issues."
 license: MIT
 metadata:
   version: "2.0.0"
