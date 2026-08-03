@@ -31,7 +31,9 @@ SCHEMAS_DIR="$REPO_ROOT/schemas"
 if command -v gitleaks >/dev/null 2>&1; then
   echo ""
   echo "🔍 Running gitleaks secret scan..."
-  if ! gitleaks detect --staged --redact --config="$REPO_ROOT/.gitleaks.toml" --source="$REPO_ROOT"; then
+  # gitleaks 8.x has no --staged flag; pipe the staged diff (--cached) so only
+  # uncommitted staged changes are scanned, then fail the commit on any finding.
+  if ! git diff --cached | gitleaks detect --pipe --redact --config="$REPO_ROOT/.gitleaks.toml"; then
     echo "" >&2
     echo "ERROR: gitleaks detected a potential secret in staged files." >&2
     echo "If this is a false positive, add the finding to .gitleaks.toml allowlist." >&2

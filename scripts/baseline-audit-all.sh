@@ -7,9 +7,21 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SKILLS_DIR="$REPO_ROOT/skills"
+# Skills live under plugins/<plugin>/skills/<skill>/ and .agents/skills/<skill>/
+# (the repo was restructured away from a flat top-level skills/ directory).
+PLUGINS_DIR="$REPO_ROOT/plugins"
+AGENTS_SKILLS_DIR="$REPO_ROOT/.agents/skills"
 REVIEW_SCRIPT="$REPO_ROOT/scripts/review-skill.sh"
 OUTPUT_FILE="$REPO_ROOT/planning/baseline-audit-results.txt"
+
+# List all skill names (one per SKILL.md) across the supported layouts.
+all_skill_names() {
+  find "$PLUGINS_DIR" -mindepth 4 -maxdepth 4 -type f -name "SKILL.md" \
+    -path "*/skills/*/SKILL.md" 2>/dev/null \
+    | sed 's#.*/skills/##; s#/SKILL\.md$##' | sort -u
+  find "$AGENTS_SKILLS_DIR" -mindepth 2 -maxdepth 2 -type f -name "SKILL.md" 2>/dev/null \
+    | sed 's#.*/skills/##; s#/SKILL\.md$##' | sort -u
+}
 
 # Colors
 RED='\033[0;31m'
@@ -49,8 +61,8 @@ cat > "$OUTPUT_FILE" << 'EOF'
 #
 EOF
 
-# Get all skill directories
-SKILLS=($(ls -1 "$SKILLS_DIR"))
+# Get all skill names (across plugins/ and .agents/skills/)
+SKILLS=($(all_skill_names))
 TOTAL_SKILLS=${#SKILLS[@]}
 
 echo "Found $TOTAL_SKILLS skills to audit"

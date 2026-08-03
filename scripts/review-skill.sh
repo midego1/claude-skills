@@ -35,7 +35,34 @@ MANUAL="🔍"
 
 # Paths
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SKILLS_DIR="$REPO_ROOT/skills"
+# Skills live under plugins/<plugin>/skills/<skill>/ and .agents/skills/<skill>/
+# (the repo was restructured away from a flat top-level skills/ directory).
+PLUGINS_DIR="$REPO_ROOT/plugins"
+AGENTS_SKILLS_DIR="$REPO_ROOT/.agents/skills"
+
+# Resolve a skill name to its directory across the supported layouts.
+# Echoes the resolved path (empty if not found).
+resolve_skill_dir() {
+  local name="$1"
+  local candidate
+  while IFS= read -r candidate; do
+    if [ -d "$candidate" ]; then echo "$candidate"; return 0; fi
+  done < <(find "$PLUGINS_DIR" -maxdepth 3 -type d -path "*/skills/$name" 2>/dev/null)
+  if [ -d "$AGENTS_SKILLS_DIR/$name" ]; then
+    echo "$AGENTS_SKILLS_DIR/$name"
+    return 0
+  fi
+  return 1
+}
+
+# List all skill names (one per SKILL.md).
+all_skill_names() {
+  find "$PLUGINS_DIR" -mindepth 4 -maxdepth 4 -type f -name "SKILL.md" \
+    -path "*/skills/*/SKILL.md" 2>/dev/null \
+    | sed 's#.*/skills/##; s#/SKILL\.md$##' | sort -u
+  find "$AGENTS_SKILLS_DIR" -mindepth 2 -maxdepth 2 -type f -name "SKILL.md" 2>/dev/null \
+    | sed 's#.*/skills/##; s#/SKILL\.md$##' | sort -u
+}
 
 # Counters
 CRITICAL=0
@@ -88,13 +115,14 @@ EOF
 
 validate_skill_exists() {
   local skill="$1"
-  local skill_dir="$SKILLS_DIR/$skill"
+  local skill_dir
+  skill_dir="$(resolve_skill_dir "$skill")"
 
-  if [ ! -d "$skill_dir" ]; then
-    error "Skill '$skill' not found in $SKILLS_DIR"
+  if [ -z "$skill_dir" ] || [ ! -d "$skill_dir" ]; then
+    error "Skill '$skill' not found under plugins/*/skills/ or .agents/skills/"
     echo ""
     echo "Available skills:"
-    ls -1 "$SKILLS_DIR" 2>/dev/null | /usr/bin/head -10
+    all_skill_names | /usr/bin/head -10
     exit 1
   fi
 
@@ -594,7 +622,8 @@ main() {
   # Validate skill exists
   validate_skill_exists "$skill_name" || exit 1
 
-  local skill_dir="$SKILLS_DIR/$skill_name"
+  local skill_dir
+  skill_dir="$(resolve_skill_dir "$skill_name")"
 
   # Run automated checks
   check_yaml_frontmatter "$skill_dir/SKILL.md"

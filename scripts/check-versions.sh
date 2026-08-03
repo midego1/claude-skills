@@ -19,7 +19,10 @@ NC='\033[0m' # No Color
 
 # Paths
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SKILLS_DIR="$REPO_ROOT/skills"
+# Skills live under plugins/<plugin>/skills/<skill>/ and .agents/skills/<skill>/
+# (the repo was restructured away from a flat top-level skills/ directory).
+PLUGINS_DIR="$REPO_ROOT/plugins"
+AGENTS_SKILLS_DIR="$REPO_ROOT/.agents/skills"
 
 echo -e "${BLUE}=====================================${NC}"
 echo -e "${BLUE}  Dependency Version Checker${NC}"
@@ -80,22 +83,55 @@ check_package_json() {
     return 0
 }
 
+# Resolve a skill name to its directory across the supported layouts:
+#   plugins/<plugin>/skills/<skill>/   (multi-skill plugin, or name matches plugin)
+#   plugins/<skill>/skills/<skill>/    (single-skill plugin)
+#   .agents/skills/<skill>/
+# Echoes the resolved path (empty if not found).
+resolve_skill_dir() {
+    local name="$1"
+    local candidate
+    # Multi-skill / namespaced: plugins/<plugin>/skills/<skill>
+    while IFS= read -r candidate; do
+        if [ -d "$candidate" ]; then echo "$candidate"; return 0; fi
+    done < <(find "$PLUGINS_DIR" -maxdepth 3 -type d -path "*/skills/$name" 2>/dev/null)
+    # Agent skills
+    if [ -d "$AGENTS_SKILLS_DIR/$name" ]; then
+        echo "$AGENTS_SKILLS_DIR/$name"
+        return 0
+    fi
+    return 1
+}
+
+# Find every skill directory in the repo (one per SKILL.md).
+all_skill_dirs() {
+    # plugins/<plugin>/skills/<skill>/ that contain a SKILL.md
+    find "$PLUGINS_DIR" -mindepth 3 -maxdepth 4 -type f -name "SKILL.md" \
+        -path "*/skills/*/SKILL.md" 2>/dev/null \
+        | sed 's#/SKILL\.md$##' | sort -u
+    # .agents/skills/<skill>/
+    find "$AGENTS_SKILLS_DIR" -mindepth 2 -maxdepth 2 -type f -name "SKILL.md" 2>/dev/null \
+        | sed 's#/SKILL\.md$##' | sort -u
+}
+
 # Check if specific skill provided
 if [ -n "$1" ]; then
     SKILL_NAME="$1"
-    SKILL_DIR="$SKILLS_DIR/$SKILL_NAME"
+    SKILL_DIR="$(resolve_skill_dir "$SKILL_NAME")"
 
-    if [ ! -d "$SKILL_DIR" ]; then
+    if [ -z "$SKILL_DIR" ] || [ ! -d "$SKILL_DIR" ]; then
         echo -e "${RED}Error: Skill '$SKILL_NAME' not found${NC}"
         echo ""
         echo "Available skills:"
-        ls -1 "$SKILLS_DIR" 2>/dev/null || echo "  (none found)"
+        all_skill_dirs | sed 's#.*/skills/##' | sort
         exit 0  # Still exit 0 (info only)
     fi
 
-    # Check for package.json in templates
+    # Check for package.json in templates/, references/, examples/, or skill root
     if [ -f "$SKILL_DIR/templates/package.json" ]; then
         check_package_json "$SKILL_DIR/templates/package.json" "$SKILL_NAME"
+    elif [ -f "$SKILL_DIR/references/package.json" ]; then
+        check_package_json "$SKILL_DIR/references/package.json" "$SKILL_NAME"
     elif [ -f "$SKILL_DIR/package.json" ]; then
         check_package_json "$SKILL_DIR/package.json" "$SKILL_NAME"
     else
@@ -110,23 +146,22 @@ fi
 TOTAL_SKILLS=0
 SKILLS_WITH_DEPS=0
 
-for skill_dir in "$SKILLS_DIR"/*/ ; do
-    if [ ! -d "$skill_dir" ]; then
-        continue
-    fi
-
-    skill_name=$(basename "$skill_dir")
+while IFS= read -r skill_dir; do
+    [ -z "$skill_dir" ] && continue
+    skill_name="$(basename "$skill_dir")"
     ((TOTAL_SKILLS++))
 
-    # Look for package.json in templates/ or root
-    if [ -f "$skill_dir/templates/package.json" ]; then
-        check_package_json "$skill_dir/templates/package.json" "$skill_name"
-        ((SKILLS_WITH_DEPS++))
-    elif [ -f "$skill_dir/package.json" ]; then
-        check_package_json "$skill_dir/package.json" "$skill_name"
-        ((SKILLS_WITH_DEPS++))
-    fi
-done
+    # Look for package.json in templates/, references/, or skill root
+    found=""
+    for sub in templates references .; do
+        if [ -f "$skill_dir/$sub/package.json" ]; then
+            check_package_json "$skill_dir/$sub/package.json" "$skill_name"
+            found=1
+            break
+        fi
+    done
+    [ -n "$found" ] && ((SKILLS_WITH_DEPS++))
+done < <(all_skill_dirs)
 
 # Summary
 echo -e "${BLUE}=====================================${NC}"

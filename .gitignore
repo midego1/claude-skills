@@ -65,3 +65,4 @@ Thumbs.db
 
 # Git worktrees
 .worktrees/
+.audit/
