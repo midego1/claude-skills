@@ -295,12 +295,14 @@ Check package.json dependencies for:
     "ultracite/biome/react" // Detected from dependencies
   ],
   "files": {
-    "ignore": [
-      "node_modules",
-      "dist",
-      "build",
-      ".next",
-      "coverage"
+    // Biome 2.x: files.includes with ! negation (files.ignore removed)
+    "includes": [
+      "**",
+      "!node_modules",
+      "!dist",
+      "!build",
+      "!.next",
+      "!coverage"
     ]
   },
   "linter": {

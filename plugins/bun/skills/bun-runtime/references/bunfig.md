@@ -147,7 +147,8 @@ globalDir = "~/.bun/install/global"
 globalBinDir = "~/.bun/bin"
 registry = "https://registry.npmjs.org"
 linkWorkspacePackages = true
-linker = "hoisted"           # "hoisted" | "isolated"
+linker = "hoisted"           # LEGACY OPT-OUT — Bun 1.3+ defaults to "isolated" for workspaces.
+                            # "hoisted" | "isolated" (workspaces default to "isolated" in 1.3+)
 minimumReleaseAge = 259200   # 3 days in seconds
 minimumReleaseAgeExcludes = ["@types/bun", "typescript"]
 ```

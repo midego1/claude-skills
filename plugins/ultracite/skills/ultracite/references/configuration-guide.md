@@ -27,13 +27,14 @@ Ultracite uses Biome's configuration format (`biome.json` or `biome.jsonc`):
     }
   },
 
-  // Optional: Exclude files/directories
+  // Optional: Exclude files/directories (Biome 2.x uses `includes` with `!` negation)
   "files": {
-    "ignore": [
-      "dist",
-      "build",
-      "coverage",
-      "**/*.generated.ts"
+    "includes": [
+      "**",
+      "!dist",
+      "!build",
+      "!coverage",
+      "!**/*.generated.ts"
     ]
   }
 }
@@ -242,13 +243,16 @@ Ensures inclusive UIs:
 }
 ```
 
-**Entire category**:
+**Entire category** (Biome 2.x removed the per-group `"all"` value from `linter.rules`; use `linter.domains` or disable the recommended rules individually):
 ```jsonc
 {
   "linter": {
     "rules": {
       "suspicious": {
-        "all": false  // Disable all suspicious rules
+        "noConsoleLog": "off",
+        "noDebugger": "off",
+        "noDoubleEquals": "off"
+        // ... disable each recommended rule explicitly
       }
     }
   }
@@ -261,7 +265,7 @@ Ensures inclusive UIs:
   "linter": {
     "rules": {
       "suspicious": {
-        "all": false,
+        "noDoubleEquals": "off",
         "noConsoleLog": "error"  // Re-enable this one
       }
     }
@@ -291,12 +295,12 @@ Ensures inclusive UIs:
 
 ### Per-File Configuration
 
-**Disable rules for specific files**:
+**Disable rules for specific files** (Biome 2.x uses `includes` in overrides):
 ```jsonc
 {
   "overrides": [
     {
-      "include": ["**/*.test.ts", "**/*.test.tsx"],
+      "includes": ["**/*.test.ts", "**/*.test.tsx"],
       "linter": {
         "rules": {
           "suspicious": {
@@ -309,16 +313,18 @@ Ensures inclusive UIs:
 }
 ```
 
-**Different rules for different directories**:
+**Different rules for different directories** (Biome 2.x uses `includes` in overrides, and removed per-group `"all"` from rules):
 ```jsonc
 {
   "overrides": [
     {
-      "include": ["src/legacy/**"],
+      "includes": ["src/legacy/**"],
       "linter": {
         "rules": {
           "complexity": {
-            "all": false  // Legacy code exempted from complexity rules
+            "noExcessiveCognitiveComplexity": "off",
+            "noForEach": "off"
+            // ... disable each complexity rule explicitly
           }
         }
       }
@@ -331,38 +337,41 @@ Ensures inclusive UIs:
 
 ## File Exclusion Patterns
 
+> **Biome 2.x note**: `files.ignore` and `files.include` were removed. Use a single `files.includes` array with `!` negation to exclude paths. Globs are evaluated relative to the config file and `*` no longer matches `/`.
+
 ### Common Exclusions
 
 ```jsonc
 {
   "files": {
-    "ignore": [
+    "includes": [
+      "**",
       // Build outputs
-      "dist",
-      "build",
-      ".next",
-      "out",
+      "!dist",
+      "!build",
+      "!.next",
+      "!out",
 
       // Dependencies
-      "node_modules",
-      ".pnpm-store",
+      "!node_modules",
+      "!.pnpm-store",
 
       // Test coverage
-      "coverage",
-      ".nyc_output",
+      "!coverage",
+      "!.nyc_output",
 
       // Generated files
-      "**/*.generated.ts",
-      "**/*.d.ts",
+      "!**/*.generated.ts",
+      "!**/*.d.ts",
 
       // Cache directories
-      ".cache",
-      ".turbo",
+      "!.cache",
+      "!.turbo",
 
       // Framework-specific
-      ".nuxt",
-      ".svelte-kit",
-      "vite.config.ts.timestamp-*"
+      "!.nuxt",
+      "!.svelte-kit",
+      "!vite.config.ts.timestamp-*"
     ]
   }
 }
@@ -381,12 +390,13 @@ Ensures inclusive UIs:
 ```jsonc
 {
   "files": {
-    "ignore": [
-      "*.config.js",           // All .config.js files in root
-      "**/*.config.js",        // All .config.js files anywhere
-      "src/generated/**",      // Everything in src/generated/
-      "**/__tests__/**",       // All __tests__ directories
-      "*.{spec,test}.ts"       // All .spec.ts and .test.ts files
+    "includes": [
+      "**",
+      "!*.config.js",          // All .config.js files in root
+      "!**/*.config.js",       // All .config.js files anywhere
+      "!src/generated/**",     // Everything in src/generated/
+      "!**/__tests__/**",      // All __tests__ directories
+      "!*.{spec,test}.ts"      // All .spec.ts and .test.ts files
     ]
   }
 }
@@ -396,12 +406,12 @@ Ensures inclusive UIs:
 
 ### Including Files
 
-By default, Ultracite lints all supported files. Use `include` to limit scope:
+By default, Ultracite lints all supported files. Use `includes` to limit scope (Biome 2.x renamed `files.include` → `files.includes`):
 
 ```jsonc
 {
   "files": {
-    "include": [
+    "includes": [
       "src/**/*.ts",
       "src/**/*.tsx"
     ]

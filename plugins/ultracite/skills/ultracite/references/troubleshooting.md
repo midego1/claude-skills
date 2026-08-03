@@ -553,13 +553,15 @@ bun add -D ultracite
 ```jsonc
 {
   "files": {
-    "ignore": [
-      "**/node_modules",
-      "**/dist",
-      "**/.next",
-      "**/build",
-      "**/coverage",
-      "**/*.generated.ts"
+    // Biome 2.x: files.includes with ! negation (files.ignore removed)
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.next",
+      "!**/build",
+      "!**/coverage",
+      "!**/*.generated.ts"
     ]
   }
 }

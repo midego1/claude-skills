@@ -16,35 +16,36 @@
     "enabled": true
   },
 
-  // Exclude common monorepo build outputs
+  // Exclude common monorepo build outputs (Biome 2.x: files.includes with ! negation)
   "files": {
-    "ignore": [
+    "includes": [
+      "**",
       // Package managers
-      "node_modules",
-      ".pnpm-store",
+      "!node_modules",
+      "!.pnpm-store",
 
       // Build outputs
-      "dist",
-      "build",
-      ".next",
-      "out",
-      ".turbo",
-      ".cache",
+      "!dist",
+      "!build",
+      "!.next",
+      "!out",
+      "!.turbo",
+      "!.cache",
 
       // Testing
-      "coverage",
+      "!coverage",
 
       // Generated
-      "**/*.generated.ts",
-      "**/__generated__/**"
+      "!**/*.generated.ts",
+      "!**/__generated__/**"
     ]
   },
 
-  // Package-specific overrides
+  // Package-specific overrides (Biome 2.x: overrides[].includes)
   "overrides": [
     {
       // Legacy package with relaxed rules
-      "include": ["packages/legacy/**"],
+      "includes": ["packages/legacy/**"],
       "linter": {
         "rules": {
           "style": {
@@ -59,7 +60,7 @@
     },
     {
       // Next.js app
-      "include": ["apps/web/**"],
+      "includes": ["apps/web/**"],
       "extends": ["ultracite/biome/next"],  // v7 path
       "linter": {
         "rules": {
@@ -71,7 +72,7 @@
     },
     {
       // Node.js API (no React)
-      "include": ["apps/api/**"],
+      "includes": ["apps/api/**"],
       "extends": ["ultracite/biome/core"],  // v7 path
       "javascript": {
         "globals": ["process", "Buffer", "__dirname", "__filename"]
@@ -79,20 +80,24 @@
     },
     {
       // Shared UI components
-      "include": ["packages/ui/**"],
+      "includes": ["packages/ui/**"],
       "extends": ["ultracite/biome/react"],  // v7 path
       "linter": {
+        // Biome 2.x: per-rule "*" / group "all" shortcuts were removed;
+        // enable explicit a11y rules or use linter.domains: { "react": "all" }
         "rules": {
           "a11y": {
-            // Strict accessibility for shared components
-            "*": "error"
+            "useAltText": "error",
+            "useAnchorContent": "error",
+            "useButtonType": "error",
+            "useKeyWithClickEvents": "error"
           }
         }
       }
     },
     {
       // Test files
-      "include": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts"],
+      "includes": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts"],
       "linter": {
         "rules": {
           "suspicious": {

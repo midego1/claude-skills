@@ -22,26 +22,27 @@
     }
   },
 
-  // Optional: Exclude Next.js build outputs
+  // Optional: Exclude Next.js build outputs (Biome 2.x: files.includes with ! negation)
   "files": {
-    "ignore": [
-      ".next",
-      "out",
-      "dist",
-      "build",
-      "coverage",
-      "node_modules",
-      "**/*.generated.ts",
-      ".vercel",
-      ".turbo"
+    "includes": [
+      "**",
+      "!.next",
+      "!out",
+      "!dist",
+      "!build",
+      "!coverage",
+      "!node_modules",
+      "!**/*.generated.ts",
+      "!.vercel",
+      "!.turbo"
     ]
   },
 
-  // Optional: Overrides for specific files
+  // Optional: Overrides for specific files (Biome 2.x: overrides[].includes)
   "overrides": [
     {
       // Allow certain patterns in config files
-      "include": ["next.config.*"],
+      "includes": ["next.config.*"],
       "linter": {
         "rules": {
           "correctness": {
@@ -52,7 +53,7 @@
     },
     {
       // Relax rules for App Router server components
-      "include": ["app/**/*page.tsx", "app/**/*layout.tsx"],
+      "includes": ["app/**/*page.tsx", "app/**/*layout.tsx"],
       "linter": {
         "rules": {
           "nursery": {

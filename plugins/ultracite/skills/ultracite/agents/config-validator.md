@@ -219,13 +219,14 @@ Performance Analysis
   - .turbo (monorepo build cache)
   - .vercel (deployment artifacts)
 
-Add to biome.jsonc:
+Add to biome.jsonc (Biome 2.x uses files.includes with `!` negation):
   "files": {
-    "ignore": [
-      "node_modules",
-      "dist",
-      ".turbo",
-      ".vercel"
+    "includes": [
+      "**",
+      "!node_modules",
+      "!dist",
+      "!.turbo",
+      "!.vercel"
     ]
   }
 

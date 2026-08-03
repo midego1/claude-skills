@@ -452,9 +452,9 @@ project-root/
     }
   },
 
-  // Optional: Exclude files
+  // Optional: Exclude files (Biome 2.x: use `includes` with `!` negation)
   "files": {
-    "ignore": ["dist", "build", "coverage", "**/*.generated.ts"]
+    "includes": ["**", "!dist", "!build", "!coverage", "!**/*.generated.ts"]
   }
 }
 ```
