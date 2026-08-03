@@ -200,10 +200,10 @@ bun add @tanstack/react-virtual@latest
 
 **Tested with:**
 - ✅ React 19.2+
-- ✅ Vite 6.0+
-- ✅ TypeScript 5.8+
+- ✅ Vite 7.3+
+- ✅ TypeScript 5.9+
 - ✅ Cloudflare Workers (Wrangler 4.0)
-- ✅ TanStack Query v5.90.7
+- ✅ TanStack Query v5.101.4
 - ✅ Tailwind v4 + shadcn/ui
 
 **Cloudflare Integration:**

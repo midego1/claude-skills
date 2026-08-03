@@ -38,7 +38,7 @@ license: MIT
 
 **Status**: Production Ready ✅  
 **Last Updated**: 2025-12-09  
-**Dependencies**: Node.js 18+, TypeScript 5+; React 18+ for `@tanstack/ai-react`; Solid 1.8+ for `@tanstack/ai-solid`  
+**Dependencies**: Node.js 20+, TypeScript 5+; React 19+ for `@tanstack/ai-react`; Solid 1.8+ for `@tanstack/ai-solid`  
 **Latest Versions**: @tanstack/ai@latest (alpha), @tanstack/ai-react@latest, @tanstack/ai-client@latest, adapters: @tanstack/ai-openai@latest @tanstack/ai-anthropic@latest @tanstack/ai-gemini@latest @tanstack/ai-ollama@latest
 
 ---

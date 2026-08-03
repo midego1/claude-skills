@@ -46,9 +46,9 @@ license: MIT
 # TanStack Query (React Query) v5
 
 **Status**: Production Ready ✅
-**Last Updated**: 2025-12-09
+**Last Updated**: 2026-08-03
 **Dependencies**: React 18.0+ (18.3+ recommended), TypeScript 4.9+ (5.x preferred)
-**Latest Versions**: @tanstack/react-query@5.90.12, @tanstack/react-query-devtools@5.91.1, @tanstack/eslint-plugin-query@5.91.2
+**Latest Versions**: @tanstack/react-query@5.101.4, @tanstack/react-query-devtools@5.101.4, @tanstack/eslint-plugin-query@5.101.4
 
 ---
 
@@ -946,13 +946,13 @@ const { data: todos } = useQuery({
 ## Dependencies
 
 **Required**:
-- `@tanstack/react-query@5.90.12` - Core library
+- `@tanstack/react-query@5.101.4` - Core library
 - `react@18.0.0+` - Uses useSyncExternalStore hook
 - `react-dom@18.0.0+` - React DOM renderer
 
 **Recommended**:
-- `@tanstack/react-query-devtools@5.91.1` - Visual debugger (dev only)
-- `@tanstack/eslint-plugin-query@5.91.2` - ESLint rules for best practices
+- `@tanstack/react-query-devtools@5.101.4` - Visual debugger (dev only)
+- `@tanstack/eslint-plugin-query@5.101.4` - ESLint rules for best practices
 - `typescript@5.2.0+` - For type safety and inference
 
 **Optional**:
@@ -973,25 +973,25 @@ const { data: todos } = useQuery({
 
 ---
 
-## Package Versions (Verified 2025-12-09)
+## Package Versions (Verified 2026-08-03)
 
 ```json
 {
   "dependencies": {
-    "@tanstack/react-query": "^5.90.12"
+    "@tanstack/react-query": "^5.101.4"
   },
   "devDependencies": {
-    "@tanstack/react-query-devtools": "^5.91.1",
-    "@tanstack/eslint-plugin-query": "^5.91.2"
+    "@tanstack/react-query-devtools": "^5.101.4",
+    "@tanstack/eslint-plugin-query": "^5.101.4"
   }
 }
 ```
 
 **Verification:**
-- `npm view @tanstack/react-query version` → 5.90.12
-- `npm view @tanstack/react-query-devtools version` → 5.91.1
-- `npm view @tanstack/eslint-plugin-query version` → 5.91.2
-- Last checked: 2025-12-09
+- `npm view @tanstack/react-query version` → 5.101.4
+- `npm view @tanstack/react-query-devtools version` → 5.101.4
+- `npm view @tanstack/eslint-plugin-query version` → 5.101.4
+- Last checked: 2026-08-03
 
 ---
 
@@ -1093,7 +1093,7 @@ useQuery({
 
 Use this checklist to verify your setup:
 
-- [ ] Installed @tanstack/react-query@5.90.12+
+- [ ] Installed @tanstack/react-query@5.101.4+
 - [ ] Installed @tanstack/react-query-devtools (dev dependency)
 - [ ] Created QueryClient with configured defaults
 - [ ] Wrapped app with QueryClientProvider

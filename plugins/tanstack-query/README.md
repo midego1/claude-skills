@@ -130,13 +130,13 @@ bun add @tanstack/react-query@latest @tanstack/react-query-devtools@latest
 
 ---
 
-## Package Versions (Verified 2025-12-09)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| @tanstack/react-query | 5.90.12 | ✅ Latest stable |
-| @tanstack/react-query-devtools | 5.91.1 | ✅ Latest stable |
-| @tanstack/eslint-plugin-query | 5.91.2 | ✅ Latest stable |
+| @tanstack/react-query | 5.101.4 | ✅ Latest stable |
+| @tanstack/react-query-devtools | 5.101.4 | ✅ Latest stable |
+| @tanstack/eslint-plugin-query | 5.101.4 | ✅ Latest stable |
 | react | 18.0.0+ | ✅ Required |
 | typescript | 5.2.0+ | ✅ Recommended |
 

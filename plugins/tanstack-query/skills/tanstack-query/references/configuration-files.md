@@ -19,44 +19,44 @@ Load this reference when: Setting up project structure, configuring TypeScript, 
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@tanstack/react-query": "^5.90.12"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@tanstack/react-query": "^5.101.4"
   },
   "devDependencies": {
-    "@tanstack/react-query-devtools": "^5.91.1",
-    "@tanstack/eslint-plugin-query": "^5.91.2",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.6.3",
-    "vite": "^6.0.1"
+    "@tanstack/react-query-devtools": "^5.101.4",
+    "@tanstack/eslint-plugin-query": "^5.101.4",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
   }
 }
 ```
 
 ### Why These Versions
 
-**React 18.3.1**
+**React 19.2.0**
 - Required for `useSyncExternalStore` hook used internally by TanStack Query
 - Provides concurrent features that Query v5 leverages
 
-**TanStack Query 5.90.12**
+**TanStack Query 5.101.4**
 - Latest stable version with all v5 fixes
 - Includes all breaking change migrations from v4
-- Best compatibility with React 18
+- Best compatibility with React 19
 
-**DevTools 5.91.1**
+**DevTools 5.101.4**
 - Version-matched to query package
 - Tree-shakeable (automatically removed in production builds)
 - No manual configuration needed
 
-**TypeScript 5.6.3**
+**TypeScript 5.9.3**
 - Best type inference for query hooks
 - Improved generic type handling
 - Better error messages for query/mutation types
 
-**Vite 6.0.1**
+**Vite 7.3.0**
 - Fast HMR for development
 - Optimized builds with tree-shaking
 - Native ES modules support
@@ -252,5 +252,5 @@ After setting up configuration files, verify:
 
 ---
 
-**Last Updated**: 2025-12-09
-**Verified With**: @tanstack/react-query@5.90.12
+**Last Updated**: 2026-08-03
+**Verified With**: @tanstack/react-query@5.101.4

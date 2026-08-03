@@ -6,7 +6,7 @@ allowed-tools: [Bash, Read, Write, Edit]
 metadata:
   version: 1.0.0
   author: Claude Skills Maintainers
-  last-verified: 2025-11-07
+  last-verified: 2026-08-03
   production-tested: true
   keywords:
     - tanstack router
@@ -61,7 +61,7 @@ bun add @tanstack/react-router @tanstack/router-devtools
 bun add -d @tanstack/router-plugin
 ```
 
-**Latest version:** v1.134.13 (verified 2025-11-07)
+**Latest version:** v1.170.18 (verified 2026-08-03)
 
 ### Vite Configuration
 
@@ -316,7 +316,7 @@ Deep-dive guides in `~/.claude/skills/tanstack-router/references/`:
 **Tested with:**
 - React 19.2, Vite 6.0, TypeScript 5.8
 - Cloudflare Workers (Wrangler 4.0)
-- TanStack Query v5.90.7
+- TanStack Query v5.101.4
 
 **Stack compatibility:**
 - ✅ Cloudflare Workers + Static Assets
@@ -325,5 +325,5 @@ Deep-dive guides in `~/.claude/skills/tanstack-router/references/`:
 
 ---
 
-**Last Updated:** 2025-11-07
-**Library Version:** @tanstack/react-router v1.134.13
+**Last Updated:** 2026-08-03
+**Library Version:** @tanstack/react-router v1.170.18
