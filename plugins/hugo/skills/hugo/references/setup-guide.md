@@ -16,7 +16,7 @@ brew install hugo
 **Method 2: Binary Download (Linux)**
 ```bash
 # Check latest version: https://github.com/gohugoio/hugo/releases
-VERSION="0.152.2"
+VERSION="0.164.0"
 wget https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_linux-amd64.deb
 sudo dpkg -i hugo_extended_${VERSION}_linux-amd64.deb
 ```
@@ -34,13 +34,13 @@ npm install -g hugo-bin
 **Verification:**
 ```bash
 hugo version
-# Should output: hugo v0.152.2+extended
+# Should output: hugo v0.164.0+extended
 #                                ^^^^^^^^ Must show "+extended"
 ```
 
 **Key Points:**
 - Extended edition required for SCSS/Sass
-- Version should be v0.149.0+ for best compatibility
+- Version should be v0.159.2+ for best compatibility (security floor: CVE-2026-35166 XSS fixed in 0.159.2)
 - NPM wrapper may be behind official releases
 - Pin version in CI/CD (see Step 7)
 
@@ -365,9 +365,9 @@ jobs:
           submodules: recursive  # Important for theme submodules!
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.152.2'
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Build

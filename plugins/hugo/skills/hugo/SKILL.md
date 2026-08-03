@@ -4,9 +4,9 @@ description: "Hugo static site generator with Tailwind v4, headless CMS (Sveltia
 license: MIT
 metadata:
   version: "2.0.0"
-  hugo_version: "0.152.2"
+  hugo_version: "0.164.0"
   tailwind_version: "4.1.16"
-  last_verified: "2025-11-04"
+  last_verified: "2026-08-03"
   production_tested: true
   token_savings: "60-65%"
   errors_prevented: 15
@@ -57,8 +57,8 @@ metadata:
 ---
 # Hugo Static Site Generator
 
-**Status**: Production Ready | **Last Updated**: 2025-11-21
-**Latest Version**: hugo@0.152.2+extended | **Build Speed**: <100ms
+**Status**: Production Ready | **Last Updated**: 2026-08-03
+**Latest Version**: hugo@0.164.0+extended | **Build Speed**: <100ms
 
 ---
 
@@ -73,8 +73,8 @@ metadata:
 brew install hugo
 
 # Linux (Ubuntu/Debian)
-wget https://github.com/gohugoio/hugo/releases/download/v0.152.2/hugo_extended_0.152.2_linux-amd64.deb
-sudo dpkg -i hugo_extended_0.152.2_linux-amd64.deb
+wget https://github.com/gohugoio/hugo/releases/download/v0.164.0/hugo_extended_0.164.0_linux-amd64.deb
+sudo dpkg -i hugo_extended_0.164.0_linux-amd64.deb
 
 # Verify Extended edition
 hugo version  # Should show "+extended"
@@ -452,7 +452,7 @@ bunx wrangler deploy
 ## Dependencies
 
 **Required**:
-- Hugo v0.149.0+ (Extended edition) - Static site generator
+- Hugo v0.159.2+ (Extended edition) - Static site generator (security floor: CVE-2026-35166 XSS fixed in 0.159.2; latest stable is 0.164.0)
 
 **Optional** (for deployment):
 - wrangler v4.0.0+ - Cloudflare Workers deployment
@@ -474,9 +474,9 @@ bunx wrangler deploy
 
 ---
 
-## Package Versions (Verified 2025-11-04)
+## Package Versions (Verified 2026-08-03)
 
-**Hugo**: v0.152.2+extended (October 24, 2025)
+**Hugo**: v0.164.0+extended (July 6, 2026)
 **PaperMod**: Latest (via Git submodule)
 **Sveltia CMS**: Latest (via CDN)
 **Wrangler**: v4.37.1+ (v4.45.3 available)
@@ -498,7 +498,7 @@ This skill is based on live testing:
 
 Use this checklist to verify your setup:
 
-- [ ] Hugo Extended v0.149.0+ installed (`hugo version` shows "+extended")
+- [ ] Hugo Extended v0.159.2+ installed (`hugo version` shows "+extended")
 - [ ] Project created with `--format yaml` (hugo.yaml exists)
 - [ ] Theme installed and configured (via Git submodule or Hugo Module)
 - [ ] `baseURL` configured correctly in hugo.yaml

@@ -392,7 +392,7 @@ Plugin Update Checker reads `readme.txt` for changelog and upgrade notices:
 === My Plugin ===
 Contributors: yourusername
 Tags: feature, awesome
-Requires at least: 5.9
+Requires at least: 6.0
 Tested up to: 6.4
 Stable tag: 1.0.1
 License: GPLv2 or later
@@ -457,7 +457,7 @@ A **WordPress plugin** (not library) that enables updates for **all** GitHub/Git
  * Author: Your Name
  * GitHub Plugin URI: yourusername/your-plugin
  * Primary Branch: main
- * Requires at least: 5.9
+ * Requires at least: 6.0
  * Requires PHP: 8.0
  */
 ```
