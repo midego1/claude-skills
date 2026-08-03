@@ -8,6 +8,13 @@
 - Learning Hugo from scratch
 - Have specific design requirements
 
+> **Template layout paths (Hugo 0.146+, this skill targets 0.164):** This
+> starter uses the legacy `layouts/index.html`, `layouts/_default/`, and
+> `layouts/partials/` paths, which still work via Hugo's back-compat mapping.
+> For new projects you may prefer the modern layout:
+> `layouts/home.html`, `layouts/single.html` (root, no `_default/`), and
+> `layouts/_partials/`. See https://gohugo.io/templates/new-templatesystem-overview/ .
+
 ---
 
 ## Quick Start

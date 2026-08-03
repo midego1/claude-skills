@@ -8,6 +8,13 @@
 - Building a single-page site
 - Need full control over design
 
+> **Template layout paths (Hugo 0.146+, this skill targets 0.164):** This
+> template ships the legacy layout structure (`layouts/index.html`,
+> `layouts/_default/baseof.html`, `layouts/partials/`), which still works via
+> Hugo's back-compat mapping. For greenfield projects prefer the modern paths:
+> `layouts/home.html`, `layouts/baseof.html` (root), `layouts/_partials/`. See
+> https://gohugo.io/templates/new-templatesystem-overview/ .
+
 ---
 
 ## Quick Start

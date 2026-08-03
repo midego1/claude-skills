@@ -182,10 +182,15 @@ hugo --minify
 
 ### Directory Structure
 
+> **Hugo 0.146+ layout note** (this skill targets 0.164): partials live in
+> `layouts/_partials/` and the home template is `layouts/home.html` (not
+> `index.html`). The legacy paths still work via a back-compat mapping. See
+> https://gohugo.io/templates/new-templatesystem-overview/ .
+
 ```
 layouts/
-├── index.html         # Home page
-└── partials/
+├── home.html          # Home page (was index.html in pre-0.146)
+└── _partials/
     ├── header.html
     ├── hero.html
     ├── features.html
@@ -194,7 +199,7 @@ layouts/
     └── footer.html
 ```
 
-### Home Page (`layouts/index.html`)
+### Home Page (`layouts/home.html`)
 
 ```html
 {{ define "main" }}
@@ -313,7 +318,7 @@ content/
     └── about.md
 ```
 
-### Language Switcher (`layouts/partials/language-switcher.html`)
+### Language Switcher (`layouts/_partials/language-switcher.html`)
 
 ```html
 <nav class="language-switcher">
@@ -402,7 +407,7 @@ This project solves X problem...
 ![Screenshot 2](/images/project-1-screen2.jpg)
 ```
 
-### Project List (`layouts/index.html`)
+### Project List (`layouts/home.html`)
 
 ```html
 {{ define "main" }}
@@ -473,7 +478,7 @@ Full product description here...
 ### Integration with Snipcart
 
 ```html
-<!-- layouts/_default/single.html -->
+<!-- layouts/single.html (Hugo 0.146+: root, was _default/single.html) -->
 {{ define "main" }}
 <article>
   <h1>{{ .Title }}</h1>
@@ -519,7 +524,7 @@ params:
     form_id: "your-form-id"
 ```
 
-### Newsletter Signup (`layouts/partials/newsletter.html`)
+### Newsletter Signup (`layouts/_partials/newsletter.html`)
 
 ```html
 <div class="newsletter">

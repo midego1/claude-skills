@@ -108,7 +108,11 @@ module.exports = {
 }
 ```
 
-### 6. Process CSS in Template (`layouts/_default/baseof.html`)
+### 6. Process CSS in Template (`layouts/baseof.html`)
+
+> **Hugo 0.146+:** base templates moved from `layouts/_default/baseof.html` to
+> `layouts/baseof.html` (root) as part of the template-engine rewrite. The old
+> path still works via back-compat mapping.
 
 ```html
 <!DOCTYPE html>
@@ -157,7 +161,7 @@ module.exports = {
 }
 ```
 
-**2. Add dark mode toggle** (`layouts/partials/dark-mode-toggle.html`):
+**2. Add dark mode toggle** (`layouts/_partials/dark-mode-toggle.html`):
 
 ```html
 <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
@@ -487,7 +491,7 @@ npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 ## Complete Example: Blog Post Template
 
 ```html
-<!-- layouts/_default/single.html -->
+<!-- layouts/single.html (Hugo 0.146+: root, was _default/single.html) -->
 {{ define "main" }}
 <article class="max-w-4xl mx-auto px-4 py-8">
   <header class="mb-8">
