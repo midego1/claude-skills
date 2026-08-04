@@ -65,6 +65,8 @@ Complete feature compatibility matrix for Next.js deployed on Cloudflare Workers
 
 **Middleware Limitation**: Node.js middleware introduced in Next.js 15.2 is not yet supported. Standard middleware works fine.
 
+**⚠️ Do NOT rename `middleware.ts` to `proxy.ts` on Cloudflare.** Next.js 16 renamed `middleware.ts` → `proxy.ts`, but `@opennextjs/cloudflare` does not yet recognize the `proxy.ts` filename — renaming will silently disable your middleware when deployed to Cloudflare Workers. Keep using `middleware.ts` (still supported by Next 16, just deprecated upstream) until OpenNext adds `proxy.ts` support.
+
 ---
 
 ### Experimental Features

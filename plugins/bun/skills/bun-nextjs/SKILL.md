@@ -196,6 +196,12 @@ export async function deleteUser(id: number) {
 In Next.js 16, `middleware.ts` is renamed to `proxy.ts` (the `middleware` name still
 works but is deprecated). Proxy runs on the Node.js runtime, not the Edge runtime.
 
+> ⚠️ **Deploying to Cloudflare via OpenNext? Keep `middleware.ts`.**
+> `@opennextjs/cloudflare` does not yet recognize the `proxy.ts` filename — renaming
+> will silently disable your middleware on Cloudflare. Until OpenNext adds support,
+> deploy with the classic `middleware.ts` (it still works in Next 16, just deprecated
+> upstream). This caveat does not apply to Node.js/Vercel/Bun-native deployments.
+
 ```typescript
 // proxy.ts (renamed from middleware.ts in Next.js 16)
 import { NextResponse } from "next/server";
