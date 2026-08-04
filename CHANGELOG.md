@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.6.0] - 2026-08-05
+
+### Changed
+
+Exhaustive dependency-version audit and stale-instruction modernization across the skills marketplace. 67 of 142 plugins updated. No skill removed; no new skill added.
+
+#### Dependency version alignment (67 plugins)
+
+Every concrete dependency reference in skill docs and bundled `package.json` templates was verified against current stable releases (npm, 2026-08-03) and aligned:
+
+- **Cloudflare (21 skills)** — `@cloudflare/workers-types` → `^4.20260408.0` (8 scattered date-stamps unified), `wrangler` → `^4.81.0`, `hono` → `^4.12.12`, Node floor → 20.
+- **Bun (28 sub-skills)** — `next` → `^16.2.0`, `@tanstack/react-router` → `^1.170.18`, Cloudflare alignment, floating Docker tags.
+- **Next.js / React** — nextjs `zod` 3→4, `react-hook-form` → `^7.84.0`, React 19.2, stale "Next 13.5" → 16.
+- **TanStack** — `react-query` → `^5.101.4`, `router` → `^1.170.18`, `@vitejs/plugin-react` → `^5.2.0`.
+- **Nuxt / Vue / Pinia / UI** — shadcn-vue `zod` 3→4, pinia-v3 vitest `^2.0.0`, maz-ui → 4.9.3, nuxt-seo Node ≥ 20.
+- **Backend / data** — `hono` → `^4.12.12`, `drizzle-orm` → `^0.45.2` / `drizzle-kit` → `^0.31.10`, `better-auth` → `^1.6.0`.
+- **AI / ML / Python** — fixed `mlflow` 2.8/3.7 conflict within one skill, Python 3.11→3.12, thesys prose 0.6/0.8→0.9.x.
+- **Hugo / WordPress / WooCommerce** — Hugo 0.152.2 → **0.164.0** (was wrong), WP floor 5.9→6.0, PHP floor 7.4→8.0, `peaceiris/actions-hugo@v3`.
+- **Misc UI** — `motion` → `^12.43.0`, `@formkit/auto-animate` → `^0.10.0`, base-ui beta→rc.0, `ultracite@7`, `playwright` → `^1.62.1`.
+
+#### Stale-instruction fixes (code examples taught now-broken patterns)
+
+Researched breaking API/config changes for 16 version transitions, then updated code examples that the version bumps invalidated:
+
+- **Zod 3 → 4** — converted ~81 `z.string().email()` → `z.email()` examples; updated the error-customization API (`errorMap`→`error`, `z.setErrorMap` removed, `.format()`→`z.flattenError`, `invalid_type_error`→`error`); `ZodError.errors`→`.issues`.
+- **Tailwind v3 → v4** — `@tailwind` directives → `@import "tailwindcss"`, `tailwind.config.js` → `@theme` CSS-first, renamed utilities (`flex-shrink-0`→`shrink-0`).
+- **Next.js 16** — `next lint` → `eslint .`, `middleware.ts` → `proxy.ts` (with **OpenNext/Cloudflare caveat**: do not rename there yet — `@opennextjs/cloudflare` doesn't recognize `proxy.ts`), removed webpack configs.
+- **Cloudflare wrangler 4.x** — `node_compat: true` → `compatibility_flags: ["nodejs_compat"]` (11 occurrences).
+- **Hugo 0.146 → 0.164** — pre-0.146 layout-directory structure updated with back-compat notes.
+- **Biome 1 → 2** (ultracite) — `organizeImports` → `assist.actions.source`, `files.ignore` → `includes`, removed `"all"` rule shortcuts.
+- **better-auth 1.3 → 1.6** — passkey/api-key plugin extraction to `@better-auth/*` packages.
+- **Bun 1.2 / 1.3** — `Bun.build` now rejects (try/catch), `await server.stop()`, `Bun.serve` routes option.
+
+#### Infrastructure & security
+
+- Bumped GitHub Actions CI to current majors with SHA pins (`checkout` v5.1.0, `setup-node` v5.0.0, `codeql-action` v4.37.5 — resolves a long-standing `TODO: pin to SHA`).
+- Fixed 2 high-severity npm vulnerabilities (brace-expansion, fast-uri).
+- Repaired the gitleaks pre-commit hook (`--staged` was removed in gitleaks 8.x — every commit was failing) and the `head`-alias shadowing in `validate-frontmatter.sh`.
+- Fixed 3 broken audit scripts that pointed at a removed `skills/` directory (now resolve via `plugins/*/skills/`).
+- Fixed 5 unsafe `@master`/`@main` mutable GitHub Action tags in skill examples.
+
+### Versioning
+
+- Bumped `package.json`, all 142 `plugin.json`, and all 142 `marketplace.json` plugin entries to 3.6.0.
+
+---
+
 ## [3.5.0] - 2026-07-18
 
 ### Added
