@@ -236,7 +236,7 @@ import { z } from 'zod';
 
 const UserSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().positive().optional(),
 });
 
@@ -539,7 +539,7 @@ users.get('/:id', async (c) => {
 
 const CreateUserSchema = z.object({
   name: z.string().min(1),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 users.post('/', zValidator('json', CreateUserSchema), async (c) => {

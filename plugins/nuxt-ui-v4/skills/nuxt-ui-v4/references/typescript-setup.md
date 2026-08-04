@@ -97,7 +97,7 @@ import { z } from 'zod'
 
 // Define schema
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   age: z.number().min(18, 'Must be 18 or older').optional()
 })
@@ -152,7 +152,7 @@ const addressSchema = z.object({
 
 const userSchema = z.object({
   name: z.string().min(2).max(50),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().min(18).max(120),
   address: addressSchema,
   role: z.enum(['admin', 'user', 'guest']),
@@ -352,7 +352,7 @@ import { z } from 'zod'
 // Define your form schema
 const schema = z.object({
   name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email')
+  email: z.email({ error: 'Invalid email' })
 })
 
 // Infer the type from schema

@@ -7,7 +7,7 @@
 import { z } from 'zod'
 
 const schema = z.object({
-  email: z.string().email('Invalid email'),
+  email: z.email({ error: 'Invalid email' }),
   password: z.string().min(8, 'Min 8 characters')
 })
 

@@ -45,12 +45,12 @@ interface Variables {
 
 const UserCreateSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 const UserUpdateSchema = z.object({
   name: z.string().min(1).max(100).optional(),
-  email: z.string().email().optional(),
+  email: z.email().optional(),
 });
 
 const PaginationSchema = z.object({
