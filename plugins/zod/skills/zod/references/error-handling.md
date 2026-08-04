@@ -36,7 +36,7 @@ Converts errors into a flat object structure with top-level and field-specific e
 ```typescript
 const FormSchema = z.object({
   username: z.string().min(3),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().positive(),
 });
 
@@ -80,7 +80,7 @@ const NestedSchema = z.object({
   user: z.object({
     profile: z.object({
       name: z.string().min(1),
-      email: z.string().email(),
+      email: z.email(),
     }),
     settings: z.object({
       notifications: z.boolean(),
@@ -155,7 +155,7 @@ Generates a human-readable string representation of all validation errors:
 const UserSchema = z.object({
   profile: z.object({
     username: z.string().min(3),
-    email: z.string().email(),
+    email: z.email(),
   }),
   favoriteNumbers: z.array(z.number()),
 });
@@ -232,10 +232,10 @@ const NameSchema = z.string({
   error: "Name must be a string",
 });
 
-const EmailSchema = z.string().email({
+const EmailSchema = z.email({
   error: (issue) => {
     if (issue.code === "invalid_string") {
-      return { message: "Please provide a valid email address" };
+      return "Please provide a valid email address";
     }
   },
 });
@@ -249,7 +249,7 @@ const AgeSchema = z.number().min(18, {
 const result = UserSchema.parse(data, {
   error: (issue) => {
     // Custom error logic for this specific parse
-    return { message: `Validation failed at ${issue.path.join('.')}` };
+    return `Validation failed at ${issue.path.join('.')}`;
   },
 });
 
@@ -258,7 +258,7 @@ const result = UserSchema.parse(data, {
 z.config({
   customError: (issue) => {
     // Global error handler - applies when schema/parse don't specify
-    return { message: `Global error: ${issue.code}` };
+    return `Global error: ${issue.code}`;
   },
 });
 ```
@@ -303,10 +303,10 @@ z.string("Invalid string!");
 z.string({
   error: (issue) => {
     if (issue.code === "too_small") {
-      return { message: `Minimum length: ${issue.minimum}` };
+      return `Minimum length: ${issue.minimum}`;
     }
     if (issue.code === "invalid_type") {
-      return { message: `Expected string, got ${issue.received}` };
+      return `Expected string, got ${issue.received}`;
     }
     return undefined; // Use default message
   },
@@ -315,9 +315,7 @@ z.string({
 // Include input data in errors (disabled by default for security)
 schema.parse(data, {
   reportInput: true, // Now error.issues will include input data
-  error: (issue) => ({
-    message: `Invalid value: ${JSON.stringify(issue.input)}`,
-  }),
+  error: (issue) => `Invalid value: ${JSON.stringify(issue.input)}`,
 });
 ```
 
@@ -346,9 +344,7 @@ const result = schema.parse(data, {
 
 // Custom i18n integration
 z.config({
-  customError: (issue) => ({
-    message: t(`validation.${issue.code}`, issue),
-  }),
+  customError: (issue) => t(`validation.${issue.code}`, issue),
 });
 ```
 
@@ -362,7 +358,7 @@ z.config({
 
 ```typescript
 const LoginSchema = z.object({
-  email: z.string().email("Invalid email address"),
+  email: z.email({ error: "Invalid email address" }),
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
@@ -415,7 +411,7 @@ const ProfileSchema = z.object({
     lastName: z.string().min(1),
   }),
   contact: z.object({
-    email: z.string().email(),
+    email: z.email(),
     phone: z.string().optional(),
   }),
 });

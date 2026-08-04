@@ -54,7 +54,7 @@ Aceternity UI is a premium, production-ready React component library designed fo
 - 100+ animated, production-ready components
 - Built for Next.js 13+ with App Router support
 - Full TypeScript support
-- Tailwind CSS v3+ styling
+- Tailwind CSS v4+ styling (CSS-first config; v3 also works with JS config)
 - Framer Motion animations
 - Dark mode support
 - Copy-paste friendly (not an npm package)
@@ -63,9 +63,9 @@ Aceternity UI is a premium, production-ready React component library designed fo
 **Prerequisites:**
 - Next.js 13+ (App Router recommended)
 - React 16.8+
-- Tailwind CSS v3+
+- Tailwind CSS v4+ (CSS-first `@import "tailwindcss"` and `@theme`; v3 also supported)
 - TypeScript (recommended)
-- Node.js 18+ with bun, npm, or pnpm
+- Node.js 20+ with bun, npm, or pnpm
 
 ## Installation
 
@@ -656,15 +656,14 @@ Ensure `lib/utils.ts` exists with the `cn` helper function.
 Verify "use client" directive is at the top of the file.
 
 **4. Tailwind classes not working**
-Ensure Tailwind is configured and `globals.css` imports Tailwind directives:
+Ensure Tailwind is set up. Under Tailwind v4 (CSS-first), `globals.css` should import Tailwind with a single directive:
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 ```
+(If you are still on Tailwind v3, the equivalent is the three `@tailwind base; @tailwind components; @tailwind utilities;` directives.)
 
 **5. Dark mode not working**
-Check `tailwind.config.ts` has `darkMode: "class"` configured.
+Under Tailwind v4, configure dark mode in CSS using a custom variant (e.g. `@custom-variant dark (&:where(.dark, .dark *));` for a class-based strategy). On Tailwind v3, set `darkMode: "class"` in `tailwind.config.ts`.
 
 ## Token Efficiency
 

@@ -343,9 +343,9 @@ git commit --no-verify -m "WIP: work in progress"
 
 **GitHub Actions**:
 ```yaml
-- uses: oven-sh/setup-bun@v1
+- uses: oven-sh/setup-bun@v2
   with:
-    bun-version: 1.0.20  # Match local version
+    bun-version: 1.3.14  # Match local version
 ```
 
 **Cause 2**: Different config files
@@ -553,13 +553,15 @@ bun add -D ultracite
 ```jsonc
 {
   "files": {
-    "ignore": [
-      "**/node_modules",
-      "**/dist",
-      "**/.next",
-      "**/build",
-      "**/coverage",
-      "**/*.generated.ts"
+    // Biome 2.x: files.includes with ! negation (files.ignore removed)
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.next",
+      "!**/build",
+      "!**/coverage",
+      "!**/*.generated.ts"
     ]
   }
 }

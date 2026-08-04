@@ -47,15 +47,15 @@ Load the `dependency-upgrade` skill for full security configuration including So
 ```json
 {
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "next": "^16.1.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "next": "^16.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
 ```
@@ -81,23 +81,16 @@ The `--bun` flag forces Next.js to use Bun's runtime instead of Node.js.
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable experimental features
-  experimental: {
-    // Turbopack (faster dev)
-    turbo: {},
-  },
+  // Turbopack is the default bundler in Next.js 16 (top-level, not under experimental)
+  turbopack: {},
 
   // Server-side Bun APIs
   serverExternalPackages: ["bun:sqlite"],
 
-  // Webpack config (if needed)
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      // Allow Bun-specific imports
-      config.externals.push("bun:sqlite", "bun:ffi");
-    }
-    return config;
-  },
+  // Note: a `webpack` key is no longer supported in Next.js 16 — Turbopack is the
+  // default bundler and a `webpack` config will fail `next build`. Bun-specific
+  // imports (`bun:sqlite`, `bun:ffi`) are handled via `serverExternalPackages`
+  // above. If you truly need the webpack bundler, run `next build --webpack`.
 };
 
 module.exports = nextConfig;
@@ -198,14 +191,23 @@ export async function deleteUser(id: number) {
 }
 ```
 
-## Middleware
+## Proxy (formerly Middleware)
+
+In Next.js 16, `middleware.ts` is renamed to `proxy.ts` (the `middleware` name still
+works but is deprecated). Proxy runs on the Node.js runtime, not the Edge runtime.
+
+> ⚠️ **Deploying to Cloudflare via OpenNext? Keep `middleware.ts`.**
+> `@opennextjs/cloudflare` does not yet recognize the `proxy.ts` filename — renaming
+> will silently disable your middleware on Cloudflare. Until OpenNext adds support,
+> deploy with the classic `middleware.ts` (it still works in Next 16, just deprecated
+> upstream). This caveat does not apply to Node.js/Vercel/Bun-native deployments.
 
 ```typescript
-// middleware.ts
+// proxy.ts (renamed from middleware.ts in Next.js 16)
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Check auth
   const token = request.cookies.get("token");
 
@@ -283,9 +285,9 @@ Note: Vercel's edge runtime uses V8, not Bun. Bun APIs work in:
 
 ## Performance Tips
 
-1. **Use Turbopack** for faster dev:
+1. **Turbopack is the default** in Next.js 16 (no flag needed):
    ```bash
-   bun run dev --turbo
+   bun run dev
    ```
 
 2. **Prefer Server Components** - Less JavaScript sent to client

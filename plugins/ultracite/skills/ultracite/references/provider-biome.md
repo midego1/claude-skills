@@ -41,7 +41,7 @@ Biome uses `biome.jsonc` for configuration:
     "ultracite/biome/react"      // Framework preset
   ],
   "files": {
-    "ignore": ["dist", "node_modules", ".next", "build"]
+    "includes": ["**", "!dist", "!node_modules", "!.next", "!build"]
   },
   "formatter": {
     "enabled": true,
@@ -127,12 +127,14 @@ Override or extend rules in `biome.jsonc`:
   "extends": ["ultracite/biome/core"],
   "files": {
     "maxSize": 1000000,  // 1MB file size limit
-    "ignore": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/.next/**",
-      "**/build/**",
-      "**/*.generated.ts"  // Ignore generated files
+    // Biome 2.x: files.includes with ! negation (files.ignore removed)
+    "includes": [
+      "**",
+      "!**/node_modules/**",
+      "!**/dist/**",
+      "!**/.next/**",
+      "!**/build/**",
+      "!**/*.generated.ts"  // Ignore generated files
     ]
   }
 }
@@ -256,7 +258,7 @@ code --install-extension biomejs.biome --force
 ### Slow Performance
 
 **Solutions**:
-1. Add `files.ignore` patterns for large directories
+1. Add `!`-prefixed entries to `files.includes` to exclude large directories (Biome 2.x replaced `files.ignore` with `includes` negation)
 2. Set `files.maxSize` limit
 3. Exclude generated files
 

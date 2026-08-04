@@ -1,6 +1,6 @@
 # Next.js App Router - Production Patterns
 
-**Version**: Next.js 16.0.0 | **React**: 19.2.0 | **Node.js**: 20.9+
+**Version**: Next.js 16.2.0 | **React**: 19.2.0 | **Node.js**: 20.9+
 **Production Tested**: ✅ | **Token Savings**: 65-70% | **Errors Prevented**: 18+
 
 ---
@@ -335,7 +335,7 @@ This skill prevents **18+ common mistakes**:
 ## Production Validation
 
 **Tested With**:
-- Next.js 16.0.0
+- Next.js 16.2.0
 - React 19.2.0
 - Node.js 20.9+
 - Turbopack (stable)
@@ -453,7 +453,7 @@ MIT License - See [LICENSE](../../LICENSE)
 
 ### v1.0.0 (2025-10-24)
 - Initial release
-- Next.js 16.0.0 support
+- Next.js 16.2.0 support
 - React 19.2.0 integration
 - 20+ templates
 - 10+ reference guides

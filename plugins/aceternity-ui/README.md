@@ -10,7 +10,7 @@ Aceternity UI is a comprehensive collection of beautifully animated React compon
 
 - **100+ Production-Ready Components** - Backgrounds, cards, text effects, animations, and more
 - **Built for Next.js** - Optimized for Next.js 13+ with App Router support
-- **Tailwind CSS Styling** - Fully customizable using Tailwind CSS v3+
+- **Tailwind CSS Styling** - Fully customizable using Tailwind CSS v4+ (CSS-first config; v3 also supported)
 - **Framer Motion Animations** - Smooth, performant animations
 - **TypeScript Support** - Full type safety
 - **Dark Mode Ready** - All components support dark mode
@@ -426,13 +426,13 @@ import { Component } from "@/components/ui/component";
 
 ### Tailwind Classes Not Working
 
-Ensure `app/globals.css` has:
+Ensure `app/globals.css` imports Tailwind. Under Tailwind v4 (CSS-first, recommended):
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 ```
+
+If you are on Tailwind v3, the equivalent uses the three directives (`@tailwind base; @tailwind components; @tailwind utilities;`).
 
 ## Resources
 

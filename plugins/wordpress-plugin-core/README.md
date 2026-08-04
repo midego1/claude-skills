@@ -157,12 +157,12 @@ wp plugin activate my-plugin
 ---
 
 
-## Package Versions (Verified 2025-11-06)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| WordPress | 6.7+ | ✅ Latest stable |
-| PHP | 7.4+ (8.0+ recommended) | ✅ Current |
+| WordPress | 7.0+ | ✅ Latest stable |
+| PHP | 8.0+ (8.3+ recommended) | ✅ Current |
 | Composer | 2.0+ (optional) | ✅ Latest |
 | WP-CLI | 2.0+ (optional) | ✅ Latest |
 
@@ -239,8 +239,8 @@ $wpdb->prepare( "SELECT * FROM table WHERE id = %d", $id );
  * Plugin URI:        https://example.com/my-plugin/
  * Description:       Brief description of what this does
  * Version:           1.0.0
- * Requires at least: 5.9
- * Requires PHP:      7.4
+ * Requires at least: 6.0
+ * Requires PHP:      8.0
  * Author:            Your Name
  * Author URI:        https://yoursite.com/
  * License:           GPL v2 or later

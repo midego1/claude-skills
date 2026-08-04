@@ -338,7 +338,7 @@ const groupedItems = [
 import { z } from 'zod'
 
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   age: z.number().min(18, 'Must be 18 or older').optional()
 })

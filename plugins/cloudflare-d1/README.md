@@ -147,8 +147,8 @@ const user = await env.DB.prepare('SELECT * FROM users WHERE email = ?')
 ## Dependencies
 
 - **Required**: cloudflare-worker-base skill (for Worker setup)
-- **CLI**: wrangler@4.43.0+
-- **Types**: @cloudflare/workers-types@4.20251014.0+
+- **CLI**: wrangler@4.81.0+
+- **Types**: @cloudflare/workers-types@4.20260408.0+
 
 ---
 

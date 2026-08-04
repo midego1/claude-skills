@@ -159,8 +159,8 @@ bun run deploy  # preferred
 |---------|---------|--------|
 | @cloudflare/sandbox | 0.4.12 | ✅ Latest stable |
 | cloudflare/sandbox (Docker) | 0.4.12 | ✅ Latest stable |
-| wrangler | 3.80.0+ | ✅ Latest stable |
-| @cloudflare/workers-types | 4.20241106.0+ | ✅ Latest stable |
+| wrangler | 4.81.0+ | ✅ Latest stable |
+| @cloudflare/workers-types | 4.20260408.0+ | ✅ Latest stable |
 
 ---
 

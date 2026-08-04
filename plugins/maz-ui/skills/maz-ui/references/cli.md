@@ -9,7 +9,7 @@ The `@maz-ui/cli` package provides a command-line tool for generating CSS variab
 ::: warning Version Notice
 **This CLI is for Maz-UI v3.x users only.**
 
-If you're using **Maz-UI v4.x** (v4.3.3+), you should use the **[@maz-ui/themes package](./theming.md)** instead, which provides:
+If you're using **Maz-UI v4.x** (v4.9.3+), you should use the **[@maz-ui/themes package](./theming.md)** instead, which provides:
 - Built-in theme presets (maz-ui, ocean, pristine, obsidian)
 - Runtime theme switching
 - Better TypeScript support
@@ -521,7 +521,7 @@ import 'maz-ui/css/main.css'         // Then Maz-UI styles
 ---
 
 **CLI Version**: @maz-ui/cli v3.x (legacy)
-**Recommended**: @maz-ui/themes v4.3.3+
+**Recommended**: @maz-ui/themes v4.9.3+
 **Last Updated**: 2025-12-14
 
 ::: tip Recommendation

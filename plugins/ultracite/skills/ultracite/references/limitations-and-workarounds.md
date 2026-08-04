@@ -124,8 +124,11 @@ stylelint '**/*.css' --fix
   "extends": ["ultracite/core"],
 
   "files": {
-    "include": ["src/**/*.js", "src/**/*.ts"],
-    "ignore": ["src/**/*.astro"]  // Skip .astro files
+    "includes": [
+      "src/**/*.js",
+      "src/**/*.ts",
+      "!src/**/*.astro"  // Skip .astro files
+    ]
   }
 }
 ```
@@ -239,11 +242,17 @@ bun add -D eslint eslint-plugin-testing-library eslint-plugin-jest
 
 **For import organization** (partial replacement for `eslint-plugin-import`):
 
+> **Biome 2.x note**: `organizeImports` moved out of the formatter and into the **Assist** system. The value is now the string `"on"` (not a boolean `true`). The legacy `{ "organizeImports": { "enabled": true } }` form no longer works in Biome 2.x.
+
 `biome.json`:
 ```jsonc
 {
-  "organizeImports": {
-    "enabled": true
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   }
 }
 ```
@@ -581,9 +590,10 @@ null_ls.setup({
 ```jsonc
 {
   "files": {
-    "ignore": [
-      "**/*.generated.ts",
-      "**/*.bundle.js"
+    "includes": [
+      "**",
+      "!**/*.generated.ts",
+      "!**/*.bundle.js"
     ],
     "maxSize": 1048576  // 1 MB limit
   }

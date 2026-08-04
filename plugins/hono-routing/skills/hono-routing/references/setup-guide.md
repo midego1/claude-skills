@@ -7,9 +7,9 @@
 ## Step 1: Install Hono
 
 ```bash
-bun add hono@4.10.2  # preferred
-# or: npm install hono@4.10.2
-# or: pnpm add hono@4.10.2
+bun add hono@4.12.12  # preferred
+# or: npm install hono@4.12.12
+# or: pnpm add hono@4.12.12
 ```
 
 **Why Hono:**
@@ -44,8 +44,8 @@ export default app
 ## Step 3: Add Request Validation
 
 ```bash
-bun add zod@4.1.12 @hono/zod-validator@0.7.4  # preferred
-# or: npm install zod@4.1.12 @hono/zod-validator@0.7.4
+bun add zod@4.3.6 @hono/zod-validator@0.7.4  # preferred
+# or: npm install zod@4.3.6 @hono/zod-validator@0.7.4
 ```
 
 ```typescript
@@ -240,7 +240,7 @@ app.use('*', cors())
 // Validation schemas
 const createUserSchema = z.object({
   name: z.string().min(1),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().min(0).max(150),
 })
 

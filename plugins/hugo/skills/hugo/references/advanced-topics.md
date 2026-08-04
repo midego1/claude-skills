@@ -8,9 +8,13 @@ Advanced Hugo features for experienced users: custom shortcodes, image processin
 
 Shortcodes are reusable content components that can be embedded in Markdown.
 
+> **Note (Hugo 0.146+):** shortcode templates now live in `layouts/_shortcodes/`
+> (was `layouts/shortcodes/`). The old path still works via back-compat mapping,
+> but new projects should use `_shortcodes/`.
+
 ### Simple Shortcode: YouTube Embed
 
-**Create `layouts/shortcodes/youtube.html`:**
+**Create `layouts/_shortcodes/youtube.html`:**
 
 ```go-html-template
 <div class="youtube-embed">
@@ -29,7 +33,7 @@ Shortcodes are reusable content components that can be embedded in Markdown.
 
 ### Named Parameters: Alert Box
 
-**Create `layouts/shortcodes/alert.html`:**
+**Create `layouts/_shortcodes/alert.html`:**
 
 ```go-html-template
 <div class="alert alert-{{ .Get "type" | default "info" }}">
@@ -46,7 +50,7 @@ Shortcodes are reusable content components that can be embedded in Markdown.
 
 ### Complex Shortcode: Code Tabs
 
-**Create `layouts/shortcodes/tabs.html`:**
+**Create `layouts/_shortcodes/tabs.html`:**
 
 ```go-html-template
 <div class="code-tabs">
@@ -178,7 +182,7 @@ difficulties: ["Beginner"]
 
 **List all series:**
 ```go-html-template
-<!-- layouts/_default/series.html -->
+<!-- layouts/series.html (Hugo 0.146+: root, was _default/series.html) -->
 {{ range .Site.Taxonomies.series }}
   <a href="{{ .Page.Permalink }}">
     {{ .Page.Title }} ({{ .Count }} posts)
@@ -223,7 +227,7 @@ Use external data files (JSON, YAML, TOML) for structured content.
 ### Using Data Files
 
 ```go-html-template
-<!-- layouts/partials/team.html -->
+<!-- layouts/_partials/team.html (Hugo 0.146+: _partials/, was partials/) -->
 <div class="team-grid">
   {{ range .Site.Data.team }}
   <div class="team-member">
@@ -314,14 +318,31 @@ content/
 
 Override theme templates without modifying the theme.
 
+> **Hugo 0.146+ template layout** (this skill targets 0.164): the legacy
+> `layouts/_default/`, `layouts/partials/`, and `layouts/shortcodes/` folders
+> were renamed as part of the template-engine rewrite. The old paths still work
+> via a back-compat mapping, but Hugo recommends the new locations:
+>
+> | Old (pre-0.146)               | New (0.146+)            |
+> |-------------------------------|-------------------------|
+> | `layouts/_default/single.html`| `layouts/single.html` (root) |
+> | `layouts/_default/list.html`  | `layouts/list.html` (root)   |
+> | `layouts/partials/`           | `layouts/_partials/`         |
+> | `layouts/shortcodes/`         | `layouts/_shortcodes/`       |
+> | `layouts/index.html` (home)   | `layouts/home.html`          |
+>
+> See https://gohugo.io/templates/new-templatesystem-overview/ . When overriding
+> templates in a theme, mirror whatever path the theme itself uses (most themes
+> have migrated; some older themes still ship the legacy layout and will work
+> through the mapping).
+
 ### Directory Structure
 
 ```
 layouts/
-├── _default/
-│   └── single.html      # Overrides theme's single.html
-├── partials/
-│   └── header.html      # Overrides theme's header.html
+├── single.html          # Overrides theme's single.html (was _default/single.html)
+├── _partials/
+│   └── header.html      # Overrides theme's header.html (was partials/header.html)
 └── posts/
     └── single.html      # Specific to posts section
 ```
@@ -330,7 +351,7 @@ layouts/
 
 **Create custom partial:**
 ```go-html-template
-<!-- layouts/partials/custom-footer.html -->
+<!-- layouts/_partials/custom-footer.html -->
 <footer>
   <p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
   {{ partial "social-icons.html" . }}
@@ -520,7 +541,7 @@ outputFormats:
 
 ### Template for JSON
 
-**`layouts/_default/list.json.json`:**
+**`layouts/list.json.json`** (Hugo 0.146+: moved from `_default/` to root):
 ```go-html-template
 {
   "items": [

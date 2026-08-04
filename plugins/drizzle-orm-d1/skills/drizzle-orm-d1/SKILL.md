@@ -43,7 +43,7 @@ license: MIT
 
 **Status**: Production Ready ✅
 **Last Updated**: 2025-12-14
-**Latest Version**: drizzle-orm@0.44.7, drizzle-kit@0.31.7
+**Latest Version**: drizzle-orm@0.45.2, drizzle-kit@0.31.10
 **Dependencies**: cloudflare-d1, cloudflare-worker-base
 
 ---
@@ -66,15 +66,23 @@ import { defineConfig } from 'drizzle-kit';
 export default defineConfig({
   schema: './src/db/schema.ts',
   out: './migrations',
-  dialect: 'sqlite',
-  driver: 'd1-http',
-  dbCredentials: {
+  dialect: 'sqlite',          // MANDATORY since drizzle-kit 0.21 (D1 = sqlite)
+  driver: 'd1-http',          // D1 HTTP driver for remote migrations/Studio
+  dbCredentials: {            // MANDATORY: drizzle-kit 0.30+ tightened zod validation
     accountId: process.env.CLOUDFLARE_ACCOUNT_ID!,
     databaseId: process.env.CLOUDFLARE_DATABASE_ID!,
     token: process.env.CLOUDFLARE_D1_TOKEN!,
   },
 });
 ```
+
+> **drizzle-kit 0.30/0.31 note**: `dialect` and `dbCredentials` are now strictly
+> validated. A config that omits `dialect` or uses the old `connectionString`/
+> `uri` keys will fail validation. For D1 use `dialect: 'sqlite'` +
+> `driver: 'd1-http'` with `accountId`/`databaseId`/`token` (or wrangler-based
+> credentials). The runtime `migrate()` signature in `drizzle-orm/<driver>/migrator`
+> is unchanged from 0.36 → 0.45 (it changes only in 1.0-beta, which is out of
+> scope for `^0.45`).
 
 ### 3. Define Schema
 
@@ -252,10 +260,10 @@ export type NewUser = InferInsertModel<typeof users>;
 ```json
 {
   "dependencies": {
-    "drizzle-orm": "^0.44.7"
+    "drizzle-orm": "^0.45.2"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.7"
+    "drizzle-kit": "^0.31.10"
   }
 }
 ```

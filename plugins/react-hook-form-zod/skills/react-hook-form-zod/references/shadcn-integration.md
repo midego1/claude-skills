@@ -294,7 +294,7 @@ Displays validation errors.
 const schema = z.object({
   user: z.object({
     name: z.string(),
-    email: z.string().email(),
+    email: z.email(),
   }),
 })
 

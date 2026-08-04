@@ -5,9 +5,9 @@ license: MIT
 metadata:
   version: "3.0.0"
   last_verified: "2025-12-27"
-  workers_types_version: "4.20250110.0"
+  workers_types_version: "4.20260408.0"
   typescript_version: "5.7.2"
-  wrangler_version: "3.91.0"
+  wrangler_version: "4.81.0"
   production_tested: true
   token_savings: "~65%"
   errors_prevented: 10

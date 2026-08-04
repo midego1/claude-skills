@@ -4,7 +4,7 @@ description: Nuxt SEO v5 modules (robots, sitemap, og-image, schema-org, link-ch
 license: MIT
 metadata:
   version: 4.0.0
-  last_updated: 2026-04-02
+  last_updated: 2026-08-03
   module_versions:
     nuxtjs_seo: 5.1.0
     "@nuxtjs/robots": 6.0.6
@@ -14,7 +14,7 @@ metadata:
     nuxt_link_checker: 5.0.6
     nuxt_seo_utils: 8.1.4
     nuxt_site_config: 4.0.7
-  nuxt_compatibility: ">=3.0.0"
+  nuxt_compatibility: ">=4.0.0"
   auto_trigger_scenarios:
     - Setting up SEO in Nuxt project
     - Configuring robots.txt or sitemap
@@ -35,7 +35,7 @@ metadata:
 
 # Nuxt SEO v5
 
-**Status**: Production Ready | **Dependencies**: Nuxt >=3.0.0
+**Status**: Production Ready | **Dependencies**: Nuxt >=4.0.0
 
 Use this skill when building SEO-optimized Nuxt applications with any combination of the 8 official Nuxt SEO modules plus standalone modules.
 
@@ -281,7 +281,7 @@ Load reference files based on the user's specific needs:
 
 ---
 
-## Package Versions (Verified 2026-04-02)
+## Package Versions (Verified 2026-08-03)
 
 ```json
 {
@@ -311,4 +311,4 @@ Load reference files based on the user's specific needs:
 - **nuxt-link-checker**: https://nuxtseo.com/docs/link-checker/getting-started/introduction
 - **GitHub**: https://github.com/harlan-zw
 
-**Production Ready**: All patterns based on official documentation from https://nuxtseo.com/llms-full.txt | Last verified: 2026-04-02
+**Production Ready**: All patterns based on official documentation from https://nuxtseo.com/llms-full.txt | Last verified: 2026-08-03

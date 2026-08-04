@@ -18,7 +18,7 @@ const app = new Hono()
 // JSON body validation
 const userSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().min(18).optional(),
 })
 
@@ -138,7 +138,7 @@ app.post('/login', zValidator('form', formSchema), (c) => {
 
 // Custom error response
 const customErrorSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().min(18),
 })
 
@@ -195,7 +195,7 @@ const addressSchema = z.object({
 
 const profileSchema = z.object({
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
   address: addressSchema,
   tags: z.array(z.string()).min(1).max(5),
 })
@@ -223,7 +223,7 @@ const paymentSchema = z.discriminatedUnion('method', [
   }),
   z.object({
     method: z.literal('paypal'),
-    email: z.string().email(),
+    email: z.email(),
   }),
   z.object({
     method: z.literal('bank'),
@@ -320,7 +320,7 @@ const batchCreateSchema = z.object({
   users: z.array(
     z.object({
       name: z.string(),
-      email: z.string().email(),
+      email: z.email(),
     })
   ).min(1).max(100),
 })
@@ -399,7 +399,7 @@ app.post('/login', zValidator('json', loginSchema), (c) => {
 // Union types (either/or)
 const contentSchema = z.union([
   z.object({ type: z.literal('text'), content: z.string() }),
-  z.object({ type: z.literal('image'), url: z.string().url() }),
+  z.object({ type: z.literal('image'), url: z.url() }),
   z.object({ type: z.literal('video'), videoId: z.string() }),
 ])
 

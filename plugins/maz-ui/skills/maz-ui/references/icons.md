@@ -16,7 +16,7 @@ Maz-UI provides a comprehensive icon library through the `@maz-ui/icons` package
 - ✅ **SSR Compatible** - Works with Nuxt 3 server-side rendering
 
 **Package**: `@maz-ui/icons`
-**Version**: v4.3.3
+**Version**: v4.9.3
 **Icon Count**: 840+
 
 ---
@@ -692,7 +692,7 @@ import { Icon } from '@iconify/vue'  // Alternative library
 
 ---
 
-**Version**: @maz-ui/icons v4.3.3
+**Version**: @maz-ui/icons v4.9.3
 **Last Updated**: 2025-12-14
 **Icon Count**: 840+ optimized SVG icons
 **Package Size**: ~200KB (tree-shakable to only icons used)

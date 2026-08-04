@@ -133,7 +133,7 @@ import { NonRetryableError } from 'cloudflare:workflows';
 3. Restart TypeScript server in your editor
 
 **Source:** Community reports, package versioning issues
-**Latest Working Version:** @cloudflare/workers-types@4.20251014.0 (verified 2025-10-22)
+**Latest Working Version:** @cloudflare/workers-types@4.20260408.0 (verified 2025-10-22)
 
 ---
 

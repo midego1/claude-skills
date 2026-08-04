@@ -2,7 +2,7 @@
 
 Maz-UI provides 5 Vue directives for common UI patterns like tooltips, click detection, and image handling. Directives are special attributes that apply reactive behavior to DOM elements.
 
-**Last Verified**: 2025-12-29 | **Maz-UI Version**: 4.3.3
+**Last Verified**: 2026-08-03 | **Maz-UI Version**: 4.9.3
 
 ## Overview
 
@@ -843,4 +843,4 @@ function close() {
 
 ---
 
-**Last Updated**: 2025-12-29 | **Maz-UI Version**: 4.3.3
+**Last Updated**: 2026-08-03 | **Maz-UI Version**: 4.9.3

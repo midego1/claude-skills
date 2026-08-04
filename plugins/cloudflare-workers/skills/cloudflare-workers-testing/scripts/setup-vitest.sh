@@ -16,7 +16,7 @@
 #
 # Requirements:
 # - wrangler.jsonc must exist in project root
-# - Node.js 18+ installed
+# - Node.js 20+ installed
 
 set -e # Exit on error
 
@@ -44,8 +44,8 @@ echo "📦 Using package manager: $PKG_MANAGER"
 
 # Check Node.js version
 NODE_VERSION=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
-if [ "$NODE_VERSION" -lt 18 ]; then
-  echo "❌ Node.js 18+ required (current: v$NODE_VERSION)"
+if [ "$NODE_VERSION" -lt 20 ]; then
+  echo "❌ Node.js 20+ required (current: v$NODE_VERSION)"
   echo "   Install via: nvm install 20 && nvm use 20"
   exit 1
 fi

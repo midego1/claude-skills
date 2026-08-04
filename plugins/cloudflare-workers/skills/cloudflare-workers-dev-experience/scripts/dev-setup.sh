@@ -113,16 +113,16 @@ init_package_json() {
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.7.0",
-    "@cloudflare/workers-types": "^4.20241230.0",
+    "@cloudflare/workers-types": "^4.20260408.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^9.0.0",
     "typescript": "^5.7.0",
-    "vitest": "^2.1.0",
-    "wrangler": "^3.99.0"
+    "vitest": "^2.0.0",
+    "wrangler": "^4.81.0"
   },
   "dependencies": {
-    "hono": "^4.6.0"
+    "hono": "^4.12.12"
   }
 }
 EOF

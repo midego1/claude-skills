@@ -47,11 +47,13 @@ monorepo/
   "extends": ["ultracite/core", "ultracite/react"],
 
   "files": {
-    "ignore": [
-      "**/dist",
-      "**/build",
-      "**/.next",
-      "**/node_modules"
+    // Biome 2.x: files.includes with ! negation (files.ignore removed)
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/build",
+      "!**/.next",
+      "!**/node_modules"
     ]
   }
 }
@@ -128,9 +130,16 @@ monorepo/
   "extends": ["../../biome.json", "ultracite/react"],
 
   "linter": {
+    // Biome 2.x: per-group "all" value was removed — use linter.domains
+    // to elevate a whole domain (e.g. react/a11y) to "all"
+    "domains": { "react": "all" },
     "rules": {
       "a11y": {
-        "all": "error"  // Strict accessibility for UI library
+        // Explicit rule enables (Biome 2.x no longer accepts "all": "error")
+        "useAltText": "error",
+        "useAnchorContent": "error",
+        "useButtonType": "error",
+        "useKeyWithClickEvents": "error"
       }
     }
   }
@@ -385,7 +394,7 @@ packages:
     "lint:fix": "pnpm --recursive run lint:fix"
   },
   "devDependencies": {
-    "ultracite": "^0.9.0"
+    "ultracite": "^7.0.0"
   }
 }
 ```
@@ -435,9 +444,14 @@ pnpm --filter "...[HEAD^1]" lint
   "extends": ["../../biome.json", "ultracite/react"],
 
   "linter": {
+    // Biome 2.x: per-group "all" value was removed — use linter.domains
+    "domains": { "react": "all" },
     "rules": {
       "a11y": {
-        "all": "error"           // Strict accessibility
+        // Explicit rule enables (Biome 2.x no longer accepts "all": "error")
+        "useAltText": "error",
+        "useAnchorContent": "error",
+        "useButtonType": "error"
       },
       "suspicious": {
         "noConsoleLog": "error",  // No console.log
@@ -617,11 +631,13 @@ ultracite check --config-path=../../biome.json
    ```jsonc
    {
      "files": {
-       "ignore": [
-         "**/dist",
-         "**/.next",
-         "**/coverage",
-         "**/*.generated.ts"
+       // Biome 2.x: files.includes with ! negation
+       "includes": [
+         "**",
+         "!**/dist",
+         "!**/.next",
+         "!**/coverage",
+         "!**/*.generated.ts"
        ]
      }
    }

@@ -27,7 +27,7 @@ This plugin provides comprehensive guidance for setting up Nuxt Studio - a free,
 
 - **Nuxt**: ≥3.x
 - **@nuxt/content**: ≥2.x (required dependency)
-- **Node.js**: ≥18.x
+- **Node.js**: ≥20.x
 - **Cloudflare Account**: Required for Cloudflare deployment (optional)
 
 ## Quick Start

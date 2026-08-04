@@ -1,7 +1,7 @@
 # AutoAnimate
 
 **Status**: Production Ready ✅
-**Last Updated**: 2025-11-07
+**Last Updated**: 2026-08-03
 **Production Tested**: Vite + React 19 + Tailwind v4 + Cloudflare Workers Static Assets
 
 ---
@@ -169,13 +169,13 @@ return (
 
 ---
 
-## Package Versions (Verified 2025-11-07)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| @formkit/auto-animate | 0.9.0 | ✅ Latest stable |
+| @formkit/auto-animate | 0.10.0 | ✅ Latest stable |
 | react | 19.2.0 | ✅ Latest stable |
-| vite | 6.0.0 | ✅ Latest stable |
+| vite | 7.3.0 | ✅ Latest stable |
 
 ---
 

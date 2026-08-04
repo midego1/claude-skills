@@ -31,8 +31,8 @@ license: MIT
 # Zustand State Management
 
 **Status**: Production Ready ✅
-**Last Updated**: 2025-11-21
-**Latest Version**: zustand@5.0.8
+**Last Updated**: 2026-08-03
+**Latest Version**: zustand@5.0.14
 **Dependencies**: React 18+, TypeScript 5+
 
 ---
@@ -215,7 +215,7 @@ const usePreferencesStore = create<UserPreferences>()(
 |-------|-------|-----------|
 | **#1 Hydration mismatch** | "Text content does not match" | Use `_hasHydrated` flag + `onRehydrateStorage` |
 | **#2 TypeScript inference** | Types break with middleware | Use `create<T>()()` double parentheses |
-| **#3 Import error** | "createJSONStorage not exported" | Upgrade to zustand@5.0.8+ |
+| **#3 Import error** | "createJSONStorage not exported" | Upgrade to zustand@5.0.14+ |
 | **#4 Infinite loop** | Browser freezes | Use `shallow` or separate selectors |
 | **#5 Slices types** | StateCreator types fail | Explicit `StateCreator<Combined, [], [], Slice>` |
 
@@ -323,7 +323,7 @@ const useStore = create<MyStore>()(
 ## Dependencies
 
 ```json
-{ "dependencies": { "zustand": "^5.0.8", "react": "^18.0.0+" } }
+{ "dependencies": { "zustand": "^5.0.14", "react": "^18.0.0+" } }
 ```
 
 **Compatibility**: React 18+, React 19, TypeScript 5+, Next.js 14+, Vite 5+

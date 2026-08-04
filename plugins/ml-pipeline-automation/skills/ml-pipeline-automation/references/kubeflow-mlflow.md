@@ -104,7 +104,7 @@ def preprocess_data(
     packages_to_install=[
         'pandas==2.1.0',
         'scikit-learn==1.3.0',
-        'mlflow==2.8.0',
+        'mlflow==3.7.0',
         'joblib==1.3.0'
     ]
 )

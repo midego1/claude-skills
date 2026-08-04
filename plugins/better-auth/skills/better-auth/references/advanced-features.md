@@ -301,7 +301,7 @@ Passwordless authentication using biometric or hardware keys.
 
 ```typescript
 import { betterAuth } from "better-auth";
-import { passkey } from "better-auth/plugins";
+import { passkey } from "@better-auth/passkey";  // extracted package (v1.5+)
 
 export const auth = betterAuth({
   database: /* ... */,

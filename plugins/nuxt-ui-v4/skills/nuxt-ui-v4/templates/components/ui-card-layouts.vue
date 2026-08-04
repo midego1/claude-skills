@@ -123,7 +123,7 @@
 
           <ul class="space-y-2">
             <li v-for="feature in plan.features" :key="feature" class="flex items-center gap-2 text-sm">
-              <UIcon name="i-heroicons-check" class="text-success flex-shrink-0" />
+              <UIcon name="i-heroicons-check" class="text-success shrink-0" />
               <span>{{ feature }}</span>
             </li>
           </ul>

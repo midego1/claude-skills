@@ -3,7 +3,7 @@
 Complete reference for all built-in Hono middleware with usage examples and configuration options.
 
 **Last Updated**: 2025-10-22
-**Hono Version**: 4.10.2+
+**Hono Version**: 4.12.12+
 
 ---
 
@@ -12,8 +12,8 @@ Complete reference for all built-in Hono middleware with usage examples and conf
 All built-in middleware are included in the `hono` package. No additional dependencies required.
 
 ```bash
-bun add hono@4.10.2  # preferred
-# or: npm install hono@4.10.2
+bun add hono@4.12.12  # preferred
+# or: npm install hono@4.12.12
 ```
 
 ---

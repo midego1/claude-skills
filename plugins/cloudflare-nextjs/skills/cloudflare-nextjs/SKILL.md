@@ -8,7 +8,7 @@ metadata:
   package_versions:
     "@opennextjs/cloudflare": "^1.13.1"
     "next": "^14.2.0 || ^15.0.0 || ^16.0.0"
-    "wrangler": "^4.50.0"
+    "wrangler": "^4.81.0"
   compatibility_requirements:
     compatibility_date: "2025-05-05"
     compatibility_flags: ["nodejs_compat"]

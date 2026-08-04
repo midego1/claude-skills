@@ -157,7 +157,9 @@ Yarn-style resolutions also supported:
 
 ## Installation Strategies
 
-### Hoisted (default for single packages)
+> **Bun 1.3+ default flip**: Starting in Bun 1.3, **`isolated` is the default for workspaces** (packages can no longer reach undeclared deps through the hoisted root `node_modules`). `hoisted` is now the **legacy opt-out** — only use it when a workspace package depends on a transitive dep that it doesn't declare.
+
+### Hoisted (legacy opt-out; still the default for single non-workspace packages)
 
 Traditional flat node_modules:
 
@@ -165,7 +167,7 @@ Traditional flat node_modules:
 bun install --linker hoisted
 ```
 
-### Isolated (default for workspaces)
+### Isolated (default for workspaces in Bun 1.3+)
 
 pnpm-like strict isolation:
 
@@ -173,7 +175,13 @@ pnpm-like strict isolation:
 bun install --linker isolated
 ```
 
-Isolated prevents "phantom dependencies" - packages can only access declared dependencies.
+Isolated prevents "phantom dependencies" - packages can only access declared dependencies. To make this explicit or restore it after an opt-out, set it in `bunfig.toml`:
+
+```toml
+[install]
+linker = "isolated"   # default for workspaces in Bun 1.3+
+# linker = "hoisted"  # legacy opt-out
+```
 
 ## CI/CD
 

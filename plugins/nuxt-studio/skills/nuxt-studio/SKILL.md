@@ -30,7 +30,7 @@ Before proceeding with Studio setup, verify these requirements:
 
 1. **Nuxt Version**: ≥3.x (Studio requires Nuxt 3)
 2. **@nuxt/content Module**: ≥2.x (required dependency)
-3. **Node.js**: ≥18.x recommended
+3. **Node.js**: ≥20.x recommended
 4. **Cloudflare Account**: Required for Cloudflare deployment (optional for other platforms)
 
 **Check Nuxt Content installation**:
@@ -360,7 +360,7 @@ This skill works well with:
 - **Nuxt Studio**: v1.0.0-beta.3 (latest as of December 2025)
 - **Nuxt**: ≥3.x required
 - **@nuxt/content**: ≥2.x required
-- **Node.js**: ≥18.x recommended
+- **Node.js**: ≥20.x recommended
 
 For the latest version information, check: https://github.com/nuxt-content/studio/releases
 

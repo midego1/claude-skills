@@ -16,7 +16,7 @@ import { z } from 'zod'
 // Schema for contact list
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email'),
+  email: z.email({ error: 'Invalid email' }),
   phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone number').optional(),
   isPrimary: z.boolean().optional(),
 })

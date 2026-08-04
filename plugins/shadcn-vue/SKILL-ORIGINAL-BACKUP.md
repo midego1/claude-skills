@@ -2158,14 +2158,14 @@ Use this checklist to verify your setup:
 ```json
 {
   "dependencies": {
-    "vue": "^3.4.0",
+    "vue": "^3.5.0",
     "@vueuse/core": "^10.7.0",
     "tailwindcss": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.2.0",
-    "zod": "^3.22.4"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

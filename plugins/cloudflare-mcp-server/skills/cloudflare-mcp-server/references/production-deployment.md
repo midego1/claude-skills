@@ -123,9 +123,7 @@ npx wrangler tail
 
   "migrations": [
     { "tag": "v1", "new_classes": ["MyMCP"] }
-  ],
-
-  "node_compat": true
+  ]
 }
 ```
 

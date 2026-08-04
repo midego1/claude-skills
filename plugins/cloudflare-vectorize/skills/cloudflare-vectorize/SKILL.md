@@ -51,7 +51,7 @@ Complete implementation guide for Cloudflare Vectorize - a globally distributed 
 **Status**: Production Ready ✅
 **Last Updated**: 2025-11-21
 **Dependencies**: cloudflare-worker-base (for Worker setup), cloudflare-workers-ai (for embeddings)
-**Latest Versions**: wrangler@4.50.0, @cloudflare/workers-types@4.20251014.0
+**Latest Versions**: wrangler@4.81.0, @cloudflare/workers-types@4.20260408.0
 **Token Savings**: ~65%
 **Errors Prevented**: 8
 **Dev Time Saved**: ~3 hours

@@ -195,8 +195,10 @@ beforeAll(async () => {
   baseUrl = `http://localhost:${server.port}`;
 });
 
-afterAll(() => {
-  server.stop();
+// Bun 1.2+: server.stop() returns a Promise that resolves once in-flight
+// connections have closed — await it so the test process doesn't exit early.
+afterAll(async () => {
+  await server.stop();
 });
 
 test("api works", async () => {

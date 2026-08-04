@@ -382,7 +382,7 @@ export async function submitMultiStepForm(data: FormData) {
   // Validate all data
   const schema = z.object({
     name: z.string().min(2),
-    email: z.string().email(),
+    email: z.email(),
     address: z.string().min(5),
     city: z.string().min(2),
   })

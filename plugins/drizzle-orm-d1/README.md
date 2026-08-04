@@ -186,14 +186,14 @@ EOF
 
 ---
 
-## Package Versions (Verified 2025-10-24)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| drizzle-orm | 0.44.7 | ✅ Latest stable |
-| drizzle-kit | 0.31.5 | ✅ Latest stable |
-| @cloudflare/workers-types | 4.20251014.0 | ✅ Latest |
-| wrangler | 4.43.0+ | ✅ Compatible |
+| drizzle-orm | 0.45.2 | ✅ Latest stable |
+| drizzle-kit | 0.31.10 | ✅ Latest stable |
+| @cloudflare/workers-types | 4.20260408.0 | ✅ Latest |
+| wrangler | 4.81.0+ | ✅ Compatible |
 | better-sqlite3 | 12.4.1 | ✅ Optional (local dev) |
 
 ---

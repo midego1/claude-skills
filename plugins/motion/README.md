@@ -1,8 +1,8 @@
 # Motion (Framer Motion)
 
 **Status**: Production Ready ✅
-**Last Updated**: 2025-11-07
-**Production Tested**: React 19 + Next.js 15 + Vite 6 + Tailwind v4
+**Last Updated**: 2026-08-03
+**Recommended Stack**: React 19 + Next.js 16 + Vite 6 + Tailwind v4
 
 ---
 
@@ -215,7 +215,7 @@ Production-ready setup for Motion (formerly Framer Motion) - the industry-standa
 
 **Cloudflare Workers Deployment** → **Known Issue**:
 - Motion has build compatibility issues with Wrangler (GitHub issue #2918)
-- **Workaround**: Use `framer-motion` v12.23.24 instead (same API)
+- **Workaround**: Use `framer-motion` v12.43.0 instead (same API)
 
 ---
 
@@ -232,7 +232,7 @@ Production-ready setup for Motion (formerly Framer Motion) - the industry-standa
 | layoutId + AnimatePresence Unmounting | Elements fail to unmount | Issue #1619 | LayoutGroup wrapper pattern |
 | Reduced Motion Not Affecting AnimatePresence | MotionConfig doesn't apply to AnimatePresence | Issue #1567 | Manual check workaround provided |
 | Reorder Component in Next.js | Incompatible with Next.js routing | Issues #2183, #2101 | Alternative drag implementations |
-| Cloudflare Workers Build Errors | Wrangler ESM resolution issue | Issue #2918 | Use framer-motion v12.23.24 workaround |
+| Cloudflare Workers Build Errors | Wrangler ESM resolution issue | Issue #2918 | Use framer-motion v12.43.0 workaround |
 | Non-Accelerated Animations | Animating width/height causes reflow | Best practices | layout prop for FLIP technique |
 | Missing willChange Hint | No GPU optimization | Performance guide | Template examples include willChange |
 | Full Bundle for Simple Use | 34 KB for fade animation | Bundle size | LazyMotion setup guide (34 KB → 4.6 KB) |
@@ -243,15 +243,15 @@ Production-ready setup for Motion (formerly Framer Motion) - the industry-standa
 
 ---
 
-## Package Versions (Verified 2025-11-07)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| motion | 12.23.24 | ✅ Latest stable |
-| framer-motion | 12.23.24 | ✅ Alternative for Cloudflare |
+| motion | 12.43.0 | ✅ Latest stable |
+| framer-motion | 12.43.0 | ✅ Deprecated alias of motion (Cloudflare Workers workaround) |
 | react | 19.2.0 | ✅ Latest stable |
-| next | 15.1.0 | ✅ Latest stable |
-| vite | 6.0.0 | ✅ Latest stable |
+| next | 16.2.0 | ✅ Latest stable |
+| vite | 7.3.0 | ✅ Latest stable |
 
 ---
 
@@ -343,7 +343,7 @@ MIT License - See main repo LICENSE file
 
 ---
 
-**Production Tested**: ✅ React 19 + Next.js 15 + Vite 6 + Tailwind v4
+**Recommended Stack**: ✅ React 19 + Next.js 16 + Vite 6 + Tailwind v4
 **Token Savings**: ~83%
 **Error Prevention**: 100% (29+ documented errors prevented)
 **Bundle Size**: 2.3 KB (mini) - 34 KB (full), optimizable to 4.6 KB

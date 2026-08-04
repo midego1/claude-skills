@@ -600,7 +600,7 @@ Helpful Commands:
 
 ### Node.js Version Too Old
 ```
-❌ Error: Node.js 18+ required
+❌ Error: Node.js 20+ required
 
 Solution:
 1. Update Node.js: nvm install 20

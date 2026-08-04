@@ -1,7 +1,7 @@
 # Next.js 16 Migration Guide
 
 **From**: Next.js 15.x
-**To**: Next.js 16.0.0
+**To**: Next.js 16.2.0
 **Last Updated**: 2025-10-24
 
 ---
@@ -103,6 +103,13 @@ export function proxy(request: NextRequest) {
 ```
 
 **Note**: `middleware.ts` still works in Next.js 16 but is deprecated.
+
+> ⚠️ **Deploying to Cloudflare via `@opennextjs/cloudflare`? Do NOT rename yet.**
+> OpenNext does not yet recognize the `proxy.ts` filename — renaming will silently
+> disable your middleware when deployed to Cloudflare Workers. Keep `middleware.ts`
+> (still functional in Next 16) until OpenNext adds `proxy.ts` support. This only
+> affects OpenNext/Cloudflare deployments; Node.js, Vercel, and Bun-native deploys
+> should rename as described above.
 
 ---
 

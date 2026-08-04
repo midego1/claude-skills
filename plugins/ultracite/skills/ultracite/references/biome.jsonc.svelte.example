@@ -31,22 +31,24 @@
     }
   },
 
-  // Optional: Exclude files
+  // Optional: Exclude files (Biome 2.x: files.includes with ! negation)
   "files": {
-    "ignore": [
-      ".svelte-kit",
-      "build",
-      "dist",
-      "coverage",
-      "node_modules",
-      "**/*.generated.ts"
+    "includes": [
+      "**",
+      "!.svelte-kit",
+      "!build",
+      "!dist",
+      "!coverage",
+      "!node_modules",
+      "!**/*.generated.ts"
     ]
   },
 
   // Overrides for .svelte files (already handled by preset)
+  // Biome 2.x: overrides[].includes
   "overrides": [
     {
-      "include": ["*.svelte"],
+      "includes": ["*.svelte"],
       "linter": {
         "rules": {
           // Additional .svelte specific customizations

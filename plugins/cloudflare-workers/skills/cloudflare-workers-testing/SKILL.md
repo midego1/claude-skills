@@ -12,15 +12,15 @@ metadata:
   templates_included: 3
   references_included: 5
   scripts_included: 2
-  vitest_version: "2.1.8"
-  workers_types_version: "4.20251125.0"
+  vitest_version: "^2.0.0"
+  workers_types_version: "4.20260408.0"
   vitest_pool_workers_version: "0.7.2"
 ---
 
 # Cloudflare Workers Testing with Vitest
 
 **Status**: ✅ Production Ready | Last Verified: 2025-01-27
-**Vitest**: 2.1.8 | **@cloudflare/vitest-pool-workers**: 0.7.2 | **Miniflare**: Latest
+**Vitest**: ^2.0.0 | **@cloudflare/vitest-pool-workers**: 0.7.2 | **Miniflare**: Latest
 
 ## Table of Contents
 
@@ -47,7 +47,7 @@ Testing Cloudflare Workers with **Vitest** and **@cloudflare/vitest-pool-workers
 ## New in 2025
 
 **@cloudflare/vitest-pool-workers 0.7.2** (January 2025):
-- **BREAKING**: Miniflare v3 → requires Node.js 18+
+- **BREAKING**: Miniflare v3 → requires Node.js 20+
 - **NEW**: `cloudflare:test` module for env/ctx access
 - **IMPROVED**: Faster isolated storage for bindings
 - **FIXED**: Worker-to-worker service bindings now work correctly

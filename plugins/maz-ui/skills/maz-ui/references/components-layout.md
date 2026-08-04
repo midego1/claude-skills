@@ -815,6 +815,6 @@ async function handleRefresh() {
 
 ---
 
-**Version**: Maz-UI v4.3.3
+**Version**: Maz-UI v4.9.3
 **Last Updated**: 2025-12-14
 **Component Count**: 12 layout & display components

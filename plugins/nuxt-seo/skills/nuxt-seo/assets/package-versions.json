@@ -1,5 +1,5 @@
 {
-  "verified_date": "2026-03-30",
+  "verified_date": "2026-08-03",
   "nuxt_seo_version": "v5",
   "modules": {
     "@nuxtjs/seo": {
@@ -89,8 +89,8 @@
     "nuxt-og-image": "v6 -> v6 (no major change)"
   },
   "requirements": {
-    "nuxt": ">=3.0.0",
-    "node": ">=18.0.0"
+    "nuxt": ">=4.0.0",
+    "node": ">=20.0.0"
   },
   "source": "https://nuxtseo.com/llms-full.txt",
   "maintainer": "Harlan Wilton",

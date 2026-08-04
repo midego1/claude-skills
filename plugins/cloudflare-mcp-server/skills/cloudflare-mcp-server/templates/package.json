@@ -9,7 +9,7 @@
     "test": "npx @modelcontextprotocol/inspector"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250122.0",
+    "@cloudflare/workers-types": "^4.20260408.0",
     "wrangler": "^4.81.0"
   },
   "dependencies": {

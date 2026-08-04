@@ -197,7 +197,9 @@ async function startServer() {
   const module = await import(`./src/server.ts?t=${Date.now()}`);
 
   if (server) {
-    server.stop();
+    // Bun 1.2+: server.stop() returns a Promise — await it so the old
+    // socket is fully torn down before we rebind the same port.
+    await server.stop();
   }
 
   server = Bun.serve(module.default);
@@ -369,7 +371,7 @@ import config from "./config.json";
 |-------|-------|-----|
 | `Changes not detected` | File not imported | Check import chain |
 | `State lost` | Using `--watch` | Use `--hot` or globalThis |
-| `Port in use` | Server not stopped | Implement server.stop() |
+| `Port in use` | Server not stopped | `await server.stop()` before rebind |
 | `Memory leak` | No cleanup | Use dispose callback |
 
 ## When to Load References

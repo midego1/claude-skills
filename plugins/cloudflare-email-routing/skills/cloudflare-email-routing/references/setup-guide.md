@@ -56,8 +56,8 @@ export default {
 {
   "name": "email-worker",
   "main": "src/email.ts",
-  "compatibility_date": "2025-10-11",
-  "node_compat": true  // Required for postal-mime
+  "compatibility_date": "2025-10-11",  // must be >= 2024-09-23 for nodejs_compat
+  "compatibility_flags": ["nodejs_compat"]  // Required for postal-mime
 }
 ```
 
@@ -168,7 +168,7 @@ await env.SES.send(reply);
 
 - [ ] MX records added and verified
 - [ ] Destination addresses verified
-- [ ] node_compat: true in wrangler.jsonc
+- [ ] `compatibility_flags: ["nodejs_compat"]` in wrangler.jsonc
 - [ ] postal-mime and mimetext installed
 - [ ] Email worker deployed
 - [ ] Worker connected to email address

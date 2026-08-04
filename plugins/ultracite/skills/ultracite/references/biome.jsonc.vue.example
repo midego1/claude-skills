@@ -28,22 +28,24 @@
     }
   },
 
-  // Optional: Exclude files
+  // Optional: Exclude files (Biome 2.x: files.includes with ! negation)
   "files": {
-    "ignore": [
-      "dist",
-      ".nuxt",
-      ".output",
-      "coverage",
-      "node_modules",
-      "**/*.generated.ts"
+    "includes": [
+      "**",
+      "!dist",
+      "!.nuxt",
+      "!.output",
+      "!coverage",
+      "!node_modules",
+      "!**/*.generated.ts"
     ]
   },
 
   // Optional: Overrides for .vue files (already handled by preset)
+  // Biome 2.x: overrides[].includes
   "overrides": [
     {
-      "include": ["*.vue"],
+      "includes": ["*.vue"],
       "linter": {
         "rules": {
           // Additional .vue specific customizations

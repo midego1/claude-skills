@@ -4,8 +4,8 @@ description: "Cloudflare Workflows for durable long-running execution. Use for m
 license: MIT
 metadata:
   version: "3.0.0"
-  wrangler_version: "4.50.0"
-  workers_types_version: "4.20251126.0"
+  wrangler_version: "4.81.0"
+  workers_types_version: "4.20260408.0"
   last_verified: "2025-12-27"
   errors_prevented: 5
   templates_included: 8

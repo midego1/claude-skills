@@ -1,10 +1,10 @@
 ---
 name: base-ui-react
-description: "MUI Base UI unstyled React components with Floating UI. Use for accessible components, Radix UI migration, render props API, or encountering positioning, popup, v1.0 beta issues."
+description: "MUI Base UI unstyled React components with Floating UI. Use for accessible components, Radix UI migration, render props API, or encountering positioning, popup, v1.0 rc / pre-GA issues."
 license: MIT
 metadata:
   version: "2.0.0"
-  last_verified: "2025-11-18"
+  last_verified: "2026-08-03"
   production_tested: true
   token_savings: "~62%"
   errors_prevented: 10
@@ -33,7 +33,7 @@ metadata:
 ---
 # Base UI React
 
-**Status**: Beta (v1.0.0-beta.4) ⚠️ | **Last Verified**: 2025-11-18
+**Status**: Release Candidate (v1.0.0-rc.0) ⚠️ | **Last Verified**: 2026-08-03
 
 ---
 
@@ -46,7 +46,7 @@ MUI's unstyled, accessible React component library:
 - Floating UI integration
 - Alternative to Radix UI
 
-**Beta status:** v1.0.0-beta.4 (stable v1.0 expected Q4 2025)
+**Release Candidate status:** v1.0.0-rc.0 (stable v1.0 GA expected soon — still pre-GA, API may change)
 
 ---
 
@@ -242,7 +242,7 @@ import * as Tooltip from '@base-ui-components/react/tooltip';
 - Complex form components
 
 **Migration path:**
-- v1.0 stable expected Q4 2025
+- v1.0 stable GA expected soon (currently v1.0.0-rc.0)
 - Breaking changes will be documented
 - Codemods likely provided
 

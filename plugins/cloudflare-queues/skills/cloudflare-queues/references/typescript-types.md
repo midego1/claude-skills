@@ -1,7 +1,7 @@
 # Cloudflare Queues TypeScript Types Reference
 
 **Last Updated**: 2025-11-26
-**Package**: `@cloudflare/workers-types@4.20251126.0`
+**Package**: `@cloudflare/workers-types@4.20260408.0`
 
 ---
 

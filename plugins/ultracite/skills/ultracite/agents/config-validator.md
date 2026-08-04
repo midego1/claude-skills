@@ -219,13 +219,14 @@ Performance Analysis
   - .turbo (monorepo build cache)
   - .vercel (deployment artifacts)
 
-Add to biome.jsonc:
+Add to biome.jsonc (Biome 2.x uses files.includes with `!` negation):
   "files": {
-    "ignore": [
-      "node_modules",
-      "dist",
-      ".turbo",
-      ".vercel"
+    "includes": [
+      "**",
+      "!node_modules",
+      "!dist",
+      "!.turbo",
+      "!.vercel"
     ]
   }
 
@@ -266,7 +267,7 @@ See: references/provider-oxlint.md
 |-------------|-------------|-------------|
 | Node.js | 18.x | 20.x+ |
 | TypeScript | 4.x | 5.x+ |
-| Biome | 1.8.x | 1.9.4+ |
+| Biome | 1.9.0 | 2.x+ |
 
 **Output**:
 ```
@@ -286,9 +287,9 @@ Compatibility Check
 ⚠️ Compatibility Issue
 
 Node.js: v16.20.0
-Required: v18.x or higher
+Required: v20.x or higher
 
-Ultracite/Biome requires Node.js 18+ for optimal performance.
+Ultracite/Biome requires Node.js 20+ for optimal performance.
 
 Upgrade:
   - Using nvm: nvm install 20 && nvm use 20

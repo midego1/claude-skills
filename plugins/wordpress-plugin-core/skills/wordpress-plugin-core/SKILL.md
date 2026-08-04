@@ -32,9 +32,9 @@ license: MIT
 # WordPress Plugin Development (Core)
 
 **Status**: Production Ready
-**Last Updated**: 2025-11-27
-**Dependencies**: None (WordPress 5.9+, PHP 7.4+)
-**Latest Versions**: WordPress 6.7+, PHP 8.0+ recommended
+**Last Updated**: 2026-08-03
+**Dependencies**: None (WordPress 6.0+, PHP 8.0+)
+**Latest Versions**: WordPress 7.0+, PHP 8.3+ recommended
 
 ---
 
@@ -57,8 +57,8 @@ Every plugin MUST have a header comment in the main file:
  * Plugin Name:       My Awesome Plugin
  * Description:       Brief description.
  * Version:           1.0.0
- * Requires at least: 5.9
- * Requires PHP:      7.4
+ * Requires at least: 6.0
+ * Requires PHP:      8.0
  * Text Domain:       my-plugin
  */
 
@@ -383,8 +383,8 @@ Plugins hosted outside WordPress.org can provide automatic updates using **Plugi
 ## Dependencies
 
 **Required**:
-- WordPress 5.9+ (recommend 6.7+)
-- PHP 7.4+ (recommend 8.0+)
+- WordPress 6.0+ (recommend 7.0+)
+- PHP 8.0+ (recommend 8.3+)
 
 **Optional**:
 - Composer 2.0+ - For PSR-4 autoloading

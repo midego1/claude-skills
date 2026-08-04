@@ -63,8 +63,8 @@
  * Plugin Name: Simple Plugin
  * Description: A simple plugin using functions only
  * Version: 1.0.0
- * Requires at least: 5.9
- * Requires PHP: 7.4
+ * Requires at least: 6.0
+ * Requires PHP: 8.0
  * Author: Your Name
  * License: GPL v2 or later
  * Text Domain: simple-plugin
@@ -219,8 +219,8 @@ simple-plugin/
  * Plugin Name: OOP Plugin
  * Description: Object-oriented plugin structure
  * Version: 1.0.0
- * Requires at least: 5.9
- * Requires PHP: 7.4
+ * Requires at least: 6.0
+ * Requires PHP: 8.0
  * Author: Your Name
  * License: GPL v2 or later
  * Text Domain: oop-plugin
@@ -538,8 +538,8 @@ psr4-plugin/
  * Plugin Name: PSR-4 Plugin
  * Description: Modern plugin with PSR-4 autoloading and namespaces
  * Version: 1.0.0
- * Requires at least: 5.9
- * Requires PHP: 7.4
+ * Requires at least: 6.0
+ * Requires PHP: 8.0
  * Author: Your Name
  * License: GPL v2 or later
  * Text Domain: psr4-plugin

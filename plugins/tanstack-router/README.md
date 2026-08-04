@@ -72,8 +72,8 @@ npm install @tanstack/react-router @tanstack/router-devtools
 npm install -D @tanstack/router-plugin
 ```
 
-**Latest:** v1.134.13
+**Latest:** v1.170.18
 
 ---
 
-**Version:** 1.0.0 | **Last Updated:** 2025-11-07
+**Version:** 1.0.0 | **Last Updated:** 2026-08-03

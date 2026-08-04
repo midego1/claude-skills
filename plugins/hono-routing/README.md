@@ -126,15 +126,15 @@ export type AppType = typeof app
 
 ---
 
-## Package Versions (Verified 2025-10-22)
+## Package Versions (Verified 2026-08-03)
 
 | Package | Version | Status |
 |---------|---------|--------|
-| hono | 4.10.2 | ✅ Latest stable |
-| zod | 4.1.12 | ✅ Latest stable |
+| hono | 4.12.12 | ✅ Latest stable |
+| zod | 4.3.6 | ✅ Latest stable |
 | valibot | 1.1.0 | ✅ Latest stable |
 | @hono/zod-validator | 0.7.4 | ✅ Latest stable |
-| @hono/valibot-validator | 0.5.3 | ✅ Latest stable |
+| @hono/valibot-validator | 0.6.1 | ✅ Latest stable |
 | @hono/typia-validator | 0.1.2 | ✅ Latest stable |
 | @hono/arktype-validator | 2.0.1 | ✅ Latest stable |
 

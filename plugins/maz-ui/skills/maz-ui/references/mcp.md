@@ -455,7 +455,7 @@ The AI knows:
    ```
 2. **Check Node.js version**:
    ```bash
-   node --version  # Should be 18+
+   node --version  # Should be 20+
    ```
 3. **Clear npx cache**:
    ```bash
@@ -624,7 +624,7 @@ AI: *Returns useFormValidator documentation with Valibot schemas,
 ---
 
 **MCP Server Version**: @maz-ui/mcp (latest)
-**Supported Maz-UI Version**: v4.3.3+
+**Supported Maz-UI Version**: v4.9.3+
 **Last Updated**: 2025-12-14
 
 ::: tip Recommendation

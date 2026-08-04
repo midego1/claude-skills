@@ -59,7 +59,7 @@ echo "Wrangler CLI:"
 if command -v wrangler &> /dev/null; then
   wrangler_version=$(wrangler --version 2>&1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
   if [ -n "$wrangler_version" ]; then
-    echo -e "  wrangler: ${GREEN}✓${NC} $wrangler_version (>= 3.11.0 required)"
+    echo -e "  wrangler: ${GREEN}✓${NC} $wrangler_version (>= 4.81.0 required)"
   else
     echo -e "  wrangler: ${YELLOW}Unknown version${NC}"
   fi

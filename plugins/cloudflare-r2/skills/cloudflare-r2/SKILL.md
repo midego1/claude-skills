@@ -13,8 +13,8 @@ metadata:
   agents_included: 5
   commands_included: 4
   scripts_included: 3
-  wrangler_version: "4.50.0"
-  workers_types_version: "4.20251126.0"
+  wrangler_version: "4.81.0"
+  workers_types_version: "4.20260408.0"
   aws4fetch_version: "1.0.20"
   keywords:
     - r2

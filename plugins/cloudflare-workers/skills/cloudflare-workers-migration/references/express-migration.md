@@ -270,7 +270,7 @@ import { zValidator } from '@hono/zod-validator';
 import { z } from 'zod';
 
 const createUserSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   name: z.string().min(2),
 });
 

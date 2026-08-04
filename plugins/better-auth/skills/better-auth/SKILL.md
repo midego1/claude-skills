@@ -699,13 +699,13 @@ export function UserProfile() {
 - `better-auth@^1.6.0` - Core authentication framework (ESM-only)
 
 **Choose ONE adapter** (optional with D1 native in v1.5+):
-- `drizzle-orm@^0.44.7` + `drizzle-kit@^0.31.7` (recommended for complex schemas)
+- `drizzle-orm@^0.45.2` + `drizzle-kit@^0.31.10` (recommended for complex schemas)
 - `kysely@^0.28.8` + `@noxharmonium/kysely-d1@^0.4.0` (alternative)
 - `@better-auth/drizzle-adapter` + `better-auth/minimal` (smallest bundle, v1.5+)
 
 **Optional**:
 - `@cloudflare/workers-types` - TypeScript types for Workers
-- `hono@^4.0.0` - Web framework for routing
+- `hono@^4.12.12` - Web framework for routing
 - `@better-auth/passkey` - Passkey/WebAuthn plugin
 - `@better-auth/api-key` - API key auth with org support
 - `@better-auth/sso` - SSO/SAML/OIDC production plugin

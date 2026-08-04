@@ -17,7 +17,7 @@ const app = new Hono()
 // Define schemas
 const createUserSchema = z.object({
   name: z.string().min(1),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().min(18).optional(),
 })
 

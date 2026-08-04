@@ -78,9 +78,11 @@ const messages = [
 
 **Compatibility Matrix**:
 
-| C1 API Version | @thesysai/genui-sdk | @crayonai/react-ui | @crayonai/react-core |
-|----------------|--------------------|--------------------|---------------------|
-| v-20250930     | ~0.6.40            | ~0.8.42            | ~0.7.6              |
+| C1 API Version (example endpoint) | @thesysai/genui-sdk | @crayonai/react-ui | @crayonai/react-core |
+|-----------------------------------|--------------------|--------------------|---------------------|
+| v-20250930 (verify current tag in Thesys docs) | ~0.9.0             | ~0.9.16            | ~0.7.6              |
+
+> **Note:** The SDK versions above are the current recommended versions (verified 2026-08-03). The C1 API uses date-stamped endpoint tags (e.g. `c1/openai/gpt-5/v-20250930`). Always confirm the latest compatible API tag in the Thesys docs before pinning — newer SDK versions may target a newer API tag than the example shown here.
 
 **Solution**:
 
@@ -88,8 +90,8 @@ const messages = [
 # Check current versions
 npm list @thesysai/genui-sdk @crayonai/react-ui @crayonai/react-core
 
-# Update to compatible versions (October 2025)
-npm install @thesysai/genui-sdk@0.6.40 @crayonai/react-ui@0.8.42 @crayonai/react-core@0.7.6
+# Update to compatible versions
+npm install @thesysai/genui-sdk@^0.9.0 @crayonai/react-ui@^0.9.16 @crayonai/react-core@^0.7.6
 ```
 
 ---
@@ -193,7 +195,7 @@ try {
   const result = await executeTool(args);
 } catch (error) {
   if (error instanceof z.ZodError) {
-    console.error("Validation failed:", error.errors);
+    console.error("Validation failed:", error.issues);
   }
 }
 ```
@@ -278,7 +280,7 @@ import "./your-app.css"; // Your styles SECOND
 
 ```bash
 # 1. Update packages
-npm install @thesysai/genui-sdk@latest @crayonai/react-ui@latest
+npm install @thesysai/genui-sdk@^0.9.0 @crayonai/react-ui@^0.9.16
 
 # 2. Check tsconfig.json
 {

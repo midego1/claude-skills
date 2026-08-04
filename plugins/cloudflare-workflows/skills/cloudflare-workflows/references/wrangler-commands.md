@@ -3,7 +3,7 @@
 Complete reference for managing Cloudflare Workflows via the `wrangler` CLI.
 
 **Last Updated**: 2025-11-26
-**Wrangler Version**: 4.50.0+
+**Wrangler Version**: 4.81.0+
 
 ---
 

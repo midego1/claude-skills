@@ -96,7 +96,7 @@ export async function POST(request: Request) {
       return Response.json(
         {
           success: false,
-          errors: error.flatten().fieldErrors,
+          errors: z.flattenError(error).fieldErrors,
         },
         { status: 400 }
       )
@@ -148,7 +148,7 @@ app.post('/api/register', async (req, res) => {
     if (error instanceof z.ZodError) {
       return res.status(400).json({
         success: false,
-        errors: error.flatten().fieldErrors,
+        errors: z.flattenError(error).fieldErrors,
       })
     }
 

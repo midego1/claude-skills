@@ -209,14 +209,14 @@ const authMiddleware = async (c: any, next: () => Promise<void>) => {
 // ============================================
 
 const UserCreateSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   name: z.string().min(1).max(100),
   password: z.string().min(8).max(100),
 });
 
 const UserUpdateSchema = z.object({
   name: z.string().min(1).max(100).optional(),
-  email: z.string().email().optional(),
+  email: z.email().optional(),
 });
 
 function validateBody<T extends z.ZodType>(schema: T) {

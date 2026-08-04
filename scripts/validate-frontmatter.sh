@@ -55,7 +55,7 @@ validate_skill() {
   local has_warning=false
 
   local first_line
-  first_line=$(head -1 "$skill_file")
+  first_line=$(sed -n '1p' "$skill_file")
 
   if [ "$first_line" != "---" ]; then
     if [ "$QUIET" = false ]; then
@@ -109,7 +109,7 @@ validate_skill() {
 
   # --- Extract name value ---
   local yaml_name
-  yaml_name=$(echo "$frontmatter" | grep "^name:" | head -1 | sed 's/^name:[[:space:]]*//' | sed 's/^"//' | sed 's/"$//')
+  yaml_name=$(echo "$frontmatter" | grep "^name:" | sed -n '1p' | sed 's/^name:[[:space:]]*//' | sed 's/^"//' | sed 's/"$//')
 
   # --- Name format checks (spec: lowercase, <= 64, no leading/trailing hyphen, no --, [a-z0-9-] only) ---
   if [ -n "$yaml_name" ]; then

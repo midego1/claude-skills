@@ -52,7 +52,7 @@ Use when projects use `bun test` directly (not Vitest).
 #### Requirements
 
 - Bun **>= 1.3.7** (needs TestReporter WebSocket events from Bun PR #25986)
-- `@stryker-mutator/core ^9.0.0`
+- `@stryker-mutator/core ^9.6.1`
 
 #### Installation
 

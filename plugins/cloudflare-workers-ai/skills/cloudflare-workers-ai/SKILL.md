@@ -46,7 +46,7 @@ Production-ready knowledge domain for building AI-powered applications with Clou
 **Status**: Production Ready ✅
 **Last Updated**: 2025-11-21
 **Dependencies**: cloudflare-worker-base (for Worker setup)
-**Latest Versions**: wrangler@4.43.0, @cloudflare/workers-types@4.20251014.0
+**Latest Versions**: wrangler@4.81.0, @cloudflare/workers-types@4.20260408.0
 
 ---
 

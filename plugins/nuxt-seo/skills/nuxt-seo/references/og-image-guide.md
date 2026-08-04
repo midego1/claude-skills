@@ -1,6 +1,6 @@
 # Nuxt OG Image - Complete Guide
 
-Comprehensive guide to generating Open Graph images with Vue templates in Nuxt using nuxt-og-image v5.x.
+Comprehensive guide to generating Open Graph images with Vue templates in Nuxt using nuxt-og-image v6.x.
 
 ---
 

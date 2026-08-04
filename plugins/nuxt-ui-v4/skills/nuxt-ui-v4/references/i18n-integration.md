@@ -106,7 +106,7 @@ Form validation messages automatically adapt to the current locale:
 import { z } from 'zod'
 
 const schema = z.object({
-  email: z.string().email(), // "Invalid email" → "E-mail invalide" (fr)
+  email: z.email(), // "Invalid email" → "E-mail invalide" (fr)
   age: z.number().min(18)    // "Must be at least 18" → "Debe ser al menos 18" (es)
 })
 </script>
@@ -467,12 +467,12 @@ Nuxt UI components automatically adapt their layout for RTL:
 ```typescript
 // ✅ GOOD: Schema updates when locale changes
 const schema = computed(() => z.object({
-  email: z.string().email(t('validation.email'))
+  email: z.email({ error: t('validation.email') })
 }))
 
 // ❌ BAD: Schema frozen at component mount
 const schema = z.object({
-  email: z.string().email(t('validation.email'))
+  email: z.email({ error: t('validation.email') })
 })
 ```
 

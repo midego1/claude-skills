@@ -2,7 +2,7 @@
 
 Maz-UI provides 14+ Vue composables for theming, UI interactions, utilities, and form validation. All composables use Vue 3 Composition API and are fully typed with TypeScript.
 
-**Last Verified**: 2025-12-29 | **Maz-UI Version**: 4.3.3
+**Last Verified**: 2026-08-03 | **Maz-UI Version**: 4.9.3
 
 ## Overview
 
@@ -1162,4 +1162,4 @@ await setLocale('fr') // Don't forget await!
 
 ---
 
-**Last Updated**: 2025-12-29 | **Maz-UI Version**: 4.3.3
+**Last Updated**: 2026-08-03 | **Maz-UI Version**: 4.9.3

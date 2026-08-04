@@ -80,24 +80,27 @@ const schema = z.object({
 })
 ```
 
-### Method 2: Custom Error Map
+### Method 2: Global Error Callback (z.config)
+
+In Zod 4, `z.setErrorMap` / `ZodErrorMap` are removed. Use `z.config()` for
+global defaults, and callbacks return a bare `string` (or `undefined` to defer).
 
 ```typescript
-const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
-  switch (issue.code) {
-    case z.ZodIssueCode.too_small:
-      return { message: `Must be at least ${issue.minimum} characters` }
-    case z.ZodIssueCode.invalid_string:
-      if (issue.validation === 'email') {
-        return { message: 'Please enter a valid email address' }
-      }
-      break
-    default:
-      return { message: ctx.defaultError }
-  }
-}
-
-z.setErrorMap(customErrorMap)
+z.config({
+  customError: (issue) => {
+    switch (issue.code) {
+      case 'too_small':
+        return `Must be at least ${issue.minimum} characters`
+      case 'invalid_string':
+        if (issue.validation === 'email') {
+          return 'Please enter a valid email address'
+        }
+        return undefined
+      default:
+        return undefined // defer to default
+    }
+  },
+})
 ```
 
 ---
@@ -111,7 +114,7 @@ try {
   schema.parse(data)
 } catch (error) {
   if (error instanceof z.ZodError) {
-    const formattedErrors = error.flatten().fieldErrors
+    const formattedErrors = z.flattenError(error).fieldErrors
     // Result: { email: ['Invalid email'], password: ['Too short'] }
   }
 }
@@ -204,7 +207,7 @@ import { useTranslation } from 'react-i18next'
 const { t } = useTranslation()
 
 const schema = z.object({
-  email: z.string().email(t('errors.invalidEmail')),
+  email: z.email({ error: t('errors.invalidEmail') }),
   password: z.string().min(8, t('errors.passwordTooShort')),
 })
 ```

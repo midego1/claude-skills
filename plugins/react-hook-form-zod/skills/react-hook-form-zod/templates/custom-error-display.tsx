@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react'
 
 const formSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters'),
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   age: z.number().min(18, 'You must be at least 18 years old'),
 })
@@ -92,7 +92,7 @@ function ErrorToast({ message, onClose }: { message: string; onClose: () => void
 
   return (
     <div className="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-start gap-3 max-w-sm animate-slide-in">
-      <svg className="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <svg className="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20">
         <path
           fillRule="evenodd"
           d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"

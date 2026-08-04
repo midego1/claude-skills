@@ -298,7 +298,7 @@ export class AIAgent extends Agent {
       model: openai('gpt-4o-mini'),
       schema: z.object({
         name: z.string(),
-        email: z.string().email(),
+        email: z.email(),
         age: z.number().optional()
       }),
       prompt: `Extract user info from: ${text}`

@@ -28,15 +28,16 @@
     }
   },
 
-  // Optional: Exclude files
+  // Optional: Exclude files (Biome 2.x: files.includes with ! negation)
   "files": {
-    "ignore": [
-      "dist",
-      "build",
-      ".next",
-      "coverage",
-      "node_modules",
-      "**/*.generated.ts"
+    "includes": [
+      "**",
+      "!dist",
+      "!build",
+      "!.next",
+      "!coverage",
+      "!node_modules",
+      "!**/*.generated.ts"
     ]
   },
 

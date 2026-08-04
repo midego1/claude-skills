@@ -703,8 +703,8 @@ const MazCarousel = defineAsyncComponent({
 
 ---
 
-**SSR/SSG Version**: Maz-UI v4.3.3 + Nuxt 3
-**Last Updated**: 2025-12-14
+**SSR/SSG Version**: Maz-UI v4.9.3 + Nuxt 4
+**Last Updated**: 2026-08-03
 
 ::: tip Hybrid Strategy Recommended
 For SSR/SSG applications, use `strategy: 'hybrid'` for optimal performance, instant theming, and runtime flexibility.

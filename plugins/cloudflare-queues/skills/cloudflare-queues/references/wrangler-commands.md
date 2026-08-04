@@ -576,4 +576,4 @@ bunx wrangler tail my-consumer | grep "duration"
 ---
 
 **Last Updated**: 2025-11-26
-**Wrangler Version**: 4.50.0+
+**Wrangler Version**: 4.81.0+

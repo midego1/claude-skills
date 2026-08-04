@@ -131,7 +131,7 @@ bun add @tanstack/match-sorter-utils@latest
 
 **Latest verified versions (as of 2025-12-09):**
 - `@tanstack/react-table`: v8.21.3 (stable)
-- `@tanstack/react-virtual`: v3.13.12
+- `@tanstack/react-virtual`: v3.13.23
 - `@tanstack/match-sorter-utils`: v8.21.3 (for fuzzy filtering)
 
 **React support:** Works on React 16.8+ through React 19; React Compiler is not supported.
@@ -765,10 +765,10 @@ Claude should suggest loading these reference files based on user needs:
 
 **Tested with:**
 - React 19.2
-- Vite 6.0
-- TypeScript 5.8
+- Vite 7.3
+- TypeScript 5.9
 - Cloudflare Workers (Wrangler 4.0)
-- TanStack Query v5.90.7 (tanstack-query skill)
+- TanStack Query v5.101.4 (tanstack-query skill)
 - Tailwind v4 + shadcn/ui (tailwind-v4-shadcn skill)
 
 **Stack compatibility:**
@@ -777,7 +777,7 @@ Claude should suggest loading these reference files based on user needs:
 - ✅ TanStack Query integration
 - ✅ React 19.2+ server components
 - ✅ TypeScript strict mode
-- ✅ Vite 6.0+ build optimization
+- ✅ Vite 7.3+ build optimization
 
 ---
 

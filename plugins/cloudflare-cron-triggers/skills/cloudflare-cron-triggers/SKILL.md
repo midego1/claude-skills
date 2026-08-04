@@ -28,7 +28,7 @@ license: MIT
 **Status**: Production Ready ✅
 **Last Updated**: 2025-11-25
 **Dependencies**: cloudflare-worker-base (for Worker setup)
-**Latest Versions**: wrangler@4.50.0, @cloudflare/workers-types@4.20251125.0
+**Latest Versions**: wrangler@4.81.0, @cloudflare/workers-types@4.20260408.0
 
 ---
 

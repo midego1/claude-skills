@@ -8,7 +8,7 @@ license: MIT
 
 Maz-UI is a comprehensive, standalone component library for Vue 3 and Nuxt 3 applications, offering 50+ production-ready components, powerful theming, internationalization, and exceptional developer experience.
 
-**Latest Version**: 4.3.3 (as of 2025-12-29)
+**Latest Version**: 4.9.3 (as of 2026-08-03)
 **Package**: `maz-ui` | `@maz-ui/nuxt` | `@maz-ui/themes` | `@maz-ui/translations` | `@maz-ui/icons`
 
 ## Quick Start

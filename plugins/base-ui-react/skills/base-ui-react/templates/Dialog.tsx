@@ -1,5 +1,5 @@
 // Base UI Dialog Component with Render Props Pattern
-// @base-ui-components/react v1.0.0-beta.4
+// @base-ui-components/react v1.0.0-rc.0
 
 import * as React from "react";
 import { Dialog } from "@base-ui-components/react/dialog";

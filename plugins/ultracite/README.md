@@ -469,7 +469,7 @@ This skill is production-tested and includes:
 **Biome Version:** >=1.9.0
 **ESLint Version:** >=8.0.0 (when using ESLint provider)
 **Oxlint Version:** >=0.1.0 (when using Oxlint provider)
-**Node.js Required:** v14.18+ (v18+ recommended)
+**Node.js Required:** v20+
 
 ### Version 7 Changes (2025-11)
 - Multi-provider architecture (Biome, ESLint, Oxlint)

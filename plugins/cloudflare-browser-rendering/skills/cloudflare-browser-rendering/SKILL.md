@@ -7,8 +7,8 @@ metadata:
   last_verified: "2025-11-27"
   puppeteer_version: "1.0.4"
   playwright_version: "1.0.0"
-  workers_types_version: "4.20251125.0"
-  wrangler_version: "4.50.0"
+  workers_types_version: "4.20260408.0"
+  wrangler_version: "4.81.0"
   production_tested: true
   errors_prevented: 6
   references_included: 6
@@ -51,7 +51,7 @@ Production-ready knowledge domain for building browser automation workflows with
 **Status**: Production Ready ✅
 **Last Updated**: 2025-11-25
 **Dependencies**: cloudflare-worker-base (for Worker setup)
-**Latest Versions**: @cloudflare/puppeteer@1.0.4, @cloudflare/playwright@1.0.0, wrangler@4.50.0, @cloudflare/workers-types@4.20251125.0
+**Latest Versions**: @cloudflare/puppeteer@1.0.4, @cloudflare/playwright@1.0.0, wrangler@4.81.0, @cloudflare/workers-types@4.20260408.0
 
 ---
 
@@ -412,7 +412,7 @@ Plus solutions for page crashes, authentication issues, resource loading errors,
 
 ## Dependencies
 
-**Required**: `@cloudflare/puppeteer@1.0.4`, `wrangler@4.50.0`, `@cloudflare/workers-types@4.20251125.0`
+**Required**: `@cloudflare/puppeteer@1.0.4`, `wrangler@4.81.0`, `@cloudflare/workers-types@4.20260408.0`
 **Related Skills**: `cloudflare-worker-base` (Worker setup), `cloudflare-kv` (caching), `cloudflare-workers-ai` (AI scraping)
 
 ---
@@ -437,8 +437,8 @@ Plus solutions for page crashes, authentication issues, resource loading errors,
     "@cloudflare/puppeteer": "^1.0.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251125.0",
-    "wrangler": "^4.50.0"
+    "@cloudflare/workers-types": "^4.20260408.0",
+    "wrangler": "^4.81.0"
   }
 }
 ```

@@ -50,7 +50,7 @@ Load the `dependency-upgrade` skill for full security configuration including So
     "start": "vinxi start"
   },
   "dependencies": {
-    "@tanstack/react-router": "^1.139.0",
+    "@tanstack/react-router": "^1.170.18",
     "@tanstack/start": "^1.120.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

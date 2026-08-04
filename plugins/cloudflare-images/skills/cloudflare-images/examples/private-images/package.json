@@ -25,7 +25,7 @@
     "@tsndr/cloudflare-worker-jwt": "^2.5.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250110.0",
+    "@cloudflare/workers-types": "^4.20260408.0",
     "wrangler": "^4.81.0",
     "typescript": "^5.9.3"
   }

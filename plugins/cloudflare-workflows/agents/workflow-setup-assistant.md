@@ -119,9 +119,9 @@ mkdir -p test
     "test": "vitest"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251126.0",
+    "@cloudflare/workers-types": "^4.20260408.0",
     "typescript": "^5.9.0",
-    "wrangler": "^4.50.0",
+    "wrangler": "^4.81.0",
     "vitest": "^2.0.0"
   }
 }

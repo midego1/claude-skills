@@ -1,5 +1,5 @@
 // Base UI Accordion Component
-// @base-ui-components/react v1.0.0-beta.4
+// @base-ui-components/react v1.0.0-rc.0
 
 import * as React from "react";
 import { Accordion } from "@base-ui-components/react/accordion";
@@ -145,8 +145,8 @@ export function AccordionExample() {
               {...props}
               className="px-2 pb-4 text-gray-600 dark:text-gray-400"
             >
-              Base UI is currently in beta (v1.0.0-beta.4). Stable v1.0 is
-              expected Q4 2025. Use with caution in production.
+              Base UI is currently a release candidate (v1.0.0-rc.0). Stable
+              v1.0 GA is expected soon. Use with caution in production.
             </div>
           )}
         />

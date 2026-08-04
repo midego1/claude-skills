@@ -72,7 +72,7 @@ const orderItemSchema = z.discriminatedUnion("type", [
 ]);
 
 const createOrderSchema = z.object({
-  customer_email: z.string().email().describe("Customer email address"),
+  customer_email: z.email().describe("Customer email address"),
   items: z.array(orderItemSchema).min(1).describe("Items to order"),
 });
 
@@ -291,7 +291,7 @@ Always use tools when appropriate. Be friendly and helpful.`,
       return NextResponse.json(
         {
           error: "Validation error",
-          details: error.errors,
+          details: error.issues,
         },
         { status: 400 }
       );

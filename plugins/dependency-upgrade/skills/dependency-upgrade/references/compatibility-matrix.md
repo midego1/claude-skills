@@ -41,6 +41,8 @@ React Router v7 is the successor to Remix and React Router v6. Key changes:
 | 14.x    | 18.x  | >=18.17 | >=4.5      |
 | 15.x    | 18.x-19.x | >=20.9  | >=4.5  |
 
+> **Node.js EOL note:** Node 16 reached EOL 2023-09 and Node 18 reached EOL 2025-04. The `>=16.8`/`>=18.17` floors above reflect each Next.js major's *minimum* at release; for *current* projects use Node 20+ (the row above for Next 15 already mandates `>=20.9`). Do not start new work on Node 16 or 18.
+
 ### Next.js 14 → 15 Migration
 
 ```bash

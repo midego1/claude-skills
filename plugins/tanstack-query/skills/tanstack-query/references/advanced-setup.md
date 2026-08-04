@@ -584,5 +584,5 @@ function TodoApp() {
 
 ---
 
-**Last Updated**: 2025-11-21
-**Verified With**: @tanstack/react-query@5.90.10
+**Last Updated**: 2026-08-03
+**Verified With**: @tanstack/react-query@5.101.4

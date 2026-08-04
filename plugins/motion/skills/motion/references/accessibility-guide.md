@@ -107,17 +107,17 @@ const prefersReducedMotion = window.matchMedia(
 
 **Fixed**: Motion v12.4.7 (February-March 2025) fixed the issue where AnimatePresence ignored reducedMotion settings.
 
-If you're experiencing issues with AnimatePresence not respecting reduced motion preferences, ensure you're using Motion v12.4.7 or later:
+If you're experiencing issues with AnimatePresence not respecting reduced motion preferences, ensure you're using Motion v12.4.7 or later (current: v12.43.0):
 
 ```bash
 # npm
-npm install motion@^12.4.7
+npm install motion@^12.43.0
 
 # yarn
-yarn add motion@^12.4.7
+yarn add motion@^12.43.0
 
 # bun
-bun add motion@^12.4.7
+bun add motion@^12.43.0
 ```
 
 ### Creating a Reusable Hook

@@ -49,5 +49,5 @@ For questions or issues, refer to the `references/common-errors.md` guide or che
 ---
 
 **Last Updated**: 2025-10-26
-**Package Version**: @thesysai/genui-sdk@0.6.40
+**Package Version**: @thesysai/genui-sdk@^0.9.0
 **Production Tested**: ✅ Yes

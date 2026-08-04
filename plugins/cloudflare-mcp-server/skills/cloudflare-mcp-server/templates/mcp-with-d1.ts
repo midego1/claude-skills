@@ -95,7 +95,7 @@ export class MyMCP extends McpAgent<Env> {
       "Create a new user in the database",
       {
         name: z.string().describe("User's full name"),
-        email: z.string().email().describe("User's email address"),
+        email: z.email().describe("User's email address"),
       },
       async ({ name, email }) => {
         try {
@@ -283,7 +283,7 @@ export class MyMCP extends McpAgent<Env> {
       {
         id: z.number().int().positive().describe("User ID to update"),
         name: z.string().optional().describe("New name (optional)"),
-        email: z.string().email().optional().describe("New email (optional)"),
+        email: z.email().optional().describe("New email (optional)"),
       },
       async ({ id, name, email }) => {
         try {

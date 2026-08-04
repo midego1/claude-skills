@@ -20,8 +20,8 @@ fi
 
 # Recommended versions
 declare -A RECOMMENDED=(
-    ["@thesysai/genui-sdk"]="0.6.40"
-    ["@crayonai/react-ui"]="0.8.27"
+    ["@thesysai/genui-sdk"]="0.9.0"
+    ["@crayonai/react-ui"]="0.9.16"
     ["@crayonai/react-core"]="0.7.6"
     ["openai"]="4.73.0"
     ["zod"]="3.24.1"
@@ -64,7 +64,7 @@ if [ "$ALL_OK" = true ]; then
     echo "✅ All packages are at compatible versions!"
 else
     echo "⚠️  Some packages need updating. Run:"
-    echo "   npm install @thesysai/genui-sdk@^0.6.40 @crayonai/react-ui@^0.8.27 @crayonai/react-core@^0.7.6"
+    echo "   npm install @thesysai/genui-sdk@^0.9.0 @crayonai/react-ui@^0.9.16 @crayonai/react-core@^0.7.6"
 fi
 
 echo ""

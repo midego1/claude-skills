@@ -19,7 +19,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from 'vue-sonner'
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
   password: z.string().min(8, 'Password must be at least 8 characters')
 })
 
@@ -93,7 +93,7 @@ import { toast } from 'vue-sonner'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
   subject: z.enum(['general', 'support', 'sales'], {
     required_error: 'Please select a subject'
   }).describe('Subject // enumLabels:General Inquiry,Support Request,Sales'),
@@ -525,7 +525,7 @@ import { toast } from 'vue-sonner'
 
 const profileSchema = z.object({
   username: z.string().min(3),
-  email: z.string().email(),
+  email: z.email(),
   bio: z.string().max(500).optional().describe('Bio // type:textarea')
 })
 

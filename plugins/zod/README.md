@@ -98,7 +98,7 @@ import { z } from "zod";
 
 const UserSchema = z.object({
   username: z.string().min(3).max(20),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().positive(),
 });
 
@@ -143,7 +143,7 @@ app.post("/posts", async (req, res) => {
 ```typescript
 const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]),
-  DATABASE_URL: z.string().url(),
+  DATABASE_URL: z.url(),
   PORT: z.coerce.number().int().positive().default(3000),
   API_KEY: z.string().min(32),
 });
@@ -189,10 +189,10 @@ const PasswordSchema = z.string()
 ### 1. Form Validation
 ```typescript
 const FormSchema = z.object({
-  email: z.string().email("Invalid email"),
+  email: z.email({ error: "Invalid email" }),
   password: z.string().min(8, "Password too short"),
   agreeToTerms: z.literal(true, {
-    errorMap: () => ({ message: "Must accept terms" }),
+    error: () => "Must accept terms",
   }),
 });
 ```

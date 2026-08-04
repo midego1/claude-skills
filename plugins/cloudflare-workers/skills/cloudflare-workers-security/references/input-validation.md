@@ -26,7 +26,7 @@ import { z } from 'zod';
 // User schema
 const UserSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email(),
+  email: z.email(),
   age: z.number().int().min(0).max(150).optional(),
   role: z.enum(['user', 'admin', 'moderator']).default('user'),
 });
@@ -74,8 +74,8 @@ const OrderSchema = z.object({
 
 // Refinements
 const DateRangeSchema = z.object({
-  startDate: z.string().datetime(),
-  endDate: z.string().datetime(),
+  startDate: z.datetime(),
+  endDate: z.datetime(),
 }).refine(data => new Date(data.startDate) < new Date(data.endDate), {
   message: 'End date must be after start date',
 });
@@ -464,7 +464,7 @@ function validate(options: ValidatorOptions) {
 // Usage
 const CreateUserSchema = z.object({
   name: z.string().min(1).max(100),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 app.post('/users', validate({ body: CreateUserSchema }), async (c) => {

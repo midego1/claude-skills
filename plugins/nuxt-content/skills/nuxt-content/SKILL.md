@@ -37,7 +37,7 @@ license: MIT
 **Status**: Production Ready
 **Last Updated**: 2025-01-10
 **Dependencies**: None
-**Latest Versions**: @nuxt/content@^3.0.0, nuxt-studio@^0.1.0-alpha, zod@^4.1.12, valibot@^0.42.0, better-sqlite3@^11.0.0
+**Latest Versions**: @nuxt/content@^3.0.0, nuxt-studio@^0.1.0-alpha, zod@^4.3.6, valibot@^0.42.0, better-sqlite3@^11.0.0
 
 ---
 
@@ -257,8 +257,8 @@ content/blog/hello.md   → /blog/hello
 #### With Zod v4 (Recommended)
 
 ```bash
-bun add -D zod@^4.1.12
-# or: npm install -D zod@^4.1.12
+bun add -D zod@^4.3.6
+# or: npm install -D zod@^4.3.6
 ```
 
 ```ts

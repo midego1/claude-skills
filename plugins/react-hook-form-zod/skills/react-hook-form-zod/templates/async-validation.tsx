@@ -32,7 +32,7 @@ const usernameSchema = z.string()
 
 const signupSchemaWithAsync = z.object({
   username: usernameSchema,
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
   password: z.string().min(8, 'Password must be at least 8 characters'),
 })
 
@@ -136,7 +136,7 @@ const manualValidationSchema = z.object({
     .min(3, 'Username must be at least 3 characters')
     .max(20, 'Username must not exceed 20 characters')
     .regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores'),
-  email: z.string().email('Invalid email address'),
+  email: z.email({ error: 'Invalid email address' }),
 })
 
 type ManualValidationData = z.infer<typeof manualValidationSchema>

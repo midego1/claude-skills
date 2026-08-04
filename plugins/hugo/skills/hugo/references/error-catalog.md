@@ -28,7 +28,7 @@ hugo version  # Should show "+extended"
 brew install hugo
 
 # Linux
-VERSION="0.152.2"
+VERSION="0.164.0"
 wget https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_linux-amd64.deb
 sudo dpkg -i hugo_extended_${VERSION}_linux-amd64.deb
 
@@ -134,28 +134,28 @@ date = 2025-11-04
 **In hugo.yaml (documentation):**
 ```yaml
 # hugo.yaml
-# Hugo version: 0.152.2+extended
+# Hugo version: 0.164.0+extended
 ```
 
 **In GitHub Actions:**
 ```yaml
 - name: Setup Hugo
-  uses: peaceiris/actions-hugo@v2
+  uses: peaceiris/actions-hugo@v3
   with:
-    hugo-version: '0.152.2'
+    hugo-version: '0.164.0'
     extended: true
 ```
 
 **In Cloudflare Pages:**
 ```
-Environment variable: HUGO_VERSION=0.152.2
+Environment variable: HUGO_VERSION=0.164.0
 ```
 
 **In package.json (if using npm wrapper):**
 ```json
 {
   "devDependencies": {
-    "hugo-bin": "0.152.2"
+    "hugo-bin": "0.164.0"
   }
 }
 ```
@@ -592,7 +592,7 @@ hugo --minify
 
 Use this checklist to prevent all 15 errors:
 
-- [ ] Hugo Extended v0.149.0+ installed
+- [ ] Hugo Extended v0.159.2+ installed
 - [ ] Version matches across local, CI/CD, and deployment
 - [ ] YAML configuration format used (`--format yaml`)
 - [ ] Theme installed via Git submodule

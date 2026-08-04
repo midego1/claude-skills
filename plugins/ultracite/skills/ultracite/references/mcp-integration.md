@@ -32,7 +32,7 @@ The Ultracite MCP Server provides AI assistants (Claude Desktop, Cursor, etc.) w
 
 - Ultracite v7.0+
 - Supported AI client (Claude Desktop, Cursor, etc.)
-- Node.js v18+ (for MCP server runtime)
+- Node.js v20+ (for MCP server runtime)
 
 ### Install MCP Server
 
@@ -300,7 +300,7 @@ npx @ultracite/mcp-server --test
 **Problem**: AI client can't connect to MCP server
 
 **Check**:
-1. Node.js v18+ installed: `node --version`
+1. Node.js v20+ installed: `node --version`
 2. `npx` available: `npx --version`
 3. MCP server package installed: `npx @ultracite/mcp-server --version`
 

@@ -205,8 +205,9 @@ console.log(server.port);        // 3000
 console.log(server.hostname);    // "0.0.0.0"
 console.log(server.url);         // URL object
 
-// Stop server
-server.stop();
+// Stop server (Bun 1.2+: returns a Promise — await it to flush in-flight
+// requests; calling it without await may not drain connections).
+await server.stop();
 
 // Reload with new config
 server.reload({
@@ -218,6 +219,33 @@ server.reload({
 // Pending requests count
 console.log(server.pendingRequests);
 ```
+
+## Routing with `routes` (Bun 1.2+)
+
+The examples above use the classic `fetch(req)` handler with manual URL
+parsing, which still works. As of Bun 1.2, the canonical way to declare
+route maps is the `routes` option, with dynamic params available on
+`req.params`:
+
+```typescript
+Bun.serve({
+  routes: {
+    "/api/users": {
+      GET: () => Response.json([{ id: 1, name: "Alice" }]),
+      POST: async (req) => Response.json(await req.json(), { status: 201 }),
+    },
+    "/api/users/:id": (req) => {
+      const { id } = req.params;
+      return Response.json({ id });
+    },
+  },
+  fetch(req) {
+    return new Response("Not Found", { status: 404 });
+  },
+});
+```
+
+Use `routes` for new code; keep `fetch` as a fallback for unmatched paths.
 
 ## Static Files
 

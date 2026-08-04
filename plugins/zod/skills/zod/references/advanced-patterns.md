@@ -282,7 +282,7 @@ const SecondsCodec = z.codec(
 // Define API schema with codecs
 const UserAPISchema = z.object({
   id: z.string().uuid(),
-  email: z.string().email(),
+  email: z.email(),
   createdAt: z.codec(
     z.iso.datetime(),
     z.date(),
@@ -404,7 +404,7 @@ getUser(productId);  // ✗ Type error!
 const UserSchema = z.object({
   id: z.string(),
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 // Make everything optional except id
@@ -436,7 +436,7 @@ const DeepPartialSchema = NestedSchema.deepPartial();
 const PersonSchema = z.object({
   name: z.string(),
   age: z.number(),
-  email: z.string().email(),
+  email: z.email(),
   address: z.string(),
 });
 

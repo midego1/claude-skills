@@ -209,11 +209,11 @@ export const createVisualizationTool = {
 // ============================================================================
 
 export const sendEmailSchema = z.object({
-  to: z.string().email().describe("Recipient email address"),
+  to: z.email().describe("Recipient email address"),
   subject: z.string().min(1).max(200).describe("Email subject line"),
   body: z.string().min(1).describe("Email body content (supports HTML)"),
-  cc: z.array(z.string().email()).optional().describe("CC recipients"),
-  bcc: z.array(z.string().email()).optional().describe("BCC recipients"),
+  cc: z.array(z.email()).optional().describe("CC recipients"),
+  bcc: z.array(z.email()).optional().describe("BCC recipients"),
 });
 
 export type SendEmailArgs = z.infer<typeof sendEmailSchema>;
@@ -234,11 +234,11 @@ export const sendEmailTool = {
 
 export const scheduleEventSchema = z.object({
   title: z.string().min(1).describe("Event title"),
-  start_time: z.string().datetime().describe("Event start time (ISO 8601)"),
-  end_time: z.string().datetime().describe("Event end time (ISO 8601)"),
+  start_time: z.datetime().describe("Event start time (ISO 8601)"),
+  end_time: z.datetime().describe("Event end time (ISO 8601)"),
   description: z.string().optional().describe("Event description"),
   attendees: z
-    .array(z.string().email())
+    .array(z.email())
     .optional()
     .describe("List of attendee email addresses"),
   location: z.string().optional().describe("Event location or meeting link"),

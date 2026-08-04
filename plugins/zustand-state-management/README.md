@@ -148,7 +148,7 @@ EOF
 
 | Package | Version | Status |
 |---------|---------|--------|
-| zustand | 5.0.8 | ✅ Latest stable |
+| zustand | 5.0.14 | ✅ Latest stable |
 | react | 19.0.0 | ✅ Compatible |
 | typescript | 5.0+ | ✅ Supported |
 

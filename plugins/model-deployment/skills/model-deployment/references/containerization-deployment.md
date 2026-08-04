@@ -6,7 +6,7 @@ Production Docker configuration, multi-stage builds, model versioning, A/B testi
 
 ```dockerfile
 # Stage 1: Builder - Install dependencies
-FROM python:3.11-slim as builder
+FROM python:3.12-slim as builder
 
 WORKDIR /build
 
@@ -24,7 +24,7 @@ RUN pip install --no-cache-dir --prefix=/install \
     -r requirements.txt
 
 # Stage 2: Runtime - Minimal image
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Create non-root user
 RUN useradd -m -u 1000 mluser && \
@@ -59,7 +59,7 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "
 ```dockerfile
 # Dockerfile with versioned model
 ARG MODEL_VERSION=1.0.0
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
@@ -331,7 +331,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -357,7 +357,7 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Log in to Container Registry
         uses: docker/login-action@v2
@@ -393,7 +393,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Configure kubectl
         uses: azure/k8s-set-context@v3

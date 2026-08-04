@@ -5,7 +5,7 @@ license: MIT
 metadata:
   version: 1.0.0
   last_verified: 2025-11-21
-  nextjs_version: 16.0.3
+  nextjs_version: 16.2.0
   react_version: 19.2.0
   node_version: 20.9+
   author: Claude Skills Maintainers
@@ -49,7 +49,7 @@ allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep"]
 ---
 # Next.js App Router - Production Patterns
 
-**Version**: Next.js 16.0.3
+**Version**: Next.js 16.2.0
 **React Version**: 19.2.0
 **Node.js**: 20.9+
 **Last Verified**: 2025-11-21
@@ -506,5 +506,5 @@ export async function getPosts() {
 
 ---
 
-**Version**: Next.js 16.0.0 | React 19.2.0 | Node.js 20.9+ | TypeScript 5.3+
+**Version**: Next.js 16.2.0 | React 19.2.0 | Node.js 20.9+ | TypeScript 5.9+
 **Production Tested**: E-commerce, SaaS, content sites | **Token Savings**: 65-70%
