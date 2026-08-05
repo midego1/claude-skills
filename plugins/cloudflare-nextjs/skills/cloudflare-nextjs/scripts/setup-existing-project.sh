@@ -1,5 +1,14 @@
 #!/bin/bash
-# Add OpenNext Cloudflare adapter to existing Next.js project
+# Add OpenNext Cloudflare adapter to an existing Next.js project.
+#
+# Preferred: use the adapter's own `migrate` command, which automates
+# installing deps, creating wrangler.jsonc / open-next.config.ts / .dev.vars,
+# wiring package.json scripts, adding public/_headers, .gitignore, the
+# `initOpenNextCloudflareForDev()` call in next.config.ts, and an R2 cache
+# bucket (if R2 is enabled on the account).
+#
+# Docs: https://opennext.js.org/cloudflare/get-started
+#       https://opennext.js.org/cloudflare/cli
 
 set -e
 
@@ -22,113 +31,43 @@ if ! grep -q "\"next\":" package.json; then
     fi
 fi
 
-# Install OpenNext adapter
-echo "📦 Installing @opennextjs/cloudflare..."
-npm install --save-dev @opennextjs/cloudflare
-
-# NOTE: The three `if [ ! -f ... ]; then cat > ...` blocks below have a
-# benign TOCTOU window between the existence check and the write. We
-# accept this race: the file content is static, so concurrent runs of
-# this script in the same project would simply race to write identical
-# bytes, leaving the final file in the correct state regardless of which
-# run wins. Using mktemp + mv would add atomicity but no functional
-# benefit for static content, so we keep the simpler form.
-
-# Create wrangler.jsonc if it doesn't exist
-if [ ! -f "wrangler.jsonc" ]; then
-    echo "📝 Creating wrangler.jsonc..."
-    cat > wrangler.jsonc << 'EOF'
-{
-  "name": "my-next-app",
-  "compatibility_date": "2025-05-05",
-  "compatibility_flags": ["nodejs_compat"]
-}
-EOF
-    echo "✅ Created wrangler.jsonc"
-else
-    echo "ℹ️  wrangler.jsonc already exists - skipping"
-fi
-
-# Create open-next.config.ts if it doesn't exist
-if [ ! -f "open-next.config.ts" ]; then
-    echo "📝 Creating open-next.config.ts..."
-    cat > open-next.config.ts << 'EOF'
-import { defineCloudflareConfig } from "@opennextjs/cloudflare";
-
-export default defineCloudflareConfig({
-  // Caching configuration (optional)
-  // See: https://opennext.js.org/cloudflare/caching
-});
-EOF
-    echo "✅ Created open-next.config.ts"
-else
-    echo "ℹ️  open-next.config.ts already exists - skipping"
-fi
-
-# Create .env with build configuration
-if [ ! -f ".env" ]; then
-    echo "📝 Creating .env..."
-    cat > .env << 'EOF'
-# Cloudflare Workers build configuration
-WRANGLER_BUILD_CONDITIONS=""
-WRANGLER_BUILD_PLATFORM="node"
-EOF
-    echo "✅ Created .env"
-else
-    echo "ℹ️  .env already exists - add these if needed:"
-    echo "    WRANGLER_BUILD_CONDITIONS=\"\""
-    echo "    WRANGLER_BUILD_PLATFORM=\"node\""
-fi
-
-# Update package.json scripts
+# Preferred path: adapter migrate command
+echo "🚀 Running: npx @opennextjs/cloudflare migrate"
+echo "   (installs deps, creates configs, wires scripts, sets up R2 cache if enabled)"
 echo ""
-echo "📝 Recommended package.json scripts:"
-echo ""
-cat << 'EOF'
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
-  }
-}
-EOF
-
-echo ""
-read -p "Add these scripts to package.json? (y/N) " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    # Use npm pkg to add scripts (npm 7.20.0+)
-    npm pkg set scripts.preview="opennextjs-cloudflare build && opennextjs-cloudflare preview"
-    npm pkg set scripts.deploy="opennextjs-cloudflare build && opennextjs-cloudflare deploy"
-    npm pkg set scripts.cf-typegen="wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
-    echo "✅ Scripts added to package.json"
-else
-    echo "⏭️  Skipped - add scripts manually"
-fi
+npx @opennextjs/cloudflare@latest migrate
 
 # Check for Edge runtime usage
 echo ""
 echo "🔍 Checking for Edge runtime usage..."
-if grep -r "export const runtime = \"edge\"" app/ pages/ 2>/dev/null; then
+if grep -r "export const runtime = \"edge\"" app/ pages/ src/ 2>/dev/null; then
     echo "⚠️  WARNING: Found Edge runtime exports!"
-    echo "   OpenNext Cloudflare adapter requires Node.js runtime."
-    echo "   Remove 'export const runtime = \"edge\"' from your files."
+    echo "   OpenNext requires the Node.js runtime. Remove 'export const runtime = \"edge\"' from your files."
 else
     echo "✅ No Edge runtime exports found"
 fi
+
+# proxy.ts caveat (Next 16)
+echo ""
+echo "📌 Next 16 note: if you renamed middleware.ts → proxy.ts, rename it back."
+echo "   @opennextjs/cloudflare does not yet recognize proxy.ts (issue #1277)."
 
 echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "Next steps:"
-echo "  1. Review wrangler.jsonc and update 'name' field"
-echo "  2. Test in workerd runtime: npm run preview"
-echo "  3. Deploy to Cloudflare: npm run deploy"
+echo "  1. npm run dev      # Next.js dev server (fast HMR)"
+echo "  2. npm run preview  # Run in the Workers runtime (REQUIRED before deploy)"
+echo "  3. npm run deploy   # Build + deploy to Cloudflare"
 echo ""
-echo "📖 Documentation:"
-echo "  - OpenNext Cloudflare: https://opennext.js.org/cloudflare"
-echo "  - Cloudflare Guide: https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/"
+echo "📖 Documentation: https://opennext.js.org/cloudflare"
+echo "🐛 Open issues:    https://github.com/opennextjs/opennextjs-cloudflare/issues"
 echo ""
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FALLBACK: manual install (uncomment if you prefer not to use `migrate`)
+# ─────────────────────────────────────────────────────────────────────────────
+# npm install @opennextjs/cloudflare@latest
+# npm install --save-dev wrangler@latest
+# # Then create wrangler.jsonc, open-next.config.ts, .dev.vars, and add the
+# # dev/preview/deploy/upload/cf-typegen scripts — see the skill's references/.

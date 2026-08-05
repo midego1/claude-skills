@@ -47,7 +47,7 @@ This skill provides production-ready patterns for **Next.js 16 App Router**, inc
 
 **Do NOT use this skill for**:
 
-- **Cloudflare Workers deployment** → Use `cloudflare-nextjs` skill instead
+- **Cloudflare Workers deployment** → Use the **`cloudflare-nextjs`** skill (OpenNext adapter: `@opennextjs/cloudflare`, `getCloudflareContext`, caching tiers, Workers-specific errors)
 - **Pages Router** → This skill is App Router only (Pages Router is legacy)
 - **Authentication** → Use `clerk-auth`, `auth-js` skills
 - **Database integration** → Use `cloudflare-d1`, `drizzle-orm-d1` skills
@@ -200,7 +200,7 @@ This skill should be used when the user mentions:
 - ✅ Next.js 16 features and migration guide
 - ❌ Does NOT cover Cloudflare Workers deployment
 
-**`cloudflare-nextjs` skill**:
+**`cloudflare-nextjs` skill** (OpenNext Cloudflare adapter — `@opennextjs/cloudflare`):
 - ✅ Cloudflare Workers deployment patterns
 - ✅ OpenNext adapter configuration
 - ✅ Cloudflare services integration (D1, R2, KV, Workers AI)
@@ -439,7 +439,7 @@ MIT License - See [LICENSE](../../LICENSE)
 ## Related Skills
 
 **Composable with**:
-- `cloudflare-nextjs` - For Cloudflare Workers deployment
+- `cloudflare-nextjs` - For Cloudflare Workers deployment via the OpenNext adapter (`@opennextjs/cloudflare`)
 - `tailwind-v4-shadcn` - For Tailwind v4 + shadcn/ui setup
 - `clerk-auth` - For Clerk authentication
 - `auth-js` - For Auth.js (NextAuth) integration

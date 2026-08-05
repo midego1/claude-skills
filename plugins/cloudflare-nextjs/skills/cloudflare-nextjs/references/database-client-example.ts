@@ -1,124 +1,100 @@
-// Database Client Examples for Next.js on Cloudflare Workers
-// Demonstrates request-scoped client pattern to avoid "Cannot perform I/O" errors
+// Database Client Examples for Next.js on Cloudflare Workers via OpenNext
+// Demonstrates the request-scoped client pattern required to avoid
+// "Cannot perform I/O on behalf of a different request" errors.
+//
+// Docs: https://opennext.js.org/cloudflare/howtos/db
+//       https://opennext.js.org/cloudflare/bindings
 
-import type { NextRequest } from 'next/server';
+import type { NextRequest } from "next/server";
+import { cache } from "react";
 
 // ============================================================================
 // ❌ WRONG: Global Database Client (DO NOT DO THIS)
 // ============================================================================
-
-// import { Pool } from 'pg';
 //
-// // ❌ This will FAIL with "Cannot perform I/O on behalf of a different request"
-// const globalPool = new Pool({
-//   connectionString: process.env.DATABASE_URL
-// });
-//
+// import { Pool } from "pg";
+// // ❌ Fails: "Cannot perform I/O on behalf of a different request"
+// const globalPool = new Pool({ connectionString: process.env.DATABASE_URL });
 // export async function GET() {
-//   // This will error because pool was created in different request context
-//   const result = await globalPool.query('SELECT * FROM users');
+//   const result = await globalPool.query("SELECT * FROM users");
 //   return Response.json(result.rows);
 // }
 
 // ============================================================================
-// ✅ CORRECT: Request-Scoped Database Client
+// ✅ BEST: Cloudflare D1 via getCloudflareContext() — designed for Workers
 // ============================================================================
 
-import { Pool } from 'pg';
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { drizzle } from "drizzle-orm/d1";
+import * as schema from "./schema/d1";
 
-export async function GET(request: NextRequest) {
-  // ✅ Create client within request handler
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL
-  });
+// Request-scoped via react `cache()` (reused within a single request, never across)
+export const getDb = cache(() => {
+  const { env } = getCloudflareContext();
+  return drizzle(env.DB, { schema });
+});
 
-  try {
-    const result = await pool.query('SELECT * FROM users WHERE active = $1', [true]);
-    return Response.json(result.rows);
-  } finally {
-    // Clean up connection
-    await pool.end();
-  }
-}
+// Static routes (ISR/SSG) MUST use async mode
+export const getDbAsync = cache(async () => {
+  const { env } = await getCloudflareContext({ async: true });
+  return drizzle(env.DB, { schema });
+});
 
-// ============================================================================
-// ✅ BEST: Use Cloudflare D1 (Designed for Workers)
-// ============================================================================
-
-export async function GET_D1(request: NextRequest) {
-  // Access D1 binding from environment
-  const env = process.env as any;
-
-  // ✅ No connection pooling needed - D1 is designed for Workers
-  const result = await env.DB.prepare(
-    'SELECT * FROM users WHERE active = ?'
-  ).bind(true).all();
-
+// Raw D1 (no ORM):
+export async function GET_D1() {
+  const { env } = getCloudflareContext();
+  const result = await env.DB.prepare("SELECT * FROM users WHERE active = ?")
+    .bind(true)
+    .all();
   return Response.json(result.results);
 }
 
 export async function POST_D1(request: NextRequest) {
-  const env = process.env as any;
+  const { env } = getCloudflareContext();
   const { name, email } = await request.json();
-
-  // Insert with prepared statement
   const result = await env.DB.prepare(
-    'INSERT INTO users (name, email, active) VALUES (?, ?, ?)'
-  ).bind(name, email, true).run();
-
-  return Response.json({
-    id: result.meta.last_row_id,
-    success: result.success
-  });
+    "INSERT INTO users (name, email, active) VALUES (?, ?, ?)",
+  )
+    .bind(name, email, true)
+    .run();
+  return Response.json({ id: result.meta.last_row_id, success: result.success });
 }
 
 // ============================================================================
-// Helper: Reusable Request-Scoped Client Factory
+// ✅ External Postgres via Hyperdrive (request-scoped, maxUses: 1)
 // ============================================================================
 
-type DatabaseClient = Pool;
+import { drizzle as drizzlePg } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
+import * as pgSchema from "./schema/pg";
 
-async function withDatabase<T>(
-  handler: (client: DatabaseClient) => Promise<T>
-): Promise<T> {
-  const client = new Pool({
-    connectionString: process.env.DATABASE_URL
+export const getPgDb = cache(() => {
+  const { env } = getCloudflareContext();
+  const pool = new Pool({
+    connectionString: env.HYPERDRIVE.connectionString,
+    maxUses: 1, // critical: do not reuse connections across requests
   });
+  return drizzlePg({ client: pool, schema: pgSchema });
+});
 
-  try {
-    return await handler(client);
-  } finally {
-    await client.end();
-  }
-}
-
-// Usage:
-export async function GET_WITH_HELPER() {
-  return withDatabase(async (db) => {
-    const result = await db.query('SELECT * FROM users');
-    return Response.json(result.rows);
-  });
-}
+export const getPgDbAsync = cache(async () => {
+  const { env } = await getCloudflareContext({ async: true });
+  const pool = new Pool({ connectionString: env.HYPERDRIVE.connectionString, maxUses: 1 });
+  return drizzlePg({ client: pool, schema: pgSchema });
+});
 
 // ============================================================================
-// TypeScript Types for Cloudflare Bindings
+// TypeScript types for Cloudflare bindings
 // ============================================================================
+// Generate with: npx wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts
+// (re-run after any binding change). This produces a global CloudflareEnv interface
+// and types `getCloudflareContext().env` accordingly.
 
-// Generate types with: npm run cf-typegen
-
+// Example hand-written shape (replace with generated types):
 interface CloudflareEnv {
   DB: D1Database;
-  BUCKET: R2Bucket;
-  KV: KVNamespace;
+  MY_BUCKET: R2Bucket;
+  MY_KV: KVNamespace;
   AI: Ai;
-}
-
-// Access typed bindings:
-export async function GET_TYPED(request: NextRequest) {
-  const env = process.env as CloudflareEnv;
-
-  // Now env.DB is properly typed
-  const result = await env.DB.prepare('SELECT * FROM users').all();
-
-  return Response.json(result.results);
+  HYPERDRIVE: Hyperdrive;
 }
