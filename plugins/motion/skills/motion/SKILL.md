@@ -513,4 +513,4 @@ Found an issue or have a suggestion?
 **Error Prevention**: 100% (29+ documented errors prevented)
 **Bundle Size**: 2.3 KB (mini) - 34 KB (full), optimizable to 4.6 KB with LazyMotion
 **Accessibility**: MotionConfig reducedMotion support
-**Ready to use!** Install with `./scripts/install-skill.sh motion`
+**Ready to use!** Install with `/plugin install motion@claude-skills`

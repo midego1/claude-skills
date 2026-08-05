@@ -579,9 +579,7 @@ jq -r '.category' skills/*/.claude-plugin/plugin.json | sort | uniq -c | sort -r
 ```
 scripts/
 ├── sync-plugins.sh              ← Primary (single entry point)
-├── generate-marketplace.sh      ← Marketplace generation (used by sync-plugins.sh)
-├── install-skill.sh             ← Install skill to ~/.claude/skills/
-└── install-all.sh               ← Install all skills
+└── generate-marketplace.sh      ← Marketplace generation (used by sync-plugins.sh)
 ```
 
 ---

@@ -120,11 +120,11 @@ Expected improvement: +12 points
 ## Installation
 
 ```bash
-# Install to Claude Code skills directory
-./scripts/install-skill.sh seo-optimizer
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# Verify installation
-ls ~/.claude/skills/seo-optimizer
+# Install this plugin
+/plugin install seo-optimizer@claude-skills
 ```
 
 ## Version

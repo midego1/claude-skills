@@ -352,9 +352,11 @@ This skill is part of the [claude-skills](https://github.com/secondsky/claude-sk
 
 **Install**:
 ```bash
-git clone https://github.com/secondsky/claude-skills
-cd claude-skills
-./scripts/install-skill.sh nextjs
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
+
+# Install this plugin
+/plugin install nextjs@claude-skills
 ```
 
 **Verify**:

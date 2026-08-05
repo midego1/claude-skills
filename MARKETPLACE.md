@@ -399,11 +399,11 @@ If you prefer manual installation or want to contribute:
 git clone https://github.com/secondsky/claude-skills.git
 cd claude-skills
 
-# Install single skill (creates symlink to ~/.claude/skills/)
-./scripts/install-skill.sh cloudflare-d1
+# Install a single skill into any supported agent
+npx skills add secondsky/claude-skills --skill cloudflare-d1
 
-# Install all skills
-./scripts/install-all.sh
+# Or via the Claude Code marketplace
+/plugin install cloudflare-d1@claude-skills
 ```
 
 See [README.md](README.md) for development workflow.

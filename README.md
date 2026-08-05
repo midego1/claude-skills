@@ -2,28 +2,28 @@
 
 **142 production-ready skills for Claude Code CLI**
 
-Version 3.6.0 | Last Updated: 2026-08-05
+Version 3.6.1 | Last Updated: 2026-08-05
 
 <div align="center">
 
-**🔌 Platform Support**
+**🔌 Platform / Harness Support**
 
-This repository uses **Claude Plugin Patterns** — natively supported by:
+These plugins ship as Claude Code marketplace plugins (`.claude-plugin/` manifests). Other harnesses consume the same skills via [skills.sh](#installing-with-skillssh) — the cross-harness bridge.
 
-| Platform | Status | Notes |
-|----------|--------|-------|
-| **Claude Code** | ✅ **Native** | Full marketplace support |
-| **Factory Droid** | ✅ **Native** | Full marketplace support |
+| Harness | Marketplace support | How to install |
+|---------|---------------------|----------------|
+| **Claude Code** | ✅ **Native** (federated) | `/plugin marketplace add secondsky/claude-skills`, then `/plugin install <name>@claude-skills` |
+| **ZCode** | ✅ **Native** (reads `.claude-plugin/` manifests) | Add this repo as a marketplace in the ZCode GUI |
+| **Codex CLI** | ⚠️ Adaptation needed | Codex has a native marketplace (`codex plugin marketplace add`), but expects `.codex-plugin/` manifests this repo does not generate yet. Use skills.sh. |
+| **Cursor** | ⚠️ Adaptation needed | Cursor has an official marketplace, but expects `.cursor-plugin/plugin.json` (UI "Add to Cursor") this repo does not generate yet. Use skills.sh. |
+| **opencode** | ❌ No marketplace | npm plugins only (`opencode.json` `plugin[]`). Use skills.sh or vendor manually. |
+| **Gemini CLI** | ❌ No marketplace | `gemini extensions install <url>` only. Use skills.sh or vendor manually. |
 
 </div>
-**For all other Platforms like opencode, codex and others, you can use https://github.com/enulus/OpenPackage
-**
 
 ---
 
 A curated collection of battle-tested skills for building modern web applications with Cloudflare, AI integrations, React, Tailwind, and more.
-
-PS: if skills.sh warns about any skill: Their scan process is a outdated LLM which flags newest versions pins (like in ZOD) as non existent and by that potentially malicous.
 
 ---
 
@@ -41,27 +41,45 @@ PS: if skills.sh warns about any skill: Their scan process is a outdated LLM whi
 /plugin install gemini-cli@claude-skills
 ```
 
-See [MARKETPLACE.md](MARKETPLACE.md) for complete catalog of all 139 skills.
+See [MARKETPLACE.md](MARKETPLACE.md) for complete catalog of all 142 skills.
 
-### Bulk Installation (Contributors)
+---
+
+## Installing with skills.sh
+
+[skills.sh](https://skills.sh) is an open agent-skills registry and `npx skills` CLI (maintained by Vercel) that auto-detects your coding agent — Claude Code, Cursor, Codex, Copilot, Cline, opencode, and 70+ others — and installs each skill into the correct directory for that harness. It is the **universal cross-harness path** for harnesses without a marketplace (opencode, Gemini CLI) or where this repo's manifest format isn't generated yet (Codex CLI, Cursor).
 
 ```bash
-# Clone the repository
-git clone https://github.com/secondsky/claude-skills.git
-cd claude-skills
+# Install one skill (auto-detects your agent)
+npx skills add secondsky/claude-skills --skill cloudflare-d1
 
-# Install all 139 skills at once
-./scripts/install-all.sh
+# Install several specific skills
+npx skills add secondsky/claude-skills --skill cloudflare-d1 --skill tailwind-v4-shadcn
 
-# Or install individual skills
-./scripts/install-skill.sh cloudflare-d1
+# Try a skill once without installing (pipes its prompt to your agent)
+npx skills use secondsky/claude-skills@cloudflare-d1 | claude
+
+# Target a specific agent explicitly
+npx skills add secondsky/claude-skills --skill cloudflare-d1 --agent codex
+
+# List what's installed, search, update, remove
+npx skills ls -g
+npx skills find cloudflare
+npx skills update cloudflare-d1
+npx skills remove cloudflare-d1
 ```
+
+> **Bulk install note:** `npx skills add secondsky/claude-skills --all` installs every discovered skill at once, but discovery walks skills.sh's standard container directories (`skills/`, `.claude/skills/`, …). This repo nests skills under `plugins/<name>/skills/<skill>/`, so `--all` may not pick up everything in one pass — install the skills you need by name with `--skill`, or run `npx skills add secondsky/claude-skills -l` to list what it finds.
+
+### Security scanning caveat
+
+skills.sh runs every published skill through three scanners (Gen Agent Trust Hub, Socket, Snyk) plus an LLM-based meta-analyzer, and publishes the results at [skills.sh/audits](https://skills.sh/audits). The LLM analysis stage has been publicly shown (Trail of Bits, June 2026) to both miss genuinely malicious skills **and** flag unfamiliar version pins (e.g. newest dependency versions) as suspicious false positives. **Treat skills.sh warnings as advisory, not authoritative** — and verify against this repo's own version pins before acting on a warning.
 
 ---
 
 ## Repository Structure
 
-This repository contains **139 production-tested skills** for Claude Code, each focused on a specific technology or capability.
+This repository contains **142 production-tested skills** for Claude Code, each focused on a specific technology or capability.
 
 **Individual Skills**: Each skill is a standalone unit with:
 - `SKILL.md` - Core knowledge and guidance
@@ -70,12 +88,12 @@ This repository contains **139 production-tested skills** for Claude Code, each 
 - Scripts - Helper utilities
 
 **Installation Options**:
-1. **Individual** - Install only the skills you need via marketplace
-2. **Bulk** - Install all 139 skills using `./scripts/install-all.sh`
+1. **Marketplace** (recommended) - Install individual skills via `/plugin install <name>@claude-skills`
+2. **Cross-harness** - Install into any supported agent with `npx skills add secondsky/claude-skills --skill <name>` (see [Installing with skills.sh](#installing-with-skillssh))
 
 ---
 
-## Available Skills (139 Individual Skills)
+## Available Skills (142 Individual Skills)
 
 Each skill is individually installable. Install only the skills you need.
 
@@ -85,13 +103,13 @@ Each skill is individually installable. Install only the skills you need.
 
 | Category | Skills | Examples |
 |----------|--------|----------|
-| **tooling** | 22 | turborepo, plan-interview, code-review |
+| **tooling** | 24 | turborepo, plan-interview, code-review |
 | **frontend** | 26 | nuxt-v4, nuxt-v5, tailwind-v4-shadcn, tanstack-query, nuxt-studio, maz-ui, threejs |
 | **cloudflare** | 21 | cloudflare-d1, cloudflare-workers-ai, cloudflare-agents |
 | **api** | 16 | api-design-principles, graphql-implementation |
 | **ai** | 7 | gemini-cli, ml-model-training, tanstack-ai |
 | **web** | 10 | hono-routing, firecrawl-scraper, web-performance |
-| **security** | 5 | csrf-protection, xss-prevention |
+| **security** | 6 | csrf-protection, xss-prevention, cybersecurity |
 | **mobile** | 5 | react-native-app, react-native-skills |
 | **woocommerce** | 4 | woocommerce-backend-dev |
 | **testing** | 4 | vitest-testing, playwright-testing |
@@ -129,16 +147,20 @@ Result: Production-ready setup, zero errors, ~65% token savings
 
 ### Skill Structure
 
-Each skill includes:
+Each plugin is a directory under `plugins/<plugin-name>/` containing one or more skills:
 
 ```
-skills/[skill-name]/
-├── SKILL.md              # Complete documentation
+plugins/[plugin-name]/
 ├── .claude-plugin/
-│   └── plugin.json       # Plugin metadata
-├── templates/            # Ready-to-copy templates
-├── scripts/              # Automation scripts
-└── references/           # Extended documentation
+│   └── plugin.json       # Plugin manifest (marketplace metadata)
+├── README.md
+├── skills/
+│   └── [skill-name]/
+│       ├── SKILL.md          # Core knowledge and guidance
+│       ├── templates/        # Ready-to-copy templates
+│       ├── scripts/          # Helper utilities
+│       └── references/       # Extended documentation
+└── (optional) agents/, commands/, hooks/
 ```
 
 ---
@@ -196,7 +218,7 @@ skills/[skill-name]/
 Claude Code has a **15,000 character limit** for the total size of skill descriptions in the system prompt. This limit also applies to commands and agents.
 
 **What this means:**
-- Not all 139 skills may be visible in Claude's context at once
+- Not all 142 skills may be visible in Claude's context at once
 - Skills are loaded based on relevance and available token budget
 - You can verify how many skills Claude currently sees by asking: *"How many skills do you see in your system prompt?"*
 
@@ -209,7 +231,7 @@ To verify which skills are currently loaded:
 "Check what skills/plugins you see in your system prompt"
 ```
 
-Claude will report something like: "85 of 139 skills visible due to token limits"
+Claude will report something like: "85 of 142 skills visible due to token limits"
 
 ### Workaround: Increase Token Budget
 
@@ -237,7 +259,7 @@ This gives you approximately **2x more skill visibility** in the system prompt.
 | **Typical Errors** | 2-4 per service | 0 (prevented) | **100%** |
 | **Setup Time** | 2-4 hours | 15-45 minutes | **~80%** |
 
-**Across all 139 skills**: 400+ documented errors prevented.
+**Across all 142 skills**: 400+ documented errors prevented.
 
 ---
 

@@ -25,13 +25,16 @@ Comprehensive Three.js knowledge base for Claude Code, providing accurate API re
 
 ## Installation
 
-### Via Claude Skills Repository
+### Via Claude Skills Marketplace
 
 This plugin is part of the [claude-skills](https://github.com/secondsky/claude-skills) repository.
 
 ```bash
-cd /path/to/claude-skills
-./scripts/install-skill.sh threejs
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
+
+# Install this plugin
+/plugin install threejs@claude-skills
 ```
 
 ### Manual Installation

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.6.1] - 2026-08-05
+
+### Changed
+
+- **README — accurate per-harness marketplace support.** Replaced the blanket "use OpenPackage for opencode/codex" note with a per-harness table: Claude Code and ZCode (native), Codex CLI and Cursor (native marketplaces exist but require manifest formats this repo does not yet generate), opencode and Gemini CLI (no marketplace). Added a new "Installing with skills.sh" section documenting the `npx skills` CLI (Vercel-maintained, auto-detects agent) as the universal cross-harness install path, with per-skill and try-without-installing examples and a security-scanning caveat.
+- **Removed dead installer scripts.** `scripts/install-skill.sh` and `scripts/install-all.sh` were broken (targeted a non-existent `skills/` directory; only wrote to `~/.claude/skills/`). All 28 docs/plugins referencing them were updated to use `/plugin install <name>@claude-skills` (Claude Code) or `npx skills add secondsky/claude-skills --skill <name>` (cross-harness). Security-audit findings D-001, D-002, D-016, D-019, D-020 are consequently moot — marked resolved in `docs/security-audit/`.
+- **Fixed skill-count inconsistency.** README subtitle said 142 while body sections said 139; standardized on 142 (actual `marketplace.json` count). Categories table updated (tooling 22→24, security 5→6).
+- **Fixed `generate-marketplace.sh` version-skew bug.** The script hardcoded `metadata.version` to `3.5.0` in its heredoc, so every regeneration reset the top-level marketplace version regardless of the actual release (this was the source of the long-standing 3.5.0-vs-3.6.0 drift). It now syncs `.metadata.version` from the plugin entries (lockstep) during generation.
+
 ## [3.6.0] - 2026-08-05
 
 ### Changed

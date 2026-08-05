@@ -198,13 +198,11 @@ npm create nuxt@latest -- -t ui/editor       # Rich text editor
 ## Installation
 
 ```bash
-# Via Claude Code plugin marketplace
-/plugin install nuxt-ui-v4@claude-skills
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# Or clone and install manually
-git clone https://github.com/secondsky/claude-skills.git
-cd claude-skills
-./scripts/install-skill.sh nuxt-ui-v4
+# Install this plugin
+/plugin install nuxt-ui-v4@claude-skills
 ```
 
 ## Links

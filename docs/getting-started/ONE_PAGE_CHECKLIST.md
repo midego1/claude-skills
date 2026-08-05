@@ -115,8 +115,8 @@ Quick reference is complete:
 
 Skill works in practice:
 
-- [ ] Installed skill: `./scripts/install-skill.sh my-skill`
-- [ ] Verified symlink: `ls -la ~/.claude/skills/my-skill`
+- [ ] Installed skill: `/plugin install my-skill@claude-skills`
+- [ ] Verified install: `ls -la ~/.claude/skills/my-skill`
 - [ ] Tested auto-discovery: Claude suggests skill when relevant
 - [ ] Built example project using skill templates
 - [ ] All templates work without errors

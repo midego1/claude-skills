@@ -367,7 +367,7 @@ git commit -m "Add skill"
 ✅ **CORRECT**:
 ```bash
 # Install and test first
-./scripts/install-skill.sh my-skill
+/plugin install my-skill@claude-skills
 # Try using it in Claude Code
 # Verify discovery works
 # THEN commit

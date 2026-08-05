@@ -304,18 +304,14 @@ Claude will suggest this skill when you mention:
 
 This skill is part of the [claude-skills](https://github.com/secondsky/claude-skills) repository.
 
-### Option 1: Install from Repository
+### Option 1: Install from Marketplace
 
 ```bash
-# Clone the repository
-git clone https://github.com/secondsky/claude-skills.git
-cd claude-skills
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# Install this skill
-./scripts/install-skill.sh zod
-
-# Verify installation
-ls -la ~/.claude/skills/zod
+# Install this plugin
+/plugin install zod@claude-skills
 ```
 
 ### Option 2: Manual Installation

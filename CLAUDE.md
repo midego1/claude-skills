@@ -116,7 +116,7 @@ When reviewing skills, use manual review with the ONE_PAGE_CHECKLIST:
 **Manual Review Steps**:
 1. Check against [ONE_PAGE_CHECKLIST.md](docs/getting-started/ONE_PAGE_CHECKLIST.md)
 2. Verify package versions: `scripts/check-versions.sh`
-3. Test installation: `./scripts/install-skill.sh <skill-name>`
+3. Test installation: `/plugin install <skill-name>@claude-skills` (or `npx skills add secondsky/claude-skills --skill <skill-name>` for cross-harness)
 4. Validate YAML frontmatter and structure
 5. Check compliance with [claude-code-skill-standards.md](docs/reference/claude-code-skill-standards.md)
 
@@ -241,17 +241,15 @@ claude-skills/
 │   ├── SKILL_CATEGORIZATION.md
 │   ├── SKILL_REVIEW_PROCESS.md
 │   └── ... (7 more files)
-├── scripts/                      # Automation (15 files)
+├── scripts/                      # Automation (13 files)
 │   ├── sync-plugins.sh          # ⭐ Single entry point
 │   ├── generate-marketplace.sh  # Marketplace generation
-│   ├── install-skill.sh         # Install single skill
-│   ├── install-all.sh           # Install all skills
 │   ├── check-versions.sh        # Verify package versions
 │   ├── review-skill.sh          # Skill review automation
 │   ├── audit-keywords.sh        # Keyword auditing
 │   ├── baseline-audit-all.sh    # Baseline validation
 │   └── ... (7 more scripts)
-├── plugins/                      # ⭐ 139 production plugins (18.2MB)
+├── plugins/                      # ⭐ 142 production plugins (18.2MB)
 │   ├── cloudflare-*/            # 23 Cloudflare plugins
 │   │   ├── .claude-plugin/      # Plugin manifest
 │   │   │   └── plugin.json
@@ -461,7 +459,7 @@ See [PLUGIN_DEV_BEST_PRACTICES.md](docs/guides/PLUGIN_DEV_BEST_PRACTICES.md) Sec
    • Add resources (scripts/, references/, assets/)
 
 3. TEST
-   • Install: ./scripts/install-skill.sh new-skill
+   • Install: /plugin install new-skill@claude-skills (or npx skills add secondsky/claude-skills --skill new-skill)
    • Test discovery: Ask Claude Code to use skill
    • Build example project to verify templates work
 
@@ -494,7 +492,7 @@ cp -r templates/skill-skeleton/ skills/my-skill/
 # 3. Add resources
 
 # 4. Test
-./scripts/install-skill.sh my-skill
+/plugin install my-skill@claude-skills
 
 # 5. Verify & Commit
 git add skills/my-skill && git commit -m "Add my-skill" && git push
@@ -624,11 +622,14 @@ Note: Bun is the preferred runtime and package manager for Node-based workflows 
 ### Installing Skills
 
 ```bash
-# Install single skill (creates symlink to ~/.claude/skills/)
-./scripts/install-skill.sh cloudflare-d1
+# Add the marketplace once
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# Install all skills
-./scripts/install-all.sh
+# Install a single skill
+/plugin install cloudflare-d1@claude-skills
+
+# Cross-harness install (Cursor, Codex, opencode, Gemini CLI, etc.)
+npx skills add secondsky/claude-skills --skill cloudflare-d1
 
 # Verify installation
 ls -la ~/.claude/skills/

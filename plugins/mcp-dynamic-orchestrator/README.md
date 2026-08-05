@@ -65,11 +65,11 @@ The **MCP Dynamic Orchestrator** implements a **progressive disclosure pattern**
 ### 1. Installation
 
 ```bash
-# Install the skill (creates symlink to ~/.claude/skills/)
-./scripts/install-skill.sh mcp-dynamic-orchestrator
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# Verify installation
-ls -la ~/.claude/skills/mcp-dynamic-orchestrator
+# Install this plugin
+/plugin install mcp-dynamic-orchestrator@claude-skills
 ```
 
 ### 2. Basic Usage Example
@@ -463,7 +463,7 @@ This skill follows the [Claude Skills Standards](https://github.com/secondsky/cl
 **To improve this skill**:
 1. Check [plan.md](../../plan.md) for open tasks
 2. Read [QUICK_WORKFLOW.md](../../QUICK_WORKFLOW.md) for development process
-3. Test changes with `./scripts/install-skill.sh mcp-dynamic-orchestrator`
+3. Test changes with `/plugin install mcp-dynamic-orchestrator@claude-skills`
 4. Verify against [ONE_PAGE_CHECKLIST.md](../../ONE_PAGE_CHECKLIST.md)
 
 ---

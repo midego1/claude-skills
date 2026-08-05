@@ -282,8 +282,11 @@ touch skills/my-skill/SKILL.md
 ### 2. Test Locally
 
 ```bash
-# Install skill to ~/.claude/skills/
-./scripts/install-skill.sh my-skill
+# Install skill (Claude Code)
+/plugin install my-skill@claude-skills
+
+# Or cross-harness (Cursor, Codex, opencode, Gemini CLI, ...)
+npx skills add secondsky/claude-skills --skill my-skill
 
 # Test auto-discovery
 # Ask Claude to perform a task that should trigger your skill
