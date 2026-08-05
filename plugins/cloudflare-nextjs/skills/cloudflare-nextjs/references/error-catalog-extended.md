@@ -1,250 +1,154 @@
-# Cloudflare Next.js - Extended Error Catalog
+# Extended Error Catalog
 
-**Complete Error Reference** - Load this file when encountering ANY error during Next.js on Cloudflare Workers setup, build, or deployment.
+Load this file when encountering ANY error during Next.js on Cloudflare Workers setup, build, or deployment.
 
-This comprehensive catalog documents 11+ known errors with root causes, solutions, and official sources.
+## 1. Worker size limit — 3 MiB (Free plan)
 
----
+**Error:** `"Your Worker exceeded the size limit of 3 MiB"`
 
-## 1. Worker Size Limit Exceeded (3 MiB - Free Plan)
+**Cause:** Free plan limit; only **gzip-compressed** size counts.
 
-**Error**: `"Your Worker exceeded the size limit of 3 MiB"`
+**Fix:** Upgrade to Workers Paid plan (10 MiB), or analyze and shrink the bundle:
 
-**Cause**: Workers Free plan limits Worker size to 3 MiB (gzip-compressed)
-
-**Solutions**:
-- Upgrade to Workers Paid plan (10 MiB limit)
-- Analyze bundle size and remove unused dependencies
-- Use dynamic imports to code-split large dependencies
-
-**Bundle analysis**:
 ```bash
-bunx opennextjs-cloudflare build
+npx @opennextjs/cloudflare build
 cd .open-next/server-functions/default
-# Analyze handler.mjs.meta.json with ESBuild Bundle Analyzer
+# Inspect handler.mjs.meta.json with ESBuild Bundle Analyzer
 ```
 
-**Source**: https://opennext.js.org/cloudflare/troubleshooting#worker-size-limits
+Remove unused deps, use dynamic imports for code-splitting.
 
----
+## 2. Worker size limit — 10 MiB (Paid plan)
 
-## 2. Worker Size Limit Exceeded (10 MiB - Paid Plan)
+**Error:** `"Your Worker exceeded the size limit of 10 MiB"`
 
-**Error**: `"Your Worker exceeded the size limit of 10 MiB"`
+**Cause:** Unnecessary code in the production bundle.
 
-**Cause**: Unnecessary code bundled into Worker
+**Fix:** Same bundle analysis as above; identify and externalize/remove large dependencies.
 
-**Debug workflow**:
-1. Run `bunx opennextjs-cloudflare build`
-2. Navigate to `.open-next/server-functions/default`
-3. Analyze `handler.mjs.meta.json` using ESBuild Bundle Analyzer
-4. Identify and remove/externalize large dependencies
+## 3. `ReferenceError: FinalizationRegistry is not defined`
 
-**Source**: https://opennext.js.org/cloudflare/troubleshooting#worker-size-limits
+**Cause:** `compatibility_date` too old.
 
----
+**Fix:** Set `"compatibility_date": "2025-05-05"` (or later) in `wrangler.jsonc`.
 
-## 3. FinalizationRegistry Not Defined
+## 4. Cannot perform I/O on behalf of a different request
 
-**Error**: `"ReferenceError: FinalizationRegistry is not defined"`
+**Error:** `"Error: Cannot perform I/O on behalf of a different request. I/O objects (such as streams, request/response bodies, and others) created "`
 
-**Cause**: `compatibility_date` in wrangler.jsonc is too old
+**Cause:** Global database client (e.g. `postgres`, `pg` `Pool`) reused across requests.
 
-**Solution**: Update `compatibility_date` to `2025-05-05` or later:
+**Fix:** Create the client **inside** the request handler (or wrap with `cache()` from `react`), and set `maxUses: 1` on PG pools:
 
-```jsonc
-{
-  "compatibility_date": "2025-05-05"  // Minimum for FinalizationRegistry
-}
-```
-
-**Source**: https://opennext.js.org/cloudflare/troubleshooting#finalizationregistry-is-not-defined
-
----
-
-## 4. Cannot Perform I/O on Behalf of Different Request
-
-**Error**: `"Cannot perform I/O on behalf of a different request"`
-
-**Cause**: Database client created globally and reused across requests
-
-**Problem code**:
-```typescript
-// ❌ WRONG: Global DB client
-import { Pool } from 'pg';
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+```ts
+export const dynamic = "force-dynamic";
 
 export async function GET() {
-  // This will fail - pool created in different request context
-  const result = await pool.query('SELECT * FROM users');
-  return Response.json(result);
+  const client = postgres(process.env.DATABASE_URL!, { max: 5 });
+  return new Response(JSON.stringify(await client`SELECT * FROM users;`));
 }
 ```
 
-**Solution**: Create database clients inside request handlers:
+For D1 (preferred — designed for Workers), use `getCloudflareContext()` (NOT `process.env`):
 
-```typescript
-// ✅ CORRECT: Request-scoped DB client
-import { Pool } from 'pg';
-
-export async function GET() {
-  // Create client within request context
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  const result = await pool.query('SELECT * FROM users');
-  await pool.end();
-  return Response.json(result);
-}
+```ts
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+const { env } = getCloudflareContext();
+await env.DB.prepare("SELECT * FROM users").all();
 ```
 
-**Alternative**: Use Cloudflare D1 (designed for Workers) instead of external databases:
+## 5. NPM package import / `Could not resolve "<package>"`
 
-```typescript
-// ✅ BEST: Use D1 (no connection pooling needed)
-export async function GET(request: NextRequest) {
-  const env = process.env as any;
-  const result = await env.DB.prepare('SELECT * FROM users').all();
-  return Response.json(result);
-}
+**Cause:** Missing `nodejs_compat` flag, or a package ships a `workerd`-specific export that Next tries to bundle with Node conditions.
+
+**Fix 1:** Enable `nodejs_compat`, ensure `compatibility_date ≥ 2024-09-23`.
+
+**Fix 2:** Add the package to `serverExternalPackages` so the adapter picks the `workerd` entry point (see `references/advanced.md` for the known list):
+
+```ts
+const nextConfig = { serverExternalPackages: ["@prisma/client", ".prisma/client", "postgres"] };
 ```
 
-**Source**: https://opennext.js.org/cloudflare/troubleshooting#cannot-perform-io-on-behalf-of-a-different-request
-
----
-
-## 5. NPM Package Import Failures
-
-**Error**: `"Could not resolve '<package>'"`
-
-**Cause**: Missing `nodejs_compat` flag or package export conditions
-
-**Solution 1**: Enable `nodejs_compat` flag:
-
-```jsonc
-{
-  "compatibility_flags": ["nodejs_compat"]
-}
-```
-
-**Solution 2**: For packages with multiple exports, create `.env`:
-
+**Fix 3:** Or set `.env`:
 ```env
 WRANGLER_BUILD_CONDITIONS=""
 WRANGLER_BUILD_PLATFORM="node"
 ```
 
-**Source**: https://opennext.js.org/cloudflare/troubleshooting#npm-packages-fail-to-import
+## 6. Failed to load chunk `server/chunks/ssr/<chunk_name>.js`
 
----
+**Cause:** Outdated adapter with Turbopack builds.
 
-## 6. Failed to Load Chunk (Turbopack)
+**Fix:** Upgrade `@opennextjs/cloudflare` to the newest version (for Turbopack support), or switch to webpack (`next build` without `--turbo`).
 
-**Error**: `"Failed to load chunk server/chunks/ssr/"`
+## 7. SSRF (CVE-2025-6087) — versions < 1.3.0
 
-**Cause**: Next.js built with Turbopack (`next build --turbo`)
+**Vulnerability:** SSRF via `/_next/image`.
 
-**Solution**: Use standard build (Turbopack not supported by adapter):
+**Fix:** Upgrade immediately — `@opennextjs/cloudflare@^1.3.0` (current: `^1.18.1`).
 
-```json
-{
-  "scripts": {
-    "build": "next build"  // ✅ Correct
-    // "build": "next build --turbo"  // ❌ Don't use Turbopack
-  }
-}
-```
+## 8. Caching Durable Object warnings
 
-**Source**: https://opennext.js.org/cloudflare/troubleshooting#failed-to-load-chunk
+**Warning (build):** `"You have defined bindings to the following internal Durable Objects... will not work in local development, but they should work in production."`
+**Warning (runtime):** `"workerd/server/server.c++:1951: warning: A DurableObjectNamespace in the config referenced the class..."`
 
----
+**Cause:** Caching DOs (`DOQueueHandler`, `DOShardedTagCache`) aren't used during build.
 
-## 7. SSRF Vulnerability (CVE-2025-6087)
+**Fix:** Safe to ignore (no production impact). To test DOs locally, define them in a separate Worker with its own config.
 
-**Vulnerability**: Server-Side Request Forgery via `/_next/image` endpoint
+## 9. `Uncaught ReferenceError: __name is not defined`
 
-**Affected versions**: `@opennextjs/cloudflare` < 1.3.0
+**Cause:** Wrangler's esbuild `keep-names` injects `__name` into generated script strings some libs (e.g. `next-themes`) eval at runtime.
 
-**Solution**: Upgrade to version 1.3.0 or later:
+**Fix:** `"keep_names": false` in `wrangler.jsonc` (requires **Wrangler ≥ 4.13.0**). Loses original function names in debugging.
 
-```bash
-bun add -d @opennextjs/cloudflare@^1.3.0
-```
+## 10. `Failed to send request to R2 worker` / 403 during `populateCache remote`
 
-**Impact**: Allows unauthenticated users to proxy arbitrary remote content
+**Cause:** Account protected by Cloudflare Access blocks the `open-next-cache-populate` helper worker.
 
-**Source**: https://github.com/advisories/GHSA-rvpw-p7vw-wj3m
+**Fix:** Do **not** create a separate Access app for it. Add a Service Auth policy (Include = Any Access Service Token) to the existing Access app covering `*.<account>.workers.dev`, create a service token, export `CLOUDFLARE_ACCESS_CLIENT_ID` / `CLOUDFLARE_ACCESS_CLIENT_SECRET`.
 
----
+## 11. Prisma + D1 conflicts
 
-## 8. Durable Objects Binding Warnings
+**Error:** Build errors with `@prisma/client` + `@prisma/adapter-d1`.
 
-**Warning**: `"You have defined bindings to the following internal Durable Objects... will not work in local development, but they should work in production"`
+**Fix:** Add `serverExternalPackages: ["@prisma/client", ".prisma/client"]` to `next.config.ts`, enable `previewFeatures = ["driverAdapters"]` in `schema.prisma`, and do **not** specify an output directory in `schema.prisma` (the client must be patched by OpenNext).
 
-**Cause**: OpenNext uses Durable Objects for caching (`DOQueueHandler`, `DOShardedTagCache`)
+## 12. `cross-fetch` errors
 
-**Solution**: **Safe to ignore** - warning is expected behavior
+**Cause:** OpenNext patches the deployment package, causing `cross-fetch` to try Node libraries when native `fetch` is available.
 
-**Alternative** (to suppress warning): Define Durable Objects in separate Worker with own config
+**Fix:** Use native `fetch` directly instead of `cross-fetch`.
 
-**Source**: https://opennext.js.org/cloudflare/known-issues#caching-durable-objects
+## 13. Windows development
 
----
+**Issue:** Full Windows support not guaranteed (Next.js tooling issues).
 
-## 9. Prisma + D1 Middleware Conflicts
+**Fix:** WSL, Linux VM, or Linux/macOS CI. See open issue #1305 (Windows + Turbopack routes 500).
 
-**Error**: Build errors when using `@prisma/client` + `@prisma/adapter-d1` in Next.js middleware
+## Open-issue cross-reference (live bugs at time of writing)
 
-**Cause**: Database initialization in middleware context
+| Issue | Bug | Workaround |
+|---|---|---|
+| [#1171](https://github.com/opennextjs/opennextjs-cloudflare/issues/1171) | **v1.18.0 breaks R2 cache population** (pinned) | Pin 1.17.x or upgrade past the fix |
+| [#1277](https://github.com/opennextjs/opennextjs-cloudflare/issues/1277) | `proxy.js`/`proxy.ts` not supported (Next 16) | Keep `middleware.ts` on Cloudflare |
+| [#1130](https://github.com/opennextjs/opennextjs-cloudflare/issues/1130) | `cacheComponents: true` crash (`Unexpected identifier '$'`) | Disable `cacheComponents` |
+| [#1225](https://github.com/opennextjs/opennextjs-cloudflare/issues/1225) | `cacheComponents: true` permanent `Connection closed` | Disable `cacheComponents` |
+| [#1321](https://github.com/opennextjs/opennextjs-cloudflare/issues/1321) | Intermittent React hydration mismatch (~9%) | — |
+| [#1322](https://github.com/opennextjs/opennextjs-cloudflare/issues/1322) | Hyperdrive + `pg` bundling failure | — |
+| [#1214](https://github.com/opennextjs/opennextjs-cloudflare/issues/1214) | esbuild fails resolving `pg-cloudflare` (Hyperdrive + node-postgres) | — |
+| [#1315](https://github.com/opennextjs/opennextjs-cloudflare/issues/1315) | Time-based fetch-cache revalidation silently no-ops on Next 16 (deployed) | — |
+| [#1305](https://github.com/opennextjs/opennextjs-cloudflare/issues/1305) | Windows + Turbopack routes 500 | Use Linux/macOS or webpack |
+| [#1317](https://github.com/opennextjs/opennextjs-cloudflare/issues/1317) | `@cf-wasm/photon` Turbopack build fails (raw `.wasm`) | Use webpack |
+| [#1326](https://github.com/opennextjs/opennextjs-cloudflare/issues/1326) | Webpack chunk inlining misses named chunks → `Unknown chunk N` | — |
+| [#969](https://github.com/opennextjs/opennextjs-cloudflare/issues/969) | OpenTelemetry bundling error with Next 16 | — |
+| [#1284](https://github.com/opennextjs/opennextjs-cloudflare/issues/1284) | `populateCache remote` fails writing to R2 after 15 attempts | — |
+| [#617](https://github.com/opennextjs/opennextjs-cloudflare/issues/617) | Node middleware (Next 15.2+) unsupported | Use standard middleware |
 
-**Workaround**: Initialize Prisma client in route handlers, not middleware
+## Sources
 
-**Source**: https://github.com/opennextjs/opennextjs-cloudflare/issues/471
-
----
-
-## 10. cross-fetch Library Errors
-
-**Error**: Errors when using libraries that depend on `cross-fetch`
-
-**Cause**: OpenNext patches deployment package causing `cross-fetch` to try using Node.js libraries when native fetch is available
-
-**Solution**: Use native `fetch` API directly instead of `cross-fetch`:
-
-```typescript
-// ✅ Use native fetch
-const response = await fetch('https://api.example.com/data');
-
-// ❌ Avoid cross-fetch
-// import fetch from 'cross-fetch';
-```
-
-**Source**: https://opennext.js.org/cloudflare/troubleshooting
-
----
-
-## 11. Windows Development Issues
-
-**Issue**: Full Windows support not guaranteed
-
-**Cause**: Underlying Next.js tooling issues on Windows
-
-**Solutions**:
-- Use WSL (Windows Subsystem for Linux)
-- Use virtual machine with Linux
-- Use Linux-based CI/CD for deployments
-
-**Source**: https://opennext.js.org/cloudflare#windows-support
-
----
-
-## Additional Troubleshooting Resources
-
-- **Official Troubleshooting Guide**: https://opennext.js.org/cloudflare/troubleshooting
-- **Known Issues**: https://opennext.js.org/cloudflare/known-issues
-- **GitHub Issues**: https://github.com/opennextjs/opennextjs-cloudflare/issues
-- **Cloudflare Community**: https://community.cloudflare.com/
-
----
-
-**Last Updated**: 2025-12-04
-**Total Errors Documented**: 11
-**Sources**: All error solutions verified against official documentation
+- Troubleshooting — https://opennext.js.org/cloudflare/troubleshooting
+- Known issues — https://opennext.js.org/cloudflare/known-issues
+- Open issues — https://github.com/opennextjs/opennextjs-cloudflare/issues
+- Overview (Windows) — https://opennext.js.org/cloudflare
+- CVE-2025-6087 — https://github.com/advisories/GHSA-rvpw-p7vw-wj3m

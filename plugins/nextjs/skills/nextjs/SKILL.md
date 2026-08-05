@@ -94,7 +94,7 @@ Use this skill when you need:
 
 Do NOT use this skill for:
 
-- **Cloudflare Workers deployment** → Use `cloudflare-nextjs` skill instead
+- **Cloudflare Workers deployment** → Use the **`cloudflare-nextjs`** skill (OpenNext adapter: `@opennextjs/cloudflare`, `getCloudflareContext`, caching tiers, Workers-specific errors). Note: `cloudflare-nextjs` covers the `proxy.ts` exception for Cloudflare (keep `middleware.ts` there).
 - **Pages Router patterns** → This skill covers App Router ONLY (Pages Router is legacy)
 - **Authentication libraries** → Use `clerk-auth`, `auth-js`, or other auth-specific skills
 - **Database integration** → Use `cloudflare-d1`, `drizzle-orm-d1`, or database-specific skills
@@ -495,7 +495,7 @@ export async function getPosts() {
 
 | Skill | Purpose |
 |-------|---------|
-| `cloudflare-nextjs` | Deploy to Cloudflare Workers |
+| `cloudflare-nextjs` | Deploy to Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`) |
 | `tailwind-v4-shadcn` | Styling |
 | `clerk-auth` | Authentication |
 | `drizzle-orm-d1` | Database |

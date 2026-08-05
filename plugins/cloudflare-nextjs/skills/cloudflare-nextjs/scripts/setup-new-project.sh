@@ -15,9 +15,9 @@ if ! command -v npm &> /dev/null; then
     exit 1
 fi
 
-# Create new project with C3
-echo "📦 Running C3 to scaffold Next.js project..."
-npm create cloudflare@latest -- "$PROJECT_NAME" --framework=next
+# Create new project with C3 (--platform=workers targets Cloudflare Workers via OpenNext)
+echo "📦 Running C3 to scaffold Next.js project for Workers..."
+npm create cloudflare@latest -- "$PROJECT_NAME" --framework=next --platform=workers
 
 echo ""
 echo "✅ Project created successfully!"

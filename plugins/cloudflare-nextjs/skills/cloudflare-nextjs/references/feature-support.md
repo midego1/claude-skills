@@ -2,11 +2,19 @@
 
 Complete feature compatibility matrix for Next.js deployed on Cloudflare Workers using the OpenNext adapter.
 
-**Last Verified**: 2025-10-21
-**OpenNext Version**: 1.3.0+
-**Next.js Versions**: 14.2.0+ and 15.x
+**Last Verified**: 2026-08-05
+**OpenNext Version**: `@opennextjs/cloudflare` ^1.18.1
+**Next.js Versions**: v16 (all minors); latest minors of v14 and v15; v14 dropped Q1 2026
 
-**Official Source**: https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/#next-js-supported-features
+**Important caveats**:
+- **Edge Runtime** is NOT supported — use the Node.js runtime via `nodejs_compat`.
+- **Node Middleware** (Next.js 15.2+) is not yet supported (issue #617).
+- **Turbopack** is supported but has several open bugs (#1305, #1317, #1326) — webpack is safer.
+- **Cache interception + PPR** are incompatible today.
+
+**Sources**:
+- Overview — https://opennext.js.org/cloudflare
+- Cloudflare guide — https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/
 
 ---
 
@@ -401,5 +409,7 @@ Before deploying to production, test:
 
 ---
 
-**Last Updated**: 2025-10-21
-**Verified Against**: OpenNext Cloudflare 1.3.0, Next.js 14.2+ & 15.x
+## Sources
+
+- Overview — https://opennext.js.org/cloudflare
+- Cloudflare guide — https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/
