@@ -205,11 +205,11 @@ Internal Linking:
 ## Installation
 
 ```bash
-# Install to Claude Code skills directory
-./scripts/install-skill.sh seo-keyword-cluster-builder
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# Verify installation
-ls ~/.claude/skills/seo-keyword-cluster-builder
+# Install this plugin
+/plugin install seo-keyword-cluster-builder@claude-skills
 ```
 
 ## Philosophy

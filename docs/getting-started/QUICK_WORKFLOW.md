@@ -67,7 +67,7 @@ Open `README.md` and add auto-trigger keywords:
 
 ```bash
 # Install skill
-./scripts/install-skill.sh my-skill-name
+/plugin install my-skill-name@claude-skills
 
 # Verify
 ls -la ~/.claude/skills/my-skill-name
@@ -190,7 +190,7 @@ See [PLUGIN_DEV_BEST_PRACTICES.md](PLUGIN_DEV_BEST_PRACTICES.md) Section 7 for i
 
 1. **Install locally**
    ```bash
-   ./scripts/install-skill.sh my-skill-name
+   /plugin install my-skill-name@claude-skills
    ```
 
 2. **Test discovery**
@@ -275,7 +275,7 @@ Note: Bun is preferred; npm/pnpm commands below are equivalent. Use `bunx` for c
 cp -r templates/skill-skeleton/ skills/my-skill-name/
 
 # Install skill
-./scripts/install-skill.sh my-skill-name
+/plugin install my-skill-name@claude-skills
 
 # Verify installation
 ls -la ~/.claude/skills/my-skill-name

@@ -370,15 +370,11 @@ cloudflare-mcp-server/
 This skill is designed for **Claude Code CLI**. To use it:
 
 ```bash
-# 1. Clone the claude-skills repo
-git clone https://github.com/secondsky/claude-skills
+# 1. Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
 
-# 2. Install this skill
-cd claude-skills
-./scripts/install-skill.sh cloudflare-mcp-server
-
-# 3. Verify installation
-ls -la ~/.claude/skills/cloudflare-mcp-server
+# 2. Install this plugin
+/plugin install cloudflare-mcp-server@claude-skills
 ```
 
 Claude Code will automatically discover this skill when relevant keywords are mentioned.

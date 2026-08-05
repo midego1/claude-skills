@@ -792,7 +792,7 @@ https://github.com/secondsky/claude-skills/issues?q=mcp-dynamic-orchestrator
 
 ## Steps to Reproduce
 
-1. Install skill: `./scripts/install-skill.sh mcp-dynamic-orchestrator`
+1. Install skill: `/plugin install mcp-dynamic-orchestrator@claude-skills`
 2. Run: `list_mcp_capabilities({ query: "..." })`
 3. See error: `...`
 

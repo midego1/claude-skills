@@ -59,7 +59,7 @@ body:
       description: How did you try to install the skill?
       options:
         - Marketplace install (/plugin install <name>@claude-skills)
-        - Manual symlink (./scripts/install-skill.sh)
+        - skills.sh (npx skills add secondsky/claude-skills --skill <name>)
         - Cloned entire repository
         - Other (describe below)
     validations:

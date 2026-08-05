@@ -52,12 +52,14 @@ Claude automatically loads this skill when you're:
 /plugin install react-native-skills@claude-skills
 ```
 
-### Manual Installation
+### Marketplace Installation
 
 ```bash
-git clone https://github.com/secondsky/claude-skills.git
-cd claude-skills
-./scripts/install-skill.sh react-native-skills
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
+
+# Install this plugin
+/plugin install react-native-skills@claude-skills
 ```
 
 ## Usage Examples

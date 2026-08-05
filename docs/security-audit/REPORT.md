@@ -31,8 +31,8 @@ Raw per-track findings: `docs/security-audit/findings/track-{a,b,c,d,e,f}-*.md`.
 | A-002 | Uncaught `AttributeError` on `[]`/`null`/string JSON — narrow except | `claude-code-bash-patterns/.../dangerous-command-guard.py:38-39` | B5 |
 | B-001 | MCP orchestrator spawns attacker-controllable command from `mcp.registry.json` with no allowlist → arbitrary RCE | `mcp-dynamic-orchestrator/src/orchestrator.ts:147` | B7 |
 | C-001 | `generate-secret.sh` always echoes `BETTER_AUTH_SECRET` to stdout | `better-auth/.../generate-secret.sh:12,18,21` | B12 |
-| D-001 | `install-skill.sh` `rm -rf ~/.claude/skills/<name>` with unvalidated `name` (traversal/self-wipe) | `scripts/install-skill.sh:15,28,60` | B4 |
-| D-002 | `install-skill.sh` no `set -u`; trailing-slash `rm -rf` wipes entire skills dir if validation weakened | `scripts/install-skill.sh:6,15,60` | B4 |
+| D-001 | `install-skill.sh` `rm -rf ~/.claude/skills/<name>` with unvalidated `name` (traversal/self-wipe) | `scripts/install-skill.sh:15,28,60` | B4 *(resolved: scripts removed Aug 2026)* |
+| D-002 | `install-skill.sh` no `set -u`; trailing-slash `rm -rf` wipes entire skills dir if validation weakened | `scripts/install-skill.sh:6,15,60` | B4 *(resolved: scripts removed Aug 2026)* |
 
 ---
 
@@ -91,7 +91,7 @@ A-014 (template env dump — opt-in, will add warning); B-008 (fixed-string bun,
 | B1 | CI/CD workflows hardening + new scanner workflows | E-001, E-002, E-004, E-006, E-007, E-010, E-012, C-008 | sonnet |
 | B2 | Governance docs (SECURITY.md, dependabot.yml, plugin security-review checklist, branch-protection note) | E-009, E-013, E-014, E-015(doc), E-05(doc) | sonnet |
 | B3 | Repo config/portability (.gitignore, package sync, fix-frontmatter.mjs, remove-category backup) | C-007, E-003, E-008, D-014, D-015 | sonnet |
-| B4 | install-skill.sh + install-all.sh hardening | D-001, D-002, D-016, D-019 | sonnet |
+| B4 | install-skill.sh + install-all.sh hardening *(superseded: scripts removed Aug 2026; findings D-001, D-002, D-016, D-019 moot)* | D-001, D-002, D-016, D-019 | sonnet |
 | B5 | claude-code-bash-patterns (guard, logger, enforcer) | A-001, A-002, A-003, A-004, A-005, A-006, D-018 | sonnet |
 | B6 | nuxt-seo + bun hooks | A-007, A-008, A-009, A-010, A-011, A-012, A-013, A-014, F-15 | sonnet |
 | B7 | mcp-dynamic-orchestrator (allowlist + env denylist + sandbox doc) | B-001, B-002, B-003 | sonnet |

@@ -204,6 +204,14 @@ if command -v jq &> /dev/null; then
   if jq empty "$MARKETPLACE_JSON" 2>/dev/null; then
     plugin_count=$(jq '.plugins | length' "$MARKETPLACE_JSON")
 
+    # Sync top-level metadata.version from plugin entries (lockstep: all match).
+    # The hardcoded heredoc value drifts; this keeps it consistent without a
+    # manual edit every release.
+    synced_version=$(jq -r '.plugins[0].version // empty' "$MARKETPLACE_JSON")
+    if [ -n "$synced_version" ]; then
+      jq --arg v "$synced_version" '.metadata.version = $v' "$MARKETPLACE_JSON" > "$MARKETPLACE_JSON.tmp" && mv "$MARKETPLACE_JSON.tmp" "$MARKETPLACE_JSON"
+    fi
+
     # Check for missing descriptions
     missing_desc=$(jq '[.plugins[] | select(.description == "")] | length' "$MARKETPLACE_JSON")
 

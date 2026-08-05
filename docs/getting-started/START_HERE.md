@@ -44,7 +44,7 @@ This provides foundational knowledge for hooks, MCP, structure, agents, commands
 1. Copy the template: `cp -r templates/skill-skeleton/ skills/my-skill-name/`
 2. Fill in the TODOs in `SKILL.md` and `README.md`
 3. Add your resources (scripts, references, assets)
-4. Install locally: `./scripts/install-skill.sh my-skill-name`
+4. Install locally: `/plugin install my-skill-name@claude-skills`
 5. Test by mentioning it to Claude Code
 6. Verify with [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md)
 
@@ -141,7 +141,7 @@ This provides foundational knowledge for hooks, MCP, structure, agents, commands
                    ▼
         ┌──────────────────────────────┐
         │ 5. TEST LOCALLY              │
-        │ ./scripts/install-skill.sh   │
+        │ /plugin install name@market  │
         │ • Ask Claude to use skill    │
         │ • Verify discovery works     │
         └──────────┬───────────────────┘

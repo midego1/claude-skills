@@ -50,11 +50,11 @@ We are grateful to Vercel for creating and open-sourcing this comprehensive guid
 ## Installation
 
 ```bash
+# Add the marketplace once (if not already added)
+/plugin marketplace add https://github.com/secondsky/claude-skills
+
 # Install this plugin
 /plugin install react-best-practices@claude-skills
-
-# Or install manually
-./scripts/install-skill.sh react-best-practices
 ```
 
 ## Usage Examples

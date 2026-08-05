@@ -114,8 +114,7 @@ symlink, copy, backup, sed, chmod, composer install) and exit 0 without
 mutating disk. Validation failures still exit non-zero — dry-run never
 bypasses validation.
 
-- `scripts/install-skill.sh` — installs a skill to `$HOME/.claude/skills/`.
-- `scripts/install-all.sh` — loops `install-skill.sh`; forwards `--dry-run`.
+- `npx skills add ...` (skills.sh CLI) — installs skills into the detected agent's directory (e.g. `$HOME/.claude/skills/`). Note: the legacy `scripts/install-skill.sh` and `scripts/install-all.sh` have been removed.
 - `plugins/wordpress-plugin-core/skills/wordpress-plugin-core/scripts/scaffold-plugin.sh` — scaffolds a plugin to `$HOME/wp-content/plugins/`.
 - `plugins/gemini-cli/skills/gemini-cli/scripts/install-gemini-coach.sh` — copies a script to `$HOME/.local/bin/`.
 - `plugins/gemini-cli/skills/gemini-cli/scripts/setup-slash-command.sh` — copies a slash command to `$HOME/.claude/commands/`.

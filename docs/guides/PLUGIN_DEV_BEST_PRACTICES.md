@@ -551,7 +551,7 @@ cp -r templates/skill-skeleton/ plugins/my-plugin/
 # 3. Add resources (scripts/, references/, templates/)
 
 # 4. Install locally for testing
-./scripts/install-skill.sh my-plugin
+/plugin install my-plugin@claude-skills
 
 # 5. Verify discovery
 # Ask Claude Code to use the skill - does it trigger?
@@ -585,18 +585,17 @@ git push origin <branch>
 
 **Install individual skill**:
 ```bash
-./scripts/install-skill.sh my-plugin
+/plugin install my-plugin@claude-skills
 
 # Verify
 ls -la ~/.claude/skills/my-plugin
 ```
 
-**Install all 169 skills**:
+**Install all skills (cross-harness)**:
 ```bash
-./scripts/install-all.sh
+npx skills add secondsky/claude-skills --skill '*'
 
-# Takes ~2-3 minutes
-# Creates symlinks to ~/.claude/skills/
+# Auto-detects your agent and installs into the correct directory.
 ```
 
 **Uninstall**:
@@ -784,7 +783,7 @@ npm view <package-name> version
 
 # 3. REPOSITORY-SPECIFIC (This Doc)
 # a. Install locally
-./scripts/install-skill.sh my-plugin
+/plugin install my-plugin@claude-skills
 
 # b. Test discovery
 # Ask Claude Code to use the skill
@@ -821,7 +820,7 @@ gh pr create --repo secondsky/claude-skills
 | **Manage marketplace** | Repository: [MARKETPLACE_MANAGEMENT.md](MARKETPLACE_MANAGEMENT.md) |
 | **Optimize description** | Repository: This doc, Section 3 |
 | **Batch review workflows** | Repository: This doc, Section 4 |
-| **Install locally** | Repository: `./scripts/install-skill.sh` |
+| **Install locally** | Repository: `/plugin install <name>@claude-skills` (or `npx skills add`) |
 | **Sync versions** | Repository: `./scripts/sync-plugins.sh` |
 | **Check compliance** | Repository: [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) |
 | **Research protocol** | Repository: [research-protocol.md](../reference/research-protocol.md) |
@@ -858,7 +857,7 @@ gh pr create --repo secondsky/claude-skills
 1. **Marketplace**: `./scripts/sync-plugins.sh` (before every PR)
 2. **Descriptions**: Keep under 100 chars (150 max) to avoid silent omission
 3. **Quality**: Manual review required (30min-2hrs per skill)
-4. **Installation**: `./scripts/install-skill.sh` for local testing
+4. **Installation**: `/plugin install <name>@claude-skills` (or `npx skills add`) for local testing
 
 **Critical Constraints**:
 - System prompt budget: 15,000 chars TOTAL for all skill descriptions

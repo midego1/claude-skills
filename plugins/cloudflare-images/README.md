@@ -286,7 +286,7 @@ Based on:
 
 ## Next Steps
 
-1. **Install Skill**: `./scripts/install-skill.sh cloudflare-images`
+1. **Install Skill**: `/plugin install cloudflare-images@claude-skills`
 2. **Read SKILL.md**: Complete setup guide
 3. **Copy Templates**: Start with `upload-api-basic.ts` or `direct-creator-upload-backend.ts`
 4. **Enable Transformations**: Dashboard → Images → Transformations → Enable
