@@ -82,6 +82,56 @@ function batchArray<T>(array: T[], batchSize: number): T[][] {
 	return batches;
 }
 
+/**
+ * Extract visible text from an HTML string using Cloudflare's HTMLRewriter.
+ *
+ * Why not regex: stripping tags with regular expressions is unsafe — regexes
+ * cannot reliably match `</script >`-style end tags, can reintroduce dangerous
+ * substrings when fragments recombine, and have no understanding of element
+ * semantics. HTMLRewriter is a streaming, dependency-free HTML tokenizer built
+ * into the Workers runtime, so it handles all of the above correctly.
+ *
+ * Drops the *content* of <script>, <style>, <noscript>, <iframe>, <svg> and
+ * collapses adjacent whitespace into single spaces.
+ */
+async function extractTextFromHtml(html: string): Promise<string> {
+	let skipDepth = 0;
+	let text = '';
+
+	const rewriter = new HTMLRewriter()
+		.on('script, style, noscript, iframe, svg', {
+			// HTMLRewriter has no standalone `endTag` handler on the content
+			// handlers object — end-tag callbacks are registered per-element via
+			// `el.onEndTag(...)`. Registering the decrement there (not as a
+			// sibling `endTag` key, which is silently ignored) is what keeps
+			// `skipDepth` balanced so visible text after a skipped element is
+			// processed again.
+			element(el) {
+				skipDepth++;
+				el.onEndTag(() => {
+					if (skipDepth > 0) skipDepth--;
+				});
+			},
+		})
+		.on('*', {
+			text(chunk) {
+				if (skipDepth > 0) return;
+				// chunk.text is a small piece of decoded text content; collapse
+				// whitespace so that block elements don't leave odd gaps.
+				text += chunk.text.replace(/\s+/g, ' ');
+			},
+		});
+
+	// HTMLRewriter is a streaming transform: the element/text handlers fire as
+	// the output stream is consumed. Awaiting `.text()` drains that stream to
+	// completion, which is what drives every callback above — the resolved
+	// string itself is unused. (Reading is the engine, not waste; if the stream
+	// isn't drained the callbacks never fire.)
+	await rewriter.transform(new Response(html)).text();
+	// Collapse any whitespace introduced at streaming chunk boundaries.
+	return text.replace(/\s+/g, ' ').trim();
+}
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		// Handle CORS
@@ -237,13 +287,8 @@ export default {
 				const response = await fetch(body.url);
 				const html = await response.text();
 
-				// Simple text extraction (production would use proper HTML parsing)
-				const text = html
-					.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-					.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
-					.replace(/<[^>]+>/g, ' ')
-					.replace(/\s+/g, ' ')
-					.trim();
+				// Extract visible text with HTMLRewriter (see extractTextFromHtml).
+				const text = await extractTextFromHtml(html);
 
 				// Create document from fetched content
 				const doc: Document = {
