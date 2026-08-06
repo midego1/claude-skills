@@ -1348,6 +1348,17 @@
       "category": "Frontend"
     },
     {
+      "name": "tech-debt",
+      "source": {
+        "source": "local",
+        "path": "./plugins/tech-debt"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Developer Tools"
+    },
+    {
       "name": "technical-specification",
       "source": {
         "source": "local",
@@ -1423,6 +1434,17 @@
         "installation": "AVAILABLE"
       },
       "category": "Frontend"
+    },
+    {
+      "name": "unknowns-discovery",
+      "source": {
+        "source": "local",
+        "path": "./plugins/unknowns-discovery"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Developer Tools"
     },
     {
       "name": "vitest-testing",
