@@ -78,12 +78,15 @@ declare -a MEDIUM_LIST
 declare -a LOW_LIST
 declare -a MANUAL_LIST
 
-# Add findings
-add_critical() { CRITICAL_LIST+=("$1"); ((CRITICAL++)); }
-add_high() { HIGH_LIST+=("$1"); ((HIGH++)); }
-add_medium() { MEDIUM_LIST+=("$1"); ((MEDIUM++)); }
-add_low() { LOW_LIST+=("$1"); ((LOW++)); }
-add_manual() { MANUAL_LIST+=("$1"); ((MANUAL_CHECKS++)); }
+# Add findings. NOTE: `((VAR++))` returns exit status 1 when VAR is 0, which
+# under `set -e` would abort the script on the first finding (bug: the entire
+# report was unreachable whenever any issue existed). `|| true` neutralizes the
+# non-zero status while still incrementing.
+add_critical() { CRITICAL_LIST+=("$1"); ((CRITICAL++)) || true; }
+add_high() { HIGH_LIST+=("$1"); ((HIGH++)) || true; }
+add_medium() { MEDIUM_LIST+=("$1"); ((MEDIUM++)) || true; }
+add_low() { LOW_LIST+=("$1"); ((LOW++)) || true; }
+add_manual() { MANUAL_LIST+=("$1"); ((MANUAL_CHECKS++)) || true; }
 
 # Helper functions
 error() { echo -e "${RED}${FAIL} $1${NC}"; }
@@ -209,13 +212,36 @@ check_yaml_frontmatter() {
     # Check for last_verified
     if echo "$frontmatter" | grep -q "last_verified:"; then
       local last_verified=$(echo "$frontmatter" | grep "last_verified:" | sed 's/.*last_verified:[[:space:]]*//')
-      local days_ago=$(( ($(date +%s) - $(date -d "$last_verified" +%s 2>/dev/null || echo 0)) / 86400 ))
+      # Strip surrounding quotes / whitespace so a YAML-quoted scalar like
+      # `last_verified: "2024-01-15"` parses cleanly.
+      last_verified="${last_verified#\"}"; last_verified="${last_verified%\"}"
+      last_verified="${last_verified#\'}"; last_verified="${last_verified%\'}"
+      last_verified="${last_verified%% *}"
+      # Parse the YYYY-MM-DD date to epoch seconds portably. `date -d` is
+      # GNU-only and errors on macOS/BSD (silently yielding epoch 0, which
+      # flagged every skill as ~56 years stale). Use BSD's `date -jf` when on
+      # macOS, falling back to GNU `date -d`. If neither recognizes the value,
+      # skip the staleness check rather than reporting a bogus ~20,500-day age.
+      local verified_epoch=0
+      local parsed=false
+      if date -jf "%Y-%m-%d" "$last_verified" +%s >/dev/null 2>&1; then
+        verified_epoch=$(date -jf "%Y-%m-%d" "$last_verified" +%s 2>/dev/null || echo 0)
+        parsed=true
+      elif date -d "$last_verified" +%s >/dev/null 2>&1; then
+        verified_epoch=$(date -d "$last_verified" +%s 2>/dev/null || echo 0)
+        parsed=true
+      fi
 
-      if [ "$days_ago" -gt 90 ]; then
-        warning "Last verified ${days_ago} days ago (>90 days is stale)"
-        add_medium "Skill hasn't been verified in ${days_ago} days"
+      if [ "$parsed" = false ]; then
+        info "Metadata: last_verified value '$last_verified' not a recognized date (skipping staleness check)"
       else
-        success "Recently verified (${days_ago} days ago)"
+        local days_ago=$(( ($(date +%s) - verified_epoch ) / 86400 ))
+        if [ "$days_ago" -gt 90 ]; then
+          warning "Last verified ${days_ago} days ago (>90 days is stale)"
+          add_medium "Skill hasn't been verified in ${days_ago} days"
+        else
+          success "Recently verified (${days_ago} days ago)"
+        fi
       fi
     else
       info "Metadata: last_verified field missing (recommended)"

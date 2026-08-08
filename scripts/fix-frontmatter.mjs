@@ -54,6 +54,10 @@ function extractFrontmatter(content) {
  * that top-level key pattern.
  */
 function isTopLevelKey(line) {
+  // The closing frontmatter delimiter ends the YAML block — it must not be
+  // folded into a description value. Without this, a description that is the
+  // last frontmatter field swallowed the trailing `---` and corrupted the file.
+  if (/^---\s*$/.test(line)) return true;
   // Match YAML keys at column 0: "key: value" or "key:" (no value on same line)
   return /^[a-z][a-z0-9-]*:(\s|$)/.test(line);
 }
@@ -70,6 +74,22 @@ function fixDescriptionBlock(lines) {
     if (m) {
       const firstValue = m[1]; // text after "description: "
 
+      // Idempotency: if the description is already a YAML block scalar header
+      // (`>`, `|`, `>-`, `|2`, `>3-`, `| # comment`, etc.) it has already been
+      // normalized — leave it untouched. A block-scalar header is `>` or `|`
+      // followed by an optional indentation indicator (digit 1-9) and/or a
+      // chomping indicator (`-`/`+`) in any order, then an optional comment.
+      // Match the header token (before any comment) then allow trailing space
+      // + `# ...`.
+      const headerCore = /^[>|]([1-9][-+]?|[-+]?[1-9]?|[-+]?)$/;
+      const fv = firstValue.trim();
+      const headerToken = fv.split(/\s+#/)[0];
+      if (headerCore.test(headerToken)) {
+        out.push(line);
+        i++;
+        continue;
+      }
+
       // Gather continuation lines: everything that is NOT a top-level key
       const continuations = [];
       let j = i + 1;
@@ -82,7 +102,14 @@ function fixDescriptionBlock(lines) {
         j++;
       }
 
-      if (continuations.length > 0) {
+      // Only fold into a block scalar if there is non-blank continuation
+      // content. A description followed only by blank line(s) and then the next
+      // key (or the closing ---) is already valid and must NOT be rewritten —
+      // previously such lines were falsely converted to `>-`, corrupting
+      // already-correct quoted descriptions.
+      const hasNonBlankContinuation = continuations.some(l => l.trim() !== '');
+
+      if (continuations.length > 0 && hasNonBlankContinuation) {
         // ── multiline description → use >- folded block scalar ──
         // All content after >- must be indented by ≥2 spaces
         out.push('description: >-');
@@ -97,15 +124,13 @@ function fixDescriptionBlock(lines) {
             // Blank line: keep as-is (YAML folds these)
             out.push('');
           } else {
-            // Content line: add 2-space indent if not already indented enough
-            // Original lines like "  Keywords: ..." become "    Keywords: ..."
-            if (/^\s{2}/.test(cl)) {
-              out.push('  ' + cl); // add 2 more spaces to existing 2-space indent
-            } else if (/^\s/.test(cl)) {
-              out.push(cl); // already indented enough
-            } else {
-              out.push('  ' + cl); // no indent, add 2 spaces
-            }
+            // Content line: a `>-` folded block scalar requires every content
+            // line indented by ≥2 spaces. Previously a 1-space-indented line
+            // was emitted unchanged (the `/^\s/` branch), producing invalid
+            // YAML. Normalise: strip existing leading whitespace, then apply a
+            // uniform 2-space indent. Deeper relative indentation is not
+            // preserved because the original skill descriptions are flat.
+            out.push('  ' + cl.trimStart());
           }
         }
         changed = true;
@@ -153,14 +178,26 @@ function fixListIndentation(lines) {
       const block = [line];
       let j = i + 1;
 
+      // Consume only the items that belong to THIS list: same indentation as
+      // the first item, optionally separated by blank lines. Previously the
+      // collector consumed every consecutive `^\s+-\s` line regardless of
+      // indentation, which merged separately-indented lists and corrupted
+      // nested-list semantics. A list item at a different indentation ends the
+      // block (it is a different list). Buffer blank lines so that when the
+      // block breaks on a non-matching line, the trailing blanks are preserved
+      // in the output rather than silently dropped.
+      let pendingBlanks = [];
       while (j < lines.length) {
         const next = lines[j];
         if (next.trim() === '') {
-          block.push(next);
+          pendingBlanks.push(next);
           j++;
           continue;
         }
-        if (next.match(/^\s+-\s/)) {
+        const nextMatch = next.match(/^(\s+)-\s/);
+        if (nextMatch && nextMatch[1] === blockIndent) {
+          if (pendingBlanks.length) block.push(''); // single separating blank
+          pendingBlanks = [];
           block.push(next);
           j++;
           continue;
@@ -181,6 +218,7 @@ function fixListIndentation(lines) {
       });
 
       out.push(...normalised);
+      out.push(...pendingBlanks);
       i = j;
       continue;
     }
